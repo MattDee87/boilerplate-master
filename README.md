@@ -456,3 +456,4 @@ MIT — free to use, modify, and distribute.
 *Boilerplate Master v3*
 *Built by Matthew De Nero / ByDeNero Digital Agency*
 *https://github.com/MattDee87/boilerplate-master*
+v3.0.0.0
