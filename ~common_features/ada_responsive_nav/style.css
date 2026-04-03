@@ -1,0 +1,334 @@
+/*
+==========================================================
+ADA RESPONSIVE NAV — style.css
+==========================================================
+WHAT IT IS:
+An ADA compliant responsive navigation system with
+one level of dropdown support and an animated
+hamburger menu for mobile.
+
+WHAT IT DOES:
+Renders the main site navigation with full keyboard
+accessibility, focus management, and ARIA support.
+Includes a smooth SVG hamburger animation on mobile.
+Dropdowns open on hover (desktop) and tap (mobile).
+
+HOW TO USE:
+This file is automatically loaded via the
+~common_features/ada_responsive_nav/functions.php
+include in the main functions.php file.
+
+The nav HTML is rendered by:
+~common_features/ada_responsive_nav/view.php
+
+To customize the visual style for a specific project
+add overrides in Section 10 of style.css rather than
+editing this file directly.
+
+All values use boilerplate CSS tokens from style.css.
+==========================================================
+*/
+
+/* ── Wrapper & Logo placeholder ─────────────────────── */
+.wrapper {
+    max-width: var(--max-width);
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 var(--wrapper-padding);
+}
+
+#logo {
+    min-height: 70px;
+    min-width: 200px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-start;
+    color: var(--color-text-inverse);
+    text-decoration: none;
+    font-weight: var(--weight-bold);
+    font-size: var(--text-lg);
+    line-height: 1.2;
+}
+
+#logo:hover {
+    color: var(--color-accent);
+    text-decoration: none;
+}
+
+.custom-logo-link {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.custom-logo-link img,
+.custom-logo {
+    display: block;
+    max-height: 70px;
+    width: auto;
+}
+
+/* ── Header ──────────────────────────────────────────── */
+header {
+    z-index: 500;
+}
+
+.header_inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#mnavbutton {
+    display: none;
+}
+
+/* ── Desktop Nav ─────────────────────────────────────── */
+header nav {
+    display: flex;
+    justify-content: center;
+    margin: var(--space-8) 0 0 0;
+    gap: var(--space-3);
+}
+
+header nav .nav_item_holder {
+    position: relative;
+}
+
+header nav .nav_item_holder > a {
+    padding: var(--space-2) var(--space-4);
+    font-size: var(--text-lg);
+    color: var(--color-text-inverse);
+    text-transform: uppercase;
+    display: block;
+    transition: ease all 150ms;
+}
+
+header nav .nav_item_holder > a:hover {
+    color: var(--color-accent);
+    text-decoration: none;
+}
+
+/* Nav button style item */
+header nav .nav_item_holder.nav_button > a {
+    border-radius: var(--radius-full);
+    background: var(--color-accent);
+    color: var(--color-white);
+    margin: 0 0 0 var(--space-4);
+}
+
+header nav .nav_item_holder.nav_button > a:hover {
+    color: var(--color-accent);
+    background: var(--color-white);
+}
+
+/* ── Dropdown ────────────────────────────────────────── */
+header nav .nav_item_holder.menu-item-has-children {
+    display: flex;
+}
+
+header nav .nav_item_holder.menu-item-has-children > a {
+    padding-right: var(--space-1);
+}
+
+.subnav_more {
+    width: 20px;
+    position: relative;
+    cursor: pointer;
+}
+
+.subnav_more:after {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-right: 2px solid var(--color-text-inverse);
+    border-bottom: 2px solid var(--color-text-inverse);
+    transform: rotate(45deg);
+    margin: 14px auto 0;
+    display: block;
+    transition: ease all 150ms;
+}
+
+.subnav_more:hover:after {
+    border-color: var(--color-accent);
+}
+
+.sub_nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: var(--space-2);
+    background: rgba(0, 0, 0, 0.85);
+    min-width: 160px;
+    border-radius: var(--radius-sm);
+    padding: var(--space-2) 0;
+}
+
+header nav .nav_item_holder:focus-within .sub_nav,
+header nav .nav_item_holder .subnav_more:focus + .sub_nav,
+header nav .nav_item_holder:hover > .sub_nav {
+    display: block;
+}
+
+.sub_nav a {
+    display: block;
+    color: var(--color-text-inverse);
+    text-transform: uppercase;
+    font-size: var(--text-base);
+    padding: var(--space-2) var(--space-3);
+    transition: ease all 150ms;
+    text-decoration: none;
+}
+
+.sub_nav a:hover {
+    color: var(--color-accent);
+}
+
+/* ── Tablet ──────────────────────────────────────────── */
+@media (max-width: 1000px) {
+    header nav .nav_item_holder > a {
+        padding: var(--space-2) var(--space-3);
+        font-size: var(--text-base);
+    }
+}
+
+/* ── Mobile ──────────────────────────────────────────── */
+@media (max-width: 900px) {
+
+    header nav {
+        display: none;
+        order: 3;
+        flex-direction: column;
+        gap: 0;
+    }
+
+    header nav.active {
+        display: flex;
+        flex: 1 0 100%;
+    }
+
+    header nav .nav_item_holder {
+        display: flex;
+        flex-flow: row wrap;
+        border-top: 1px solid var(--color-bg-dark);
+    }
+
+    header nav .nav_item_holder > a {
+        flex: 1 1 60%;
+        text-align: left;
+        font-size: var(--text-md);
+        padding: var(--space-3) var(--space-8) var(--space-3) 0;
+    }
+
+    header nav .nav_item_holder.nav_button > a {
+        flex: 1 1 60%;
+        text-align: left;
+        font-size: var(--text-md);
+        padding: var(--space-3) var(--space-8) var(--space-3) 0;
+        border-radius: 0;
+        background: transparent;
+        color: var(--color-text-inverse);
+        margin: 0;
+    }
+
+    header nav .nav_item_holder.nav_button > a:hover {
+        background: transparent;
+        color: var(--color-accent);
+    }
+
+    header nav .nav_item_holder .subnav_more:focus + .sub_nav,
+    header nav .nav_item_holder:focus-within .sub_nav,
+    header nav .nav_item_holder:hover .sub_nav,
+    .sub_nav {
+        position: relative;
+        top: 0;
+        left: 0;
+        width: auto;
+        display: none;
+        flex: 1 1 100%;
+        padding: 0;
+        border-left: 1px solid var(--color-border);
+        border-radius: 0;
+        margin: var(--space-3) 0 var(--space-6) 0;
+        flex-direction: column;
+        background: transparent;
+    }
+
+    header nav .nav_item_holder .sub_nav.active,
+    .sub_nav.active {
+        display: flex !important;
+        background: rgba(0, 0, 0, 0.2);
+    }
+
+    .sub_nav a {
+        font-weight: var(--weight-semi);
+        text-transform: uppercase;
+        font-size: var(--text-base);
+        position: relative;
+        line-height: var(--leading-snug);
+        padding: var(--space-3) 0 var(--space-3) var(--space-4);
+        transition: ease all 300ms;
+    }
+
+    .sub_nav a::after {
+        content: '';
+        display: block;
+        position: absolute;
+        left: -1px;
+        width: 1px;
+        top: 0;
+        bottom: 0;
+        transition: ease all 100ms;
+        z-index: 5;
+        opacity: 0;
+        background: var(--color-accent);
+    }
+
+    .sub_nav a:hover::after {
+        opacity: 1;
+    }
+
+    .subnav_more {
+        width: 50px;
+    }
+
+    /* Hamburger button */
+    #mnavbutton {
+        display: flex !important;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: var(--color-text-inverse);
+        align-self: center;
+        padding: 0 0 0 var(--space-3);
+        font-size: var(--text-2xl);
+        order: 2;
+        transition-duration: 0.5s;
+    }
+
+    .menu {
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        padding: 0;
+    }
+
+    /* SVG hamburger animation */
+    .line {
+        fill: none;
+        stroke: var(--color-text-inverse);
+        stroke-width: 6;
+        transition:
+            stroke-dasharray 600ms cubic-bezier(0.4, 0, 0.2, 1),
+            stroke-dashoffset 600ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .line1 { stroke-dasharray: 60 207; stroke-width: 6; }
+    .line2 { stroke-dasharray: 60 60; stroke-width: 6; }
+    .line3 { stroke-dasharray: 60 207; stroke-width: 6; }
+
+    .opened .line1 { stroke-dasharray: 90 207; stroke-dashoffset: -134; stroke-width: 6; }
+    .opened .line2 { stroke-dasharray: 1 60; stroke-dashoffset: -30; stroke-width: 6; }
+    .opened .line3 { stroke-dasharray: 90 207; stroke-dashoffset: -134; stroke-width: 6; }
+}

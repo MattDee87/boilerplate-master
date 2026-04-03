@@ -1,0 +1,859 @@
+@charset "UTF-8";
+ 
+/*
+Theme Name:  Boilerplate Master
+Theme URI:   https://github.com/MattDee87/boilerplate-master
+Author:      Matthew De Nero
+Author URI:  https://github.com/MattDee87
+Description: Vanilla WordPress boilerplate — reusable starting point for all projects. Update tokens, swap fonts, layer brand styles at the bottom.
+Version:     1.0
+License:     MIT
+Text Domain: boilerplate
+*/
+ 
+/* ============================================================
+   TABLE OF CONTENTS
+   ──────────────────────────────────────────────────────────
+    1.  IMPORTS
+        1a. Body Font  (working — keep)
+        1b. Heading Font  (working — keep)
+        1c. Accent / Mono Font  (keep)
+        1d. ⚠️  TEST FONTS — client review only, remove when done
+    2.  DESIGN TOKENS  ← start every new project here
+        2a. Colors
+        2b. Typography  (font families + scale + weights)
+        2c. Spacing
+        2d. Borders & Shadows
+        2e. Layout
+    3.  RESET & NORMALIZE
+    4.  BASE TYPOGRAPHY
+        4a. Body
+        4b. Headings
+        4c. Paragraphs
+        4d. Links
+        4e. Lists
+        4f. Blockquote
+        4g. Code & Pre
+    5.  LAYOUT
+        5a. Wrapper / Container
+        5b. Main
+        5c. Article
+    6.  COMPONENTS
+        6a. Header & Navigation
+        6b. Buttons
+        6c. Forms
+        6d. Tables
+        6e. Footer
+    7.  WORDPRESS SPECIFICS
+        7a. Block Editor
+        7b. Alignment Helpers
+        7c. Captions
+    8.  UTILITIES
+        8a. Skip to Main Content  (accessibility)
+        8b. Scroll To Top
+        8c. Font Testing Classes  (remove with test fonts)
+        8d. General Helpers
+    9.  RESPONSIVE
+        9a. Tablet  — 768px
+        9b. Mobile  — 480px
+   10.  PROJECT BRANDING OVERRIDES
+        ↳ Layer brand / project-specific styles here
+   ──────────────────────────────────────────────────────────
+*/
+ 
+ 
+/* ============================================================
+   1. IMPORTS
+   ============================================================ */
+ 
+/* ── 1a. Body Font ──────────────────────────────────────────
+   Neutral working default. Swap @import URL + --font-body
+   in the tokens section when starting a new project.         */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+ 
+/* ── 1b. Heading Font ───────────────────────────────────────
+   Neutral working default. Swap @import URL + --font-heading
+   in the tokens section when starting a new project.         */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap');
+ 
+/* ── 1c. Accent / Mono Font ─────────────────────────────────
+   Used for code blocks, labels, and UI accents.
+   Swap @import URL + --font-accent if needed.                */
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&display=swap');
+ 
+/* ──────────────────────────────────────────────────────────
+   ⚠️  1d. TEST FONTS — CLIENT FONT SELECTION ONLY
+   ──────────────────────────────────────────────────────────
+   These fonts are TEMPORARY. They exist solely to power the
+   Font Test page shown to clients during the discovery phase.
+ 
+   ✅  KEEP these imports until the client locks in their
+       final font system.
+   ❌  REMOVE this entire @import block once fonts are chosen.
+       Also remove the matching font testing classes in §8c.
+ 
+   Test fonts included:
+   Poppins · Sora · Manrope · Space Grotesk · Barlow · Rajdhani
+   (Inter + JetBrains Mono are already imported above)
+   ────────────────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Sora:wght@400;600;700&family=Manrope:wght@400;600;700&family=Space+Grotesk:wght@400;600;700&family=Barlow:wght@400;600;700&family=Rajdhani:wght@400;600;700&display=swap');
+ 
+ 
+/* ============================================================
+   2. DESIGN TOKENS — CSS CUSTOM PROPERTIES
+   ──────────────────────────────────────────────────────────
+   🚀  START EVERY NEW PROJECT HERE.
+   Update these variables first before writing any custom CSS.
+   Sizes, spacing, and structure are mostly reusable.
+   Font families, colors, and visual personality live here.
+   ============================================================ */
+ 
+:root {
+ 
+    /* ── 2a. Colors ─────────────────────────────────────────
+       Neutral defaults. Replace with your project palette.   */
+ 
+    --color-primary:        #1A1A1A;        /* Main brand / heading color     */
+    --color-secondary:      #555555;        /* Supporting / subheading color  */
+    --color-accent:         #0055CC;        /* CTA, links, highlights         */
+    --color-accent-hover:   #003D99;        /* Hover state of accent          */
+ 
+    --color-bg:             #FFFFFF;        /* Page background                */
+    --color-bg-alt:         #F5F5F5;        /* Alternate / card background    */
+    --color-bg-dark:        #1A1A1A;        /* Header, footer, dark sections  */
+ 
+    --color-text:           #1A1A1A;        /* Primary body text              */
+    --color-text-muted:     #666666;        /* Muted / secondary text         */
+    --color-text-inverse:   #FFFFFF;        /* Text on dark backgrounds       */
+ 
+    --color-border:         #E0E0E0;        /* Borders, dividers, inputs      */
+    --color-white:          #FFFFFF;
+    --color-black:          #000000;
+    --color-rating:         #F5A623;        /* Star rating gold — testimonials */
+
+    /* ── 2b. Typography ─────────────────────────────────────
+       Three font slots. Swap values + imports in §1.
+       ─────────────────────────────────────────────────────
+       --font-body:     paragraph text, UI elements
+       --font-heading:  all h1–h6
+       --font-accent:   code, labels, mono UI details        */
+ 
+    --font-body:            'Inter', system-ui, sans-serif;
+    --font-heading:         'Outfit', system-ui, sans-serif;
+    --font-accent:          'JetBrains Mono', 'Courier New', monospace;
+ 
+    /* Type scale — rem-based */
+    --text-xs:              0.75rem;        /* 12px */
+    --text-sm:              0.875rem;       /* 14px */
+    --text-base:            1rem;           /* 16px */
+    --text-md:              1.125rem;       /* 18px */
+    --text-lg:              1.25rem;        /* 20px */
+    --text-xl:              1.5rem;         /* 24px */
+    --text-2xl:             1.75rem;        /* 28px */
+    --text-3xl:             2.25rem;        /* 36px */
+    --text-4xl:             3rem;           /* 48px */
+ 
+    /* Font weights */
+    --weight-normal:        400;
+    --weight-semi:          600;
+    --weight-bold:          700;
+ 
+    /* Line heights */
+    --leading-tight:        1.2;
+    --leading-snug:         1.4;
+    --leading-normal:       1.6;
+    --leading-relaxed:      1.8;
+ 
+    /* ── 2c. Spacing ────────────────────────────────────────
+       Base-4 / base-8 scale. Use these consistently.        */
+ 
+    --space-1:              4px;
+    --space-2:              8px;
+    --space-3:              12px;
+    --space-4:              16px;
+    --space-5:              20px;
+    --space-6:              24px;
+    --space-8:              32px;
+    --space-10:             40px;
+    --space-12:             48px;
+    --space-16:             64px;
+    --space-20:             80px;
+    --space-24:             96px;
+ 
+    /* ── 2d. Borders & Shadows ──────────────────────────────*/
+ 
+    --radius-sm:            4px;
+    --radius-md:            8px;
+    --radius-lg:            12px;
+    --radius-xl:            20px;
+    --radius-full:          9999px;
+ 
+    --shadow-sm:            0 1px 3px rgba(0, 0, 0, 0.08);
+    --shadow-md:            0 4px 12px rgba(0, 0, 0, 0.10);
+    --shadow-lg:            0 8px 24px rgba(0, 0, 0, 0.12);
+ 
+    /* ── 2e. Layout ─────────────────────────────────────────*/
+ 
+    --max-width:            1200px;
+    --wrapper-padding:      40px;
+}
+ 
+ 
+/* ============================================================
+   3. RESET & NORMALIZE
+   ============================================================ */
+ 
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+ 
+html, body, div, span, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, code,
+em, img, strong, sub, sup, var, b, u, i, center, ol, ul, li,
+fieldset, form, label, legend, article, aside, canvas,
+figure, figcaption, footer, header, nav, section, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+}
+ 
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+ 
+body {
+    line-height: 1;
+}
+ 
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+ 
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+ 
+ 
+/* ============================================================
+   4. BASE TYPOGRAPHY
+   ============================================================ */
+ 
+/* ── 4a. Body ───────────────────────────────────────────────*/
+ 
+body {
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    font-weight: var(--weight-normal);
+    line-height: var(--leading-normal);
+    color: var(--color-text);
+    background-color: var(--color-bg);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+ 
+/* Form elements inherit the body font */
+input,
+select,
+textarea,
+button {
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+}
+ 
+/* ── 4b. Headings ───────────────────────────────────────────*/
+ 
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    font-weight: var(--weight-bold);
+    line-height: var(--leading-tight);
+    color: var(--color-primary);
+    margin: var(--space-8) 0 var(--space-4) 0;
+}
+ 
+h1 { font-size: var(--text-4xl); }
+h2 { font-size: var(--text-3xl); }
+h3 { font-size: var(--text-2xl); }
+h4 { font-size: var(--text-xl); }
+h5 { font-size: var(--text-lg); }
+h6 { font-size: var(--text-base); text-transform: uppercase; letter-spacing: 0.05em; }
+ 
+/* ── 4c. Paragraphs ─────────────────────────────────────────*/
+ 
+p {
+    margin: 0 0 var(--space-5) 0;
+    line-height: var(--leading-relaxed);
+    color: var(--color-text);
+    font-size: var(--text-base);
+}
+ 
+/* ── 4d. Links ──────────────────────────────────────────────*/
+ 
+a {
+    color: var(--color-accent);
+    text-decoration: none;
+    font-weight: var(--weight-semi);
+    transition: color 0.3s ease;
+}
+ 
+a:hover {
+    color: var(--color-accent-hover);
+    text-decoration: underline;
+}
+ 
+/* ── 4e. Lists ──────────────────────────────────────────────*/
+ 
+ul, ol {
+    margin: var(--space-5) 0 var(--space-5) var(--space-8);
+    padding-left: var(--space-5);
+}
+ 
+ul { list-style-type: disc; }
+ol { list-style-type: decimal; }
+ 
+ul li,
+ol li {
+    margin-bottom: var(--space-3);
+    color: var(--color-text);
+    line-height: var(--leading-relaxed);
+}
+ 
+/* ── 4f. Blockquote ─────────────────────────────────────────*/
+ 
+blockquote {
+    border-left: 4px solid var(--color-accent);
+    padding-left: var(--space-5);
+    margin: var(--space-5) 0;
+    color: var(--color-text-muted);
+    font-style: italic;
+    font-size: var(--text-md);
+}
+ 
+/* ── 4g. Code & Pre ─────────────────────────────────────────*/
+ 
+code {
+    font-family: var(--font-accent);
+    font-size: var(--text-sm);
+    background-color: var(--color-bg-alt);
+    color: var(--color-primary);
+    padding: 2px 6px;
+    border-radius: var(--radius-sm);
+}
+ 
+pre {
+    font-family: var(--font-accent);
+    font-size: var(--text-sm);
+    background-color: var(--color-bg-dark);
+    color: var(--color-text-inverse);
+    padding: var(--space-5);
+    border-radius: var(--radius-md);
+    overflow-x: auto;
+    margin: var(--space-5) 0;
+    border-left: 4px solid var(--color-accent);
+}
+ 
+ 
+/* ============================================================
+   5. LAYOUT
+   ============================================================ */
+ 
+/* ── 5a. Wrapper / Container ────────────────────────────────
+   Single definition. No duplicates.                          */
+ 
+.wrapper,
+.container {
+    width: 100%;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--wrapper-padding);
+}
+ 
+/* ── 5b. Main ───────────────────────────────────────────────*/
+ 
+main {
+    max-width: var(--max-width);
+    margin: var(--space-16) auto;
+    padding: 0 var(--wrapper-padding);
+}
+ 
+#content {
+    min-height: 400px;
+}
+ 
+/* ── 5c. Article ────────────────────────────────────────────*/
+ 
+article {
+    background-color: var(--color-bg);
+    padding: var(--space-10);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+}
+ 
+ 
+/* ============================================================
+   6. COMPONENTS
+   ============================================================ */
+ 
+/* ── 6a. Header & Navigation ────────────────────────────────*/
+ 
+header {
+    background-color: var(--color-bg-dark);
+    padding: var(--space-5) 0;
+}
+
+/* The active V3 navigation system is handled by
+   ~common_features/ada_responsive_nav/style.css.
+   Keep project-level header overrides there or in Section 10. */
+
+/* ── 6b. Buttons ────────────────────────────────────────────*/
+ 
+.btn,
+button,
+input[type="submit"],
+input[type="button"] {
+    display: inline-block;
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    font-weight: var(--weight-semi);
+    color: var(--color-white);
+    background-color: var(--color-accent);
+    border: 2px solid var(--color-accent);
+    padding: var(--space-3) var(--space-6);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    text-decoration: none;
+    line-height: 1;
+    transition: all 0.3s ease;
+}
+ 
+.btn:hover,
+button:hover,
+input[type="submit"]:hover,
+input[type="button"]:hover {
+    background-color: var(--color-accent-hover);
+    border-color: var(--color-accent-hover);
+    color: var(--color-white);
+    text-decoration: none;
+}
+ 
+.btn-outline {
+    background-color: transparent;
+    color: var(--color-accent);
+}
+ 
+.btn-outline:hover {
+    background-color: var(--color-accent);
+    color: var(--color-white);
+}
+ 
+/* ── 6c. Forms ──────────────────────────────────────────────*/
+ 
+form {
+    width: 100%;
+}
+ 
+label {
+    display: block;
+    font-size: var(--text-sm);
+    font-weight: var(--weight-semi);
+    color: var(--color-text);
+    margin-bottom: var(--space-2);
+}
+ 
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="search"],
+input[type="tel"],
+input[type="url"],
+input[type="number"],
+textarea,
+select {
+    display: block;
+    width: 100%;
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    color: var(--color-text);
+    background-color: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-3) var(--space-4);
+    margin-bottom: var(--space-5);
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+ 
+input:focus,
+textarea:focus,
+select:focus {
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 3px rgba(0, 85, 204, 0.12);
+}
+ 
+textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+ 
+/* ── 6d. Tables ─────────────────────────────────────────────*/
+ 
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: var(--space-5) 0;
+    font-size: var(--text-base);
+}
+ 
+th, td {
+    padding: var(--space-3) var(--space-4);
+    text-align: left;
+    border-bottom: 1px solid var(--color-border);
+}
+ 
+th {
+    font-family: var(--font-heading);
+    font-weight: var(--weight-bold);
+    color: var(--color-primary);
+    background-color: var(--color-bg-alt);
+}
+ 
+tr:hover {
+    background-color: var(--color-bg-alt);
+}
+ 
+/* ── 6e. Footer ─────────────────────────────────────────────*/
+ 
+footer {
+    background-color: var(--color-bg-dark);
+    color: var(--color-text-inverse);
+    padding: var(--space-12) 0 var(--space-5) 0;
+    margin-top: var(--space-20);
+}
+ 
+footer .wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--space-8);
+}
+ 
+footer p {
+    color: var(--color-text-inverse);
+    margin: 0;
+    font-size: var(--text-sm);
+}
+ 
+footer a {
+    color: var(--color-text-inverse);
+    text-decoration: underline;
+}
+ 
+footer a:hover {
+    opacity: 0.75;
+}
+ 
+footer .copyright {
+    width: 100%;
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    padding-top: var(--space-5);
+    margin-top: var(--space-5);
+    color: rgba(255, 255, 255, 0.55);
+    font-size: var(--text-sm);
+}
+ 
+ 
+/* ============================================================
+   7. WORDPRESS SPECIFICS
+   ============================================================ */
+ 
+/* ── 7a. Block Editor — heading blocks ──────────────────────*/
+ 
+.wp-block-heading h1,
+.wp-block-heading h2,
+.wp-block-heading h3,
+.wp-block-heading h4,
+.wp-block-heading h5,
+.wp-block-heading h6 {
+    font-family: var(--font-heading);
+    font-weight: var(--weight-bold);
+}
+ 
+/* WordPress button block */
+.wp-block-button__link {
+    background-color: var(--color-accent) !important;
+    color: var(--color-white) !important;
+    padding: var(--space-3) var(--space-6) !important;
+    font-family: var(--font-body) !important;
+    font-weight: var(--weight-semi) !important;
+    border-radius: var(--radius-md) !important;
+    transition: all 0.3s ease !important;
+}
+ 
+.wp-block-button__link:hover {
+    background-color: var(--color-accent-hover) !important;
+    color: var(--color-white) !important;
+}
+ 
+/* ── 7b. Alignment Helpers ──────────────────────────────────*/
+ 
+.alignleft   { float: left;  margin-right: var(--space-5); }
+.alignright  { float: right; margin-left: var(--space-5); }
+.aligncenter { display: block; margin: 0 auto; }
+.alignwide   { max-width: 100%; }
+.alignfull   { width: 100vw; position: relative; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw; }
+ 
+/* ── 7c. Captions ───────────────────────────────────────────*/
+ 
+.wp-caption-text,
+figcaption {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    text-align: center;
+    margin-top: var(--space-2);
+    font-style: italic;
+}
+
+/* ── 7d. Responsive Embeds ──────────────────────────────────
+   Wraps iframes in a 16:9 responsive container.
+   Handles Loom, YouTube, Vimeo and any oEmbed provider.    */
+
+.embed-responsive {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+}
+
+.embed-responsive iframe,
+.embed-responsive video,
+.embed-responsive object,
+.embed-responsive embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+ 
+ 
+/* ============================================================
+   8. UTILITIES
+   ============================================================ */
+ 
+/* ── 8a. Skip to Main Content — accessibility ───────────────*/
+ 
+.main_content {
+    height: 0;
+    overflow: hidden;
+    display: block;
+    font-size: 0;
+    text-transform: uppercase;
+    line-height: 0;
+    background: var(--color-bg-dark);
+    color: var(--color-text-inverse);
+    font-weight: var(--weight-bold);
+    letter-spacing: 1px;
+}
+ 
+.main_content:focus {
+    font-size: var(--text-sm);
+    line-height: 16px;
+    height: 36px;
+    padding: 10px 15px;
+}
+ 
+/* ── 8b. Scroll To Top ──────────────────────────────────────*/
+ 
+#top {
+    position: fixed;
+    bottom: 0px;
+    right: 20px;
+    width: 45px;
+    height: 45px;
+    opacity: 0;
+    border-radius: var(--radius-xl) 0 var(--radius-xl) var(--radius-xl);
+    background: var(--color-bg-alt);
+    color: var(--color-accent);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: var(--text-sm);
+    line-height: 1em;
+    user-select: none;
+    transition: all 500ms ease;
+    border: 1px solid var(--color-border);
+    z-index: 10000;
+    pointer-events: none;
+    cursor: pointer;
+}
+ 
+#top.on {
+    pointer-events: initial;
+    bottom: 20px;
+    opacity: 1;
+}
+ 
+#top:hover {
+    border-color: var(--color-accent);
+    box-shadow: var(--shadow-md);
+}
+ 
+/* ── 8c. Font Testing Classes ───────────────────────────────
+   ──────────────────────────────────────────────────────────
+   ⚠️  TEMPORARY — used on the Font Test page only.
+   Remove these classes once the client selects their fonts.
+   Also remove the matching @import block in §1d above.
+   ────────────────────────────────────────────────────────── */
+.font-inter         { font-family: 'Inter', sans-serif !important; }
+.font-outfit        { font-family: 'Outfit', sans-serif !important; }
+.font-poppins       { font-family: 'Poppins', sans-serif !important; }
+.font-sora          { font-family: 'Sora', sans-serif !important; }
+.font-manrope       { font-family: 'Manrope', sans-serif !important; }
+.font-space-grotesk { font-family: 'Space Grotesk', sans-serif !important; }
+.font-barlow        { font-family: 'Barlow', sans-serif !important; }
+.font-rajdhani      { font-family: 'Rajdhani', sans-serif !important; }
+.font-jetbrains     { font-family: 'JetBrains Mono', monospace !important; }
+ 
+/* ── 8d. General Helpers ────────────────────────────────────*/
+ 
+/* Screen-reader only — hide visually, keep accessible */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+ 
+.text-center { text-align: center; }
+.text-left   { text-align: left; }
+.text-right  { text-align: right; }
+ 
+.mt-0  { margin-top: 0 !important; }
+.mb-0  { margin-bottom: 0 !important; }
+.pt-0  { padding-top: 0 !important; }
+.pb-0  { padding-bottom: 0 !important; }
+ 
+.hidden { display: none !important; }
+ 
+ 
+/* ============================================================
+   9. RESPONSIVE
+   ============================================================ */
+ 
+/* ── 9a. Tablet — max-width: 768px ─────────────────────────*/
+ 
+@media (max-width: 768px) {
+ 
+    :root {
+        --wrapper-padding: 24px;
+    }
+ 
+    h1 { font-size: var(--text-3xl); }
+    h2 { font-size: var(--text-2xl); }
+    h3 { font-size: var(--text-xl); }
+ 
+    header nav ul {
+        gap: var(--space-5);
+    }
+ 
+    header nav a {
+        font-size: var(--text-xs);
+    }
+ 
+    article {
+        padding: var(--space-5);
+    }
+ 
+    main {
+        padding: 0 var(--space-6);
+        margin: var(--space-10) auto;
+    }
+ 
+    footer .wrapper {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+ 
+/* ── 9b. Mobile — max-width: 480px ─────────────────────────*/
+ 
+@media (max-width: 480px) {
+ 
+    :root {
+        --wrapper-padding: 16px;
+    }
+ 
+    h1 { font-size: var(--text-2xl); }
+    h2 { font-size: var(--text-xl); }
+    h3 { font-size: var(--text-lg); }
+ 
+    header nav ul {
+        gap: var(--space-4);
+        flex-wrap: wrap;
+    }
+ 
+    header nav a {
+        font-size: var(--text-xs);
+    }
+ 
+    article {
+        padding: var(--space-4);
+    }
+ 
+    main {
+        padding: 0 var(--space-4);
+        margin: var(--space-8) auto;
+    }
+ 
+    ul, ol {
+        margin: var(--space-4) 0 var(--space-4) var(--space-5);
+    }
+}
+ 
+ 
+/* ============================================================
+  10. PROJECT BRANDING OVERRIDES
+   ──────────────────────────────────────────────────────────
+   Add project-specific styles below this line.
+   The right order when starting a new project:
+     1. Update :root tokens in §2
+     2. Swap font @imports in §1
+     3. Add any custom brand styles here
+ 
+   This section replaces a separate branding.css file.
+   Keep it organized with clear sub-section comments.
+   ──────────────────────────────────────────────────────────
+ 
+   EXAMPLE — ByDeNero project config:
+ 
+   :root {
+       --color-primary:        #0A0F2C;
+       --color-secondary:      #6CA4FF;
+       --color-accent:         #A259FF;
+       --color-accent-hover:   #D472FF;
+       --color-bg:             #F5F5F7;
+       --color-bg-dark:        #0A0F2C;
+       --font-body:            'Inter', sans-serif;
+       --font-heading:         'Sora', sans-serif;
+   }
+ 
+   ──────────────────────────────────────────────────────────
+   Add your project styles below:
+*/

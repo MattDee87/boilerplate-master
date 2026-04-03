@@ -1,0 +1,387 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/theme.json",
+    "version": 3,
+
+    "__comments": {
+        "purpose": "Boilerplate Master — theme.json",
+        "description": "Bridges the classic PHP theme with the WordPress block editor. Mirrors design tokens from style.css into Gutenberg so the editor respects the design system. Lock-down settings prevent clients from going off-brand.",
+        "token_source": "All values mirror :root variables in style.css. When updating tokens for a new project, update BOTH style.css and theme.json.",
+        "font_note": "Only the 3 working fonts are registered here. The 8 test fonts are CSS-only and temporary — they do not belong in theme.json.",
+        "style_variations": "Structure supports future style variations (per-client brand configs) but none are implemented yet. Add them to /styles/ folder when ready."
+    },
+
+    "settings": {
+
+        "appearanceTools": false,
+
+        "border": {
+            "color": false,
+            "radius": false,
+            "style": false,
+            "width": false
+        },
+
+        "color": {
+            "background": true,
+            "text": true,
+            "link": true,
+            "heading": true,
+
+            "custom": false,
+            "customDuotone": false,
+            "customGradient": false,
+            "defaultDuotone": false,
+            "defaultGradients": false,
+            "defaultPalette": false,
+
+            "duotone": [],
+            "gradients": [],
+
+            "palette": [
+                {
+                    "slug": "primary",
+                    "name": "Primary",
+                    "color": "#1A1A1A"
+                },
+                {
+                    "slug": "secondary",
+                    "name": "Secondary",
+                    "color": "#555555"
+                },
+                {
+                    "slug": "accent",
+                    "name": "Accent",
+                    "color": "#0055CC"
+                },
+                {
+                    "slug": "accent-hover",
+                    "name": "Accent Hover",
+                    "color": "#003D99"
+                },
+                {
+                    "slug": "background",
+                    "name": "Background",
+                    "color": "#FFFFFF"
+                },
+                {
+                    "slug": "background-alt",
+                    "name": "Background Alt",
+                    "color": "#F5F5F5"
+                },
+                {
+                    "slug": "background-dark",
+                    "name": "Background Dark",
+                    "color": "#1A1A1A"
+                },
+                {
+                    "slug": "text",
+                    "name": "Text",
+                    "color": "#1A1A1A"
+                },
+                {
+                    "slug": "text-muted",
+                    "name": "Text Muted",
+                    "color": "#666666"
+                },
+                {
+                    "slug": "text-inverse",
+                    "name": "Text Inverse",
+                    "color": "#FFFFFF"
+                },
+                {
+                    "slug": "border",
+                    "name": "Border",
+                    "color": "#E0E0E0"
+                },
+                {
+                    "slug": "white",
+                    "name": "White",
+                    "color": "#FFFFFF"
+                },
+                {
+                    "slug": "black",
+                    "name": "Black",
+                    "color": "#000000"
+                }
+            ]
+        },
+
+        "typography": {
+            "customFontSize": false,
+            "fontStyle": false,
+            "fontWeight": false,
+            "letterSpacing": false,
+            "lineHeight": false,
+            "textDecoration": false,
+            "textTransform": false,
+            "dropCap": false,
+
+            "fontFamilies": [
+                {
+                    "slug": "body",
+                    "name": "Body Font",
+                    "fontFamily": "Inter, system-ui, sans-serif",
+                    "fontFace": [
+                        {
+                            "src": "https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap",
+                            "fontWeight": "400 700",
+                            "fontStyle": "normal"
+                        }
+                    ]
+                },
+                {
+                    "slug": "heading",
+                    "name": "Heading Font",
+                    "fontFamily": "Outfit, system-ui, sans-serif",
+                    "fontFace": [
+                        {
+                            "src": "https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap",
+                            "fontWeight": "400 700",
+                            "fontStyle": "normal"
+                        }
+                    ]
+                },
+                {
+                    "slug": "accent",
+                    "name": "Accent / Mono Font",
+                    "fontFamily": "JetBrains Mono, Courier New, monospace",
+                    "fontFace": [
+                        {
+                            "src": "https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&display=swap",
+                            "fontWeight": "400 700",
+                            "fontStyle": "normal"
+                        }
+                    ]
+                }
+            ],
+
+            "fontSizes": [
+                {
+                    "slug": "xs",
+                    "name": "XS — 12px",
+                    "size": "0.75rem"
+                },
+                {
+                    "slug": "sm",
+                    "name": "SM — 14px",
+                    "size": "0.875rem"
+                },
+                {
+                    "slug": "base",
+                    "name": "Base — 16px",
+                    "size": "1rem"
+                },
+                {
+                    "slug": "md",
+                    "name": "MD — 18px",
+                    "size": "1.125rem"
+                },
+                {
+                    "slug": "lg",
+                    "name": "LG — 20px",
+                    "size": "1.25rem"
+                },
+                {
+                    "slug": "xl",
+                    "name": "XL — 24px",
+                    "size": "1.5rem"
+                },
+                {
+                    "slug": "2xl",
+                    "name": "2XL — 28px",
+                    "size": "1.75rem"
+                },
+                {
+                    "slug": "3xl",
+                    "name": "3XL — 36px",
+                    "size": "2.25rem"
+                },
+                {
+                    "slug": "4xl",
+                    "name": "4XL — 48px",
+                    "size": "3rem"
+                }
+            ]
+        },
+
+        "spacing": {
+            "customSpacingSize": false,
+            "defaultSpacingSizes": false,
+            "margin": true,
+            "padding": true,
+            "blockGap": true,
+
+            "spacingSizes": [
+                { "slug": "1",  "name": "1 — 4px",   "size": "4px"  },
+                { "slug": "2",  "name": "2 — 8px",   "size": "8px"  },
+                { "slug": "3",  "name": "3 — 12px",  "size": "12px" },
+                { "slug": "4",  "name": "4 — 16px",  "size": "16px" },
+                { "slug": "5",  "name": "5 — 20px",  "size": "20px" },
+                { "slug": "6",  "name": "6 — 24px",  "size": "24px" },
+                { "slug": "8",  "name": "8 — 32px",  "size": "32px" },
+                { "slug": "10", "name": "10 — 40px", "size": "40px" },
+                { "slug": "12", "name": "12 — 48px", "size": "48px" },
+                { "slug": "16", "name": "16 — 64px", "size": "64px" },
+                { "slug": "20", "name": "20 — 80px", "size": "80px" },
+                { "slug": "24", "name": "24 — 96px", "size": "96px" }
+            ]
+        },
+
+        "layout": {
+            "contentSize": "1200px",
+            "wideSize": "1400px"
+        },
+
+        "blocks": {
+            "core/image": {
+                "color": {
+                    "custom": false
+                }
+            },
+            "core/button": {
+                "color": {
+                    "custom": false
+                },
+                "typography": {
+                    "customFontSize": false
+                }
+            },
+            "core/paragraph": {
+                "typography": {
+                    "customFontSize": false,
+                    "dropCap": false
+                }
+            },
+            "core/heading": {
+                "typography": {
+                    "customFontSize": false
+                }
+            },
+            "core/group": {
+                "color": {
+                    "custom": false,
+                    "customGradient": false
+                }
+            }
+        }
+    },
+
+    "styles": {
+
+        "color": {
+            "background": "#FFFFFF",
+            "text": "#1A1A1A"
+        },
+
+        "typography": {
+            "fontFamily": "Inter, system-ui, sans-serif",
+            "fontSize": "1rem",
+            "lineHeight": "1.6",
+            "fontWeight": "400"
+        },
+
+        "spacing": {
+            "blockGap": "var(--space-8)"
+        },
+
+        "elements": {
+
+            "heading": {
+                "typography": {
+                    "fontFamily": "Outfit, system-ui, sans-serif",
+                    "fontWeight": "700",
+                    "lineHeight": "1.2"
+                },
+                "color": {
+                    "text": "var(--color-primary)"
+                }
+            },
+
+            "h1": {
+                "typography": {
+                    "fontSize": "3rem"
+                }
+            },
+            "h2": {
+                "typography": {
+                    "fontSize": "2.25rem"
+                }
+            },
+            "h3": {
+                "typography": {
+                    "fontSize": "1.75rem"
+                }
+            },
+            "h4": {
+                "typography": {
+                    "fontSize": "1.5rem"
+                }
+            },
+            "h5": {
+                "typography": {
+                    "fontSize": "1.25rem"
+                }
+            },
+            "h6": {
+                "typography": {
+                    "fontSize": "1rem"
+                }
+            },
+
+            "link": {
+                "color": {
+                    "text": "var(--color-accent)"
+                },
+                "typography": {
+                    "fontWeight": "600"
+                },
+                ":hover": {
+                    "color": {
+                        "text": "var(--color-accent-hover)"
+                    }
+                }
+            },
+
+            "button": {
+                "color": {
+                    "background": "var(--color-accent)",
+                    "text": "var(--color-white)"
+                },
+                "typography": {
+                    "fontFamily": "Inter, system-ui, sans-serif",
+                    "fontWeight": "600",
+                    "fontSize": "1rem"
+                },
+                ":hover": {
+                    "color": {
+                        "background": "var(--color-accent-hover)",
+                        "text": "var(--color-white)"
+                    }
+                }
+            }
+        }
+    },
+
+    "customTemplates": [
+        {
+            "name": "template-boilerplate",
+            "title": "Boilerplate Style Guide",
+            "postTypes": ["page"]
+        },
+        {
+            "name": "template-font-test",
+            "title": "Font Test Page",
+            "postTypes": ["page"]
+        },
+        {
+            "name": "template-full-width",
+            "title": "Full Width",
+            "postTypes": ["page"]
+        },
+        {
+            "name": "template-landing",
+            "title": "Landing Page",
+            "postTypes": ["page"]
+        }
+    ]
+}

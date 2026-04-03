@@ -1,0 +1,29 @@
+{
+    "name": "customProgram",
+    "title": "Program",
+    "description": "A custom block for placement on any page, highlighting a program with details.",
+    "style": "file:./program.css",
+    "editorStyle": "file:./program.css",
+    "category": "boilerplate-blocks",
+    "icon": "align-pull-left",
+    "apiVersion": 2,
+    "keywords": [
+        "program",
+        "community",
+        "health",
+        "flier",
+        "flyer",
+        "public"
+    ],
+    "acf": {
+        "mode": "auto",
+        "renderTemplate": "./program.php",
+        "postTypes": [
+            "post",
+            "page"
+        ]
+    },
+    "supports": {},
+    "attributes": {},
+    "example": {}
+}

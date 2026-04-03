@@ -1,0 +1,30 @@
+{
+    "name": "profilesBlock",
+    "title": "Profiles",
+    "description": "A custom block for placement on any page, displays a single profile or a list of profiles",
+    "style": "file:./profiles.css",
+    "editorStyle": "file:./profiles.css",
+    "category": "boilerplate-blocks",
+    "icon": "admin-site",
+    "apiVersion": 2,
+    "keywords": [
+        "profiles",
+        "person",
+        "bio",
+        "biography",
+        "people",
+        "residents",
+        "list"
+    ],
+    "acf": {
+        "mode": "edit",
+        "renderTemplate": "./profiles.php",
+        "postTypes": [
+            "post",
+            "page"
+        ]
+    },
+    "supports": {},
+    "attributes": {},
+    "example": {}
+}

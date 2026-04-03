@@ -1,0 +1,29 @@
+{
+    "name": "custom_Page_List",
+    "title": "Page Blocks",
+    "description": "A list of pages as blocks.",
+    "style": "file:./page_list.css",
+    "editorStyle": "file:./page_list.css",
+    "category": "boilerplate-blocks",
+    "icon": "list-view",
+    "apiVersion": 2,
+    "keywords": [
+        "list",
+        "grid",
+        "multiple",
+        "page",
+        "pages",
+        "blocks"
+    ],
+    "acf": {
+        "mode": "edit",
+        "renderTemplate": "./page_list.php",
+        "postTypes": [
+            "post",
+            "page"
+        ]
+    },
+    "supports": {},
+    "attributes": {},
+    "example": {}
+}

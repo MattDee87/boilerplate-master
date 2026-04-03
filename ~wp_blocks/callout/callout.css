@@ -1,0 +1,58 @@
+/*
+==========================================================
+CALLOUT BLOCK — callout.css
+==========================================================
+WHAT IT IS:
+A highlighted content box with a border and subtle
+background to draw attention to important information.
+
+WHAT IT DOES:
+Wraps any ACF WYSIWYG content in a styled container.
+Great for tips, warnings, key takeaways, or callouts.
+
+HOW TO USE:
+1. In the WordPress block editor add the "Highlighted
+   Content" block to any page or post.
+2. Type or paste your content into the WYSIWYG field.
+3. Save and preview the page.
+
+All values use boilerplate CSS tokens from style.css.
+==========================================================
+*/
+
+section#content .special_callout .special_callout_inner {
+    border: 1px solid var(--color-border);
+    background: var(--color-bg-alt);
+    padding: var(--space-8);
+    border-radius: var(--radius-md);
+    margin: var(--space-8) 0;
+}
+
+.special_callout_inner > :first-child {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+.special_callout_inner > :last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.special_callout_inner p {
+    font-size: var(--text-md);
+    color: var(--color-primary);
+    font-weight: var(--weight-bold);
+    margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+    section#content .special_callout .special_callout_inner {
+        padding: var(--space-6);
+    }
+}
+
+@media (max-width: 480px) {
+    section#content .special_callout .special_callout_inner {
+        padding: var(--space-4);
+    }
+}

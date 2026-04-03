@@ -1,0 +1,77 @@
+[
+    {
+        "key": "group_video_block",
+        "title": "Video Block",
+        "fields": [
+            {
+                "key": "field_video_url",
+                "label": "Video URL",
+                "name": "video_url",
+                "type": "url",
+                "instructions": "Paste the video URL. Supports YouTube, Vimeo, Loom, or any direct iframe embed URL. The URL is automatically converted to an embed URL — no need to find the embed code.",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": { "width": "", "class": "", "id": "" },
+                "default_value": "",
+                "placeholder": "https://www.youtube.com/watch?v=..."
+            },
+            {
+                "key": "field_video_poster",
+                "label": "Poster Image",
+                "name": "video_poster",
+                "type": "image",
+                "instructions": "Thumbnail image shown before the video plays. Click to open the video in a popup lightbox. Recommended size: 1280x720px (16:9).",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": { "width": "", "class": "", "id": "" },
+                "return_format": "array",
+                "preview_size": "medium",
+                "library": "all"
+            },
+            {
+                "key": "field_video_title",
+                "label": "Video Title",
+                "name": "video_title",
+                "type": "text",
+                "instructions": "Optional title shown below the video poster.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": { "width": "", "class": "", "id": "" },
+                "default_value": "",
+                "placeholder": "Watch: Our Story",
+                "maxlength": ""
+            },
+            {
+                "key": "field_video_caption",
+                "label": "Caption",
+                "name": "video_caption",
+                "type": "textarea",
+                "instructions": "Optional caption shown below the title in muted italic text.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": { "width": "", "class": "", "id": "" },
+                "default_value": "",
+                "rows": 2,
+                "new_lines": "",
+                "placeholder": "A short description of the video..."
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "block",
+                    "operator": "==",
+                    "value": "acf/custom-video"
+                }
+            ]
+        ],
+        "menu_order": 0,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": true,
+        "description": "Field group for the Video Block — lightbox popup player supporting YouTube, Vimeo, and Loom."
+    }
+]

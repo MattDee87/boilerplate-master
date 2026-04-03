@@ -1,0 +1,207 @@
+/*
+==========================================================
+CTA BANNER BLOCK — cta_banner.css
+==========================================================
+WHAT IT IS:
+A full width call-to-action banner strip designed to
+sit between page sections as a conversion nudge.
+
+WHAT IT DOES:
+Renders a compact full width banner pulling from ACF
+fields. Supports optional background image with overlay,
+eyebrow text, heading, subheading, and two CTA buttons.
+Lighter weight than the Hero block — no minimum height,
+designed as a section divider rather than a page opener.
+
+HOW TO USE:
+1. In the WordPress block editor add the "CTA Banner"
+   block to any page or post.
+2. Fill in the Heading field (required).
+3. Optionally add Eyebrow text, Subheading, and buttons.
+4. Set alignment — left or center.
+5. Upload a background image or choose a background color.
+6. Set overlay opacity if using a background image.
+7. Save and preview the page.
+
+TO SIMPLIFY TO OPTION A (color, heading, one button):
+- Remove cta_bg_image and overlay ACF fields
+- Remove cta_eyebrow and cta_subheading ACF fields
+- Remove cta_btn_2 ACF fields
+- Remove .cta_overlay, .cta_eyebrow, .cta_subheading styles
+
+TO SIMPLIFY TO OPTION B (image, heading, subheading, one button):
+- Remove cta_btn_2 ACF fields
+- Remove cta_eyebrow ACF field
+- Remove .cta_eyebrow styles below
+
+All values use boilerplate CSS tokens from style.css.
+==========================================================
+*/
+
+/* Banner wrapper */
+.cta_banner {
+    position: relative;
+    width: 100%;
+    background-color: var(--color-bg-dark);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: var(--space-16) 0;
+    margin: var(--space-12) 0;
+}
+
+/* Overlay */
+.cta_overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+}
+
+/* Inner content */
+.cta_inner {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--wrapper-padding);
+}
+
+/* Alignment variants */
+.cta_align_center .cta_inner {
+    text-align: center;
+}
+
+.cta_align_center .cta_btn_row {
+    justify-content: center;
+}
+
+.cta_align_left .cta_inner {
+    text-align: left;
+}
+
+/* Eyebrow */
+.cta_eyebrow {
+    font-family: var(--font-accent);
+    font-size: var(--text-xs);
+    font-weight: var(--weight-bold);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--color-text-inverse);
+    opacity: 0.7;
+    margin: 0 0 var(--space-3) 0;
+}
+
+/* Heading */
+.cta_heading {
+    font-family: var(--font-heading);
+    font-size: var(--text-3xl);
+    font-weight: var(--weight-bold);
+    color: var(--color-text-inverse);
+    line-height: var(--leading-tight);
+    margin: 0 0 var(--space-4) 0;
+    max-width: 780px;
+}
+
+.cta_align_center .cta_heading {
+    max-width: 100%;
+}
+
+/* Subheading */
+.cta_subheading {
+    font-size: var(--text-md);
+    color: var(--color-text-inverse);
+    opacity: 0.85;
+    line-height: var(--leading-relaxed);
+    margin: 0 0 var(--space-8) 0;
+    max-width: 620px;
+}
+
+.cta_align_center .cta_subheading {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Button row */
+.cta_btn_row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+    align-items: center;
+    margin-top: var(--space-8);
+}
+
+/* Primary button */
+.cta_btn_primary {
+    background-color: var(--color-accent);
+    border-color: var(--color-accent);
+    color: var(--color-white);
+    padding: var(--space-4) var(--space-8);
+    font-size: var(--text-base);
+}
+
+.cta_btn_primary:hover {
+    background-color: var(--color-accent-hover);
+    border-color: var(--color-accent-hover);
+    color: var(--color-white);
+    text-decoration: none;
+}
+
+/* Secondary button — outline on dark */
+.cta_btn_secondary {
+    background-color: transparent;
+    border: 2px solid var(--color-white);
+    color: var(--color-white);
+    padding: var(--space-4) var(--space-8);
+    font-size: var(--text-base);
+}
+
+.cta_btn_secondary:hover {
+    background-color: var(--color-white);
+    color: var(--color-primary);
+    text-decoration: none;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .cta_banner {
+        padding: var(--space-12) 0;
+    }
+
+    .cta_heading {
+        font-size: var(--text-2xl);
+    }
+
+    .cta_subheading {
+        font-size: var(--text-base);
+    }
+}
+
+@media (max-width: 480px) {
+    .cta_banner {
+        padding: var(--space-10) 0;
+        margin: var(--space-8) 0;
+    }
+
+    .cta_heading {
+        font-size: var(--text-xl);
+    }
+
+    .cta_btn_row {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .cta_align_center .cta_btn_row {
+        align-items: center;
+    }
+
+    .cta_btn_primary,
+    .cta_btn_secondary {
+        width: 100%;
+        text-align: center;
+    }
+}

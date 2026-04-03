@@ -1,0 +1,69 @@
+[
+    {
+        "key": "group_accordion_block",
+        "title": "Accordion Block",
+        "fields": [
+            {
+                "key": "field_accordion_items",
+                "label": "Accordion Items",
+                "name": "accordion_items",
+                "type": "repeater",
+                "instructions": "Add as many accordion items as needed.",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": { "width": "", "class": "", "id": "" },
+                "layout": "block",
+                "min": 1,
+                "max": 0,
+                "button_label": "Add Accordion Item",
+                "sub_fields": [
+                    {
+                        "key": "field_accordion_title",
+                        "label": "Title",
+                        "name": "title_accordion",
+                        "type": "text",
+                        "instructions": "The accordion header text.",
+                        "required": 1,
+                        "conditional_logic": 0,
+                        "wrapper": { "width": "", "class": "", "id": "" },
+                        "default_value": "",
+                        "placeholder": "Accordion item title",
+                        "maxlength": ""
+                    },
+                    {
+                        "key": "field_accordion_content",
+                        "label": "Content",
+                        "name": "content_accordion",
+                        "type": "wysiwyg",
+                        "instructions": "The accordion body content.",
+                        "required": 1,
+                        "conditional_logic": 0,
+                        "wrapper": { "width": "", "class": "", "id": "" },
+                        "default_value": "",
+                        "tabs": "all",
+                        "toolbar": "basic",
+                        "media_upload": 0,
+                        "delay": 0
+                    }
+                ]
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "block",
+                    "operator": "==",
+                    "value": "acf/custom-accordion"
+                }
+            ]
+        ],
+        "menu_order": 0,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": true,
+        "description": "Field group for the Accordion Block — collapsible content items."
+    }
+]

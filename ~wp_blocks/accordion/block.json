@@ -1,0 +1,29 @@
+{
+    "name": "custom_accordion",
+    "title": "Accordion",
+    "description": "An accordion block for collapsable content.",
+    "style": "file:./accordion.css",
+    "editorStyle": "file:./accordion.css",
+    "category": "boilerplate-blocks",
+    "icon": "align-wide",
+    "apiVersion": 2,
+    "keywords": [
+        "dropdown",
+        "collapse",
+        "accordion",
+        "expand",
+        "show",
+        "block"
+    ],
+    "acf": {
+        "mode": "edit",
+        "renderTemplate": "./accordion.php",
+        "postTypes": [
+            "post",
+            "page"
+        ]
+    },
+    "supports": {},
+    "attributes": {},
+    "example": {}
+}

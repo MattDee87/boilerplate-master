@@ -1,0 +1,77 @@
+/*
+==========================================================
+CONTACT BLOCK — contact_block.css
+==========================================================
+WHAT IT IS:
+A contact call-to-action block with a title, copy,
+optional phone number, and optional contact form embed.
+
+WHAT IT DOES:
+Displays a styled CTA box pulling from ACF fields.
+Phone number renders as a tap-to-call link on mobile.
+Contact form HTML is pulled from ACF Theme Settings.
+
+HOW TO USE:
+1. In the WordPress block editor add the "Contact Us
+   Call-To-Action" block to any page or post.
+2. Fill in the Title and Copy fields.
+3. Optionally add a phone number.
+4. Optionally enable the contact form toggle — this
+   pulls the form HTML from Theme Settings → Contact Form.
+5. Save and preview the page.
+
+All values use boilerplate CSS tokens from style.css.
+==========================================================
+*/
+
+.contact_cta {
+    background: var(--color-bg-alt);
+    padding: var(--space-10);
+    border-radius: var(--radius-md);
+    margin: var(--space-8) 0;
+    border: 1px solid var(--color-border);
+}
+
+.contact_cta h2 {
+    color: var(--color-accent);
+    margin-top: 0;
+}
+
+.contact_cta_inner > :first-child {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+a.phone_num {
+    display: block;
+    margin: var(--space-4) 0 0 0;
+    font-size: var(--text-xl);
+    font-weight: var(--weight-bold);
+    color: var(--color-primary);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a.phone_num:hover {
+    color: var(--color-accent);
+}
+
+.cta_form_html_house {
+    margin: var(--space-8) 0 0 0;
+}
+
+@media (max-width: 768px) {
+    .contact_cta {
+        padding: var(--space-6);
+    }
+
+    a.phone_num {
+        font-size: var(--text-lg);
+    }
+}
+
+@media (max-width: 480px) {
+    .contact_cta {
+        padding: var(--space-4);
+    }
+}

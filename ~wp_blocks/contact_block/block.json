@@ -1,0 +1,28 @@
+{
+    "name": "custom_contactBlock",
+    "title": "Contact Us Call-To-Action",
+    "description": "A custom block for placement on any page, directing users to basic contact information.",
+    "style": "file:./contact_block.css",
+    "editorStyle": "file:./contact_block.css",
+    "category": "boilerplate-blocks",
+    "icon": "admin-site",
+    "apiVersion": 2,
+    "keywords": [
+        "contact",
+        "contact us",
+        "cta",
+        "email",
+        "phone"
+    ],
+    "acf": {
+        "mode": "edit",
+        "renderTemplate": "./contact_block.php",
+        "postTypes": [
+            "post",
+            "page"
+        ]
+    },
+    "supports": {},
+    "attributes": {},
+    "example": {}
+}

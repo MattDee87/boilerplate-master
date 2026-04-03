@@ -1,0 +1,125 @@
+[
+    {
+        "key": "group_program_block",
+        "title": "Program Block",
+        "fields": [
+            {
+                "key": "field_program_tab_content",
+                "label": "Content",
+                "name": "",
+                "type": "tab",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": { "width": "", "class": "", "id": "" },
+                "placement": "top",
+                "endpoint": 0
+            },
+            {
+                "key": "field_program_title",
+                "label": "Title",
+                "name": "title",
+                "type": "text",
+                "instructions": "The program name or title.",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": { "width": "", "class": "", "id": "" },
+                "default_value": "",
+                "placeholder": "Program Name",
+                "maxlength": ""
+            },
+            {
+                "key": "field_program_description",
+                "label": "Description",
+                "name": "description",
+                "type": "textarea",
+                "instructions": "A brief description of the program.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": { "width": "", "class": "", "id": "" },
+                "default_value": "",
+                "rows": 3,
+                "new_lines": "br",
+                "placeholder": "Program description..."
+            },
+            {
+                "key": "field_program_contact",
+                "label": "Contact Information",
+                "name": "contact",
+                "type": "text",
+                "instructions": "Contact name, phone, or email for this program.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": { "width": "", "class": "", "id": "" },
+                "default_value": "",
+                "placeholder": "Contact: Jane Smith — (000) 000-0000",
+                "maxlength": ""
+            },
+            {
+                "key": "field_program_tab_file",
+                "label": "File",
+                "name": "",
+                "type": "tab",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": { "width": "", "class": "", "id": "" },
+                "placement": "top",
+                "endpoint": 0
+            },
+            {
+                "key": "field_program_file",
+                "label": "Program PDF",
+                "name": "file",
+                "type": "file",
+                "instructions": "Optional PDF file for download. Shows as a clickable thumbnail on the left side of the block.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": { "width": "", "class": "", "id": "" },
+                "return_format": "url",
+                "library": "all",
+                "min_size": "",
+                "max_size": "",
+                "mime_types": "pdf"
+            },
+            {
+                "key": "field_program_thumbnail",
+                "label": "PDF Thumbnail",
+                "name": "thumbnail",
+                "type": "image",
+                "instructions": "Optional preview image for the PDF. If not set a generic PDF icon is shown instead.",
+                "required": 0,
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_program_file",
+                            "operator": "!=empty",
+                            "value": ""
+                        }
+                    ]
+                ],
+                "wrapper": { "width": "", "class": "", "id": "" },
+                "return_format": "url",
+                "preview_size": "thumbnail",
+                "library": "all"
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "block",
+                    "operator": "==",
+                    "value": "acf/customprogram"
+                }
+            ]
+        ],
+        "menu_order": 0,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": true,
+        "description": "Field group for the Program Block — program info with optional PDF download."
+    }
+]

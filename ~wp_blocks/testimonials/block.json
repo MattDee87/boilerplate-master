@@ -1,0 +1,34 @@
+{
+  "name": "custom_testimonials",
+  "title": "Testimonials",
+  "description": "A grid of client testimonials with quote, name, role, and optional photo. Supports 2 or 3 column layouts.",
+  "style": "file:./testimonials.css",
+  "editorStyle": "file:./testimonials.css",
+  "category": "boilerplate-blocks",
+  "icon": "format-quote",
+  "apiVersion": 2,
+  "keywords": [
+    "testimonials",
+    "reviews",
+    "quotes",
+    "social proof",
+    "clients",
+    "feedback"
+  ],
+  "acf": {
+    "mode": "preview",
+    "renderTemplate": "./testimonials.php",
+    "postTypes": [
+      "post",
+      "page"
+    ]
+  },
+  "supports": {
+    "align": [
+      "wide",
+      "full"
+    ]
+  },
+  "attributes": {},
+  "example": {}
+}

@@ -1,0 +1,77 @@
+[
+    {
+        "key": "group_event_block",
+        "title": "Event Block",
+        "fields": [
+            {
+                "key": "field_event_title",
+                "label": "Title",
+                "name": "title",
+                "type": "text",
+                "instructions": "The event name or title.",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": { "width": "", "class": "", "id": "" },
+                "default_value": "",
+                "placeholder": "Event Name",
+                "maxlength": ""
+            },
+            {
+                "key": "field_event_location",
+                "label": "Location",
+                "name": "location",
+                "type": "text",
+                "instructions": "Where the event is taking place.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": { "width": "", "class": "", "id": "" },
+                "default_value": "",
+                "placeholder": "123 Main St, City, State",
+                "maxlength": ""
+            },
+            {
+                "key": "field_event_date",
+                "label": "Date",
+                "name": "date",
+                "type": "text",
+                "instructions": "The event date. Use any format — e.g. March 24, 2026 or 03/24/2026.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": { "width": "", "class": "", "id": "" },
+                "default_value": "",
+                "placeholder": "March 24, 2026",
+                "maxlength": ""
+            },
+            {
+                "key": "field_event_time",
+                "label": "Time",
+                "name": "time",
+                "type": "text",
+                "instructions": "The event time. e.g. 6:00 PM — 8:00 PM.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": { "width": "", "class": "", "id": "" },
+                "default_value": "",
+                "placeholder": "6:00 PM — 8:00 PM",
+                "maxlength": ""
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "block",
+                    "operator": "==",
+                    "value": "acf/customevent"
+                }
+            ]
+        ],
+        "menu_order": 0,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": true,
+        "description": "Field group for the Event Block — title, location, date, and time."
+    }
+]

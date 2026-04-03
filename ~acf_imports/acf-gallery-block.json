@@ -1,0 +1,61 @@
+[
+    {
+        "key": "group_gallery_block",
+        "title": "Gallery Block",
+        "fields": [
+            {
+                "key": "field_gallery_title",
+                "label": "Gallery Title",
+                "name": "gallery_title",
+                "type": "text",
+                "instructions": "Optional title shown above the gallery. Defaults to 'Gallery' if left blank.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": { "width": "", "class": "", "id": "" },
+                "default_value": "",
+                "placeholder": "Gallery",
+                "maxlength": ""
+            },
+            {
+                "key": "field_gallery_images",
+                "label": "Gallery Images",
+                "name": "gallery_images",
+                "type": "gallery",
+                "instructions": "Upload or select images for the gallery slideshow. Supports landscape and portrait images.",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": { "width": "", "class": "", "id": "" },
+                "return_format": "array",
+                "preview_size": "medium",
+                "insert": "append",
+                "library": "all",
+                "min": 1,
+                "max": 0,
+                "min_width": "",
+                "min_height": "",
+                "min_size": "",
+                "max_width": "",
+                "max_height": "",
+                "max_size": "",
+                "mime_types": "jpg, jpeg, png, webp"
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "block",
+                    "operator": "==",
+                    "value": "acf/custom-gallery"
+                }
+            ]
+        ],
+        "menu_order": 0,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": true,
+        "description": "Field group for the Gallery Block — image slideshow powered by Owl Carousel."
+    }
+]

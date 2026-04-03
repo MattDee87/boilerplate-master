@@ -1,0 +1,30 @@
+{
+    "name": "custom_gallery",
+    "title": "Custom Gallery",
+    "description": "A themed gallery slideshow.",
+    "style": "file:./gallery.css",
+    "editorStyle": "file:./gallery.css",
+    "category": "boilerplate-blocks",
+    "icon": "format-gallery",
+    "apiVersion": 2,
+    "keywords": [
+        "gallery",
+        "images",
+        "slider",
+        "photo",
+        "show",
+        "slide"
+    ],
+    "acf": {
+        "mode": "edit",
+        "renderTemplate": "./gallery.php",
+        "postTypes": [
+            "post",
+            "page",
+            "gallery"
+        ]
+    },
+    "supports": {},
+    "attributes": {},
+    "example": {}
+}

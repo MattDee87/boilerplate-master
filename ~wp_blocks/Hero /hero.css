@@ -1,0 +1,209 @@
+/*
+==========================================================
+HERO BLOCK — hero.css
+==========================================================
+WHAT IT IS:
+A full width hero banner block with background image
+or color, heading, subheading, paragraph, and up to
+two CTA buttons.
+ 
+WHAT IT DOES:
+Renders a full width hero section pulling from ACF fields.
+Supports left, center, and right text alignment via a
+CSS class added by hero.php. Background image overlays
+are controlled by an ACF opacity field. Falls back to
+a background color if no image is set.
+ 
+HOW TO USE:
+1. In the WordPress block editor add the "Hero" block
+   to any page or post.
+2. Fill in the Heading field (required).
+3. Optionally add Subheading, Paragraph, and CTA buttons.
+4. Set text alignment — left, center, or right.
+5. Upload a background image or choose a background color.
+6. Set the overlay opacity (0 = no overlay, 100 = black).
+7. Save and preview the page.
+ 
+TO SIMPLIFY TO OPTION A (color background only):
+- Remove hero_bg_image ACF field
+- Remove .hero_overlay styles below
+ 
+TO SIMPLIFY TO OPTION B (image, single CTA):
+- Remove hero_cta_2 ACF fields
+- Remove .hero_cta_secondary styles below
+ 
+All values use boilerplate CSS tokens from style.css.
+==========================================================
+*/
+ 
+/* Hero wrapper */
+.hero_block {
+    position: relative;
+    width: 100%;
+    min-height: 560px;
+    display: flex;
+    align-items: center;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: var(--color-bg-dark);
+    margin: 0;
+    padding: var(--space-20) 0;
+}
+ 
+/* Overlay */
+.hero_overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+}
+ 
+/* Inner content */
+.hero_inner {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--wrapper-padding);
+}
+ 
+/* Alignment variants */
+.hero_align_left  .hero_inner { text-align: left; }
+.hero_align_center .hero_inner { text-align: center; }
+.hero_align_right  .hero_inner { text-align: right; }
+ 
+.hero_align_center .hero_inner .hero_paragraph {
+    margin-left: auto;
+    margin-right: auto;
+}
+ 
+.hero_align_center .hero_cta_row {
+    justify-content: center;
+}
+ 
+.hero_align_right .hero_cta_row {
+    justify-content: flex-end;
+}
+ 
+/* Subheading */
+.hero_subheading {
+    font-family: var(--font-accent);
+    font-size: var(--text-sm);
+    font-weight: var(--weight-semi);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--color-text-inverse);
+    opacity: 0.75;
+    margin: 0 0 var(--space-4) 0;
+}
+ 
+/* Heading */
+.hero_heading {
+    font-family: var(--font-heading);
+    font-size: var(--text-4xl);
+    font-weight: var(--weight-bold);
+    color: var(--color-text-inverse);
+    line-height: var(--leading-tight);
+    margin: 0 0 var(--space-5) 0;
+    max-width: 780px;
+}
+ 
+.hero_align_center .hero_heading,
+.hero_align_right .hero_heading {
+    max-width: 100%;
+}
+ 
+/* Paragraph */
+.hero_paragraph {
+    font-size: var(--text-md);
+    color: var(--color-text-inverse);
+    opacity: 0.85;
+    line-height: var(--leading-relaxed);
+    margin: 0 0 var(--space-8) 0;
+    max-width: 620px;
+}
+ 
+/* CTA buttons row */
+.hero_cta_row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+    align-items: center;
+}
+ 
+/* Primary CTA */
+.hero_cta_primary {
+    background-color: var(--color-accent);
+    border-color: var(--color-accent);
+    color: var(--color-white);
+    padding: var(--space-4) var(--space-8);
+    font-size: var(--text-base);
+}
+ 
+.hero_cta_primary:hover {
+    background-color: var(--color-accent-hover);
+    border-color: var(--color-accent-hover);
+    color: var(--color-white);
+    text-decoration: none;
+}
+ 
+/* Secondary CTA — outline style on dark background */
+.hero_cta_secondary {
+    background-color: transparent;
+    border: 2px solid var(--color-white);
+    color: var(--color-white);
+    padding: var(--space-4) var(--space-8);
+    font-size: var(--text-base);
+}
+ 
+.hero_cta_secondary:hover {
+    background-color: var(--color-white);
+    color: var(--color-primary);
+    text-decoration: none;
+}
+ 
+/* Responsive */
+@media (max-width: 768px) {
+    .hero_block {
+        min-height: 420px;
+        padding: var(--space-16) 0;
+    }
+ 
+    .hero_heading {
+        font-size: var(--text-3xl);
+    }
+ 
+    .hero_paragraph {
+        font-size: var(--text-base);
+    }
+}
+ 
+@media (max-width: 480px) {
+    .hero_block {
+        min-height: 360px;
+        padding: var(--space-12) 0;
+    }
+ 
+    .hero_heading {
+        font-size: var(--text-2xl);
+    }
+ 
+    .hero_cta_row {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+ 
+    .hero_align_center .hero_cta_row {
+        align-items: center;
+    }
+ 
+    .hero_cta_primary,
+    .hero_cta_secondary {
+        width: 100%;
+        text-align: center;
+    }
+}

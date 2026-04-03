@@ -1,0 +1,28 @@
+{
+    "name": "customEvent",
+    "title": "Event",
+    "description": "A custom block for placement on any page, highlighting an event with title date and location information.",
+    "style": "file:./event.css",
+    "editorStyle": "file:./event.css",
+    "category": "boilerplate-blocks",
+    "icon": "admin-site",
+    "apiVersion": 2,
+    "keywords": [
+        "event",
+        "community",
+        "health",
+        "program",
+        "calendar"
+    ],
+    "acf": {
+        "mode": "edit",
+        "renderTemplate": "./event.php",
+        "postTypes": [
+            "post",
+            "page"
+        ]
+    },
+    "supports": {},
+    "attributes": {},
+    "example": {}
+}

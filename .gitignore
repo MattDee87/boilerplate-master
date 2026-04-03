@@ -1,0 +1,138 @@
+# =============================================================
+# Boilerplate Master — .gitignore
+# =============================================================
+# This file tells Git which files and folders to ignore.
+# These will NOT be uploaded to GitHub.
+# =============================================================
+
+
+# -------------------------------------------------------------
+# macOS System Files
+# These are created automatically by macOS — useless to anyone
+# -------------------------------------------------------------
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+
+# -------------------------------------------------------------
+# VS Code
+# Local editor settings — not needed in the repo
+# -------------------------------------------------------------
+.vscode/
+*.code-workspace
+
+
+# -------------------------------------------------------------
+# Node / NPM
+# If you ever use npm tools — these folders are massive
+# -------------------------------------------------------------
+node_modules/
+npm-debug.log
+yarn-error.log
+package-lock.json
+
+
+# -------------------------------------------------------------
+# WordPress Core Files
+# These should never be in a theme repo
+# Only the theme folder belongs on GitHub
+# -------------------------------------------------------------
+wp-config.php
+wp-config-sample.php
+/wp-admin/
+/wp-includes/
+/wp-content/uploads/
+/wp-content/cache/
+/wp-content/upgrade/
+/wp-content/backup-db/
+
+
+# -------------------------------------------------------------
+# WordPress Cache & Logs
+# W3 Total Cache and other cache plugin files
+# -------------------------------------------------------------
+/wp-content/w3tc-config/
+/wp-content/db-error.php
+*.log
+debug.log
+
+
+# -------------------------------------------------------------
+# Sensitive / Environment Files
+# Never upload credentials or local config
+# -------------------------------------------------------------
+.env
+.env.local
+.env.production
+*.pem
+*.key
+auth.json
+
+
+# -------------------------------------------------------------
+# Compiled / Build Files
+# If you ever add a build step
+# -------------------------------------------------------------
+/dist/
+/build/
+*.min.js.map
+*.min.css.map
+
+
+# -------------------------------------------------------------
+# Backup Files
+# Editor and OS backup files
+# -------------------------------------------------------------
+*.bak
+*.backup
+*.orig
+*~
+*.swp
+*.swo
+
+
+# -------------------------------------------------------------
+# Thumbnails & Image Cache
+# WordPress generates these automatically
+# -------------------------------------------------------------
+*-scaled.*
+*-rotated.*
+*-e[0-9]*.jpg
+*-e[0-9]*.png
+
+
+# -------------------------------------------------------------
+# Composer
+# PHP dependency manager — if used in future
+# -------------------------------------------------------------
+/vendor/
+composer.lock
+
+
+# -------------------------------------------------------------
+# PHPStorm / JetBrains
+# IDE files
+# -------------------------------------------------------------
+.idea/
+*.iml
+
+
+# -------------------------------------------------------------
+# OS Specific
+# -------------------------------------------------------------
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+
+# -------------------------------------------------------------
+# Internal Docs / Personal Notes
+# Keep learning docs and private notes out of GitHub
+# -------------------------------------------------------------
+Guides/
+for_me.md

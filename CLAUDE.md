@@ -1,0 +1,446 @@
+# CLAUDE.md — Boilerplate Master
+### AI Context File for Claude Code
+### Last updated: March 2026
+
+---
+
+## What this file is
+
+This file gives Claude Code full context about the Boilerplate Master WordPress theme.
+Read this before making any changes to the codebase.
+
+---
+
+## Project overview
+
+**Boilerplate Master** is a production-ready vanilla WordPress classic PHP theme built by Matthew De Nero / ByDeNero digital agency. It is a reusable starting point for all client projects — not a branded theme.
+
+**Core philosophy:**
+- Sizes, spacing, weights, and structure are reusable across every project
+- Font choices, colors, and visual personality are project-level decisions
+- Every value that could vary per project lives in a CSS token or theme.json entry
+- No hardcoded hex values. No hardcoded font names. No `!important` unless absolutely unavoidable.
+
+---
+
+## Local file path
+
+```
+/Users/matthewdenero/Work/Boilerplates /Mine/WordPress-Boilerplate-master v3
+```
+
+---
+
+## Theme info
+
+| Property | Value |
+|---|---|
+| Theme Name | Boilerplate Master |
+| Text Domain | `boilerplate` |
+| Author | Matthew De Nero |
+| GitHub | https://github.com/MattDee87/boilerplate-master |
+| Type | Classic PHP theme (NOT a block/FSE theme) |
+| WordPress | 6.x+ |
+| PHP | 8.4+ compatible |
+| ACF | ACF Pro required |
+
+---
+
+## Directory structure
+
+```
+theme-root/
+├── style.css                     ← Master stylesheet + design tokens
+├── theme.json                    ← Block editor bridge + token mirror
+├── functions.php                 ← Theme setup, enqueues, menus, blocks
+├── screenshot.png                ← Theme preview (1200x900)
+├── header.php                    ← WordPress <head>, scripts, body open
+├── footer.php                    ← wp_footer(), closing tags
+├── front-page.php                ← Homepage (block-driven, minimal)
+├── home.php                      ← Blog listing page
+├── page.php                      ← Default inner pages
+├── single.php                    ← Individual blog posts
+├── index.php                     ← Fallback template
+├── 404.php                       ← Page not found
+├── archive.php                   ← Category/tag/date archives
+├── search.php                    ← Search results
+├── template-boilerplate.php      ← Kitchen sink style guide (internal)
+├── template-font-test.php        ← Client font selection page
+├── template-full-width.php       ← Full width page template
+├── template-landing.php          ← Conversion landing page (no nav)
+├── CLAUDE.md                     ← This file
+├── README.md                     ← Project readme (needs rewrite)
+│
+├── partials/
+│   ├── header-html.php           ← Visible header HTML + nav
+│   ├── footer-html.php           ← Visible footer HTML
+│   ├── seo_meta.php              ← SEO, OpenGraph, schema markup
+│   ├── dashboard_fixes.php       ← WP admin hardening + utilities
+│   └── campaign-success.php      ← Landing page thank you with optional ?cid lookup
+│
+├── ~wp_blocks/                   ← All 12 ACF-powered custom blocks
+│   ├── Hero/
+│   ├── accordion/
+│   ├── callout/
+│   ├── contact_block/
+│   ├── cta_banner/
+│   ├── event/
+│   ├── gallery/
+│   ├── page_list/
+│   ├── profiles_block/
+│   ├── program/
+│   ├── testimonials/
+│   └── video/
+│
+├── ~common_features/
+│   ├── ada_responsive_nav/       ← Responsive nav system active by default
+│   └── landing_pages/            ← Landing page CPT system
+│
+├── ~js_plugins/                  ← Third party JS plugins (Owl Carousel active; rest commented out)
+│   ├── fitVids/
+│   ├── lightbox/
+│   ├── lity/
+│   └── owl-carousel/             ← Required by gallery block
+│
+├── ~acf_imports/                 ← ACF field group JSON exports
+│   ├── seo-meta.json
+│   ├── global-tracking-scripts.json
+│   └── [12 block field group JSON files]
+│
+├── js/
+│   ├── jquery3.js                ← Custom jQuery (replaces WP default)
+│   └── scripts.js                ← Main theme JS (empty doc ready)
+│
+├── css/
+│   └── wufoo.css                 ← Third party Wufoo form styles
+│
+└── Guides/                       ← Developer documentation
+```
+
+---
+
+## Design token system
+
+**All design values live as CSS custom properties in `style.css` `:root`.**
+**All the same values are mirrored in `theme.json` for the block editor.**
+
+When updating tokens for a new project — update BOTH files.
+
+### Key tokens
+
+```css
+/* Colors */
+--color-primary        /* Headings, main text */
+--color-secondary      /* Supporting text */
+--color-accent         /* Links, buttons, highlights */
+--color-accent-hover   /* Hover state */
+--color-bg             /* Page background */
+--color-bg-alt         /* Cards, alternate sections */
+--color-bg-dark        /* Header, footer, dark sections */
+--color-text           /* Body text */
+--color-text-muted     /* Secondary text */
+--color-text-inverse   /* Text on dark backgrounds */
+--color-border         /* Borders, dividers, inputs */
+
+/* Typography */
+--font-body            /* Paragraph text, UI */
+--font-heading         /* H1-H6 */
+--font-accent          /* Code, labels, mono */
+
+/* Type scale */
+--text-xs through --text-4xl
+
+/* Spacing */
+--space-1 through --space-24
+
+/* Borders */
+--radius-sm, --radius-md, --radius-lg, --radius-xl, --radius-full
+
+/* Shadows */
+--shadow-sm, --shadow-md, --shadow-lg
+
+/* Layout */
+--max-width            /* 1200px default */
+--wrapper-padding      /* 40px default */
+```
+
+---
+
+## CSS rules — strictly enforced
+
+```
+✅ Always use CSS tokens (var(--token-name))
+✅ Always use tokens for spacing, colors, radii, shadows, font sizes
+✅ Block CSS lives inside the block folder only
+✅ Site-wide styles live in style.css only
+✅ Per-template styles live in a <style> block at the bottom of the template file
+❌ Never hardcode hex color values in any CSS file
+❌ Never hardcode pixel values when a token exists
+❌ Never use !important unless there is no alternative
+❌ Never create a new standalone CSS file outside of the block folder structure
+❌ Never add styles to an arbitrary location — everything has a designated home
+```
+
+---
+
+## PHP conventions
+
+Match the existing code style throughout the theme:
+
+```php
+// Short echo tags — preferred
+<?= $variable; ?>
+
+// ACF field pattern — always used for block data
+$title = get_field('field_name');
+if ( $title ) : ?>
+    <h2><?= $title; ?></h2>
+<?php endif; ?>
+
+// WordPress functions — always use proper escaping
+echo esc_html( $variable );
+echo esc_url( $url );
+echo esc_attr( $attribute );
+
+// Subfields inside repeaters
+while ( have_rows('repeater_field') ) : the_row();
+    $item = get_sub_field('sub_field_name');
+endwhile;
+```
+
+---
+
+## Block architecture
+
+Every block follows the same 4-file pattern:
+
+```
+~wp_blocks/block-name/
+├── block.json      ← Registration, metadata, ACF config
+├── block-name.php  ← Render template, pulls ACF fields
+├── block-name.css  ← Block styles using tokens only
+└── block-name.js   ← Interactivity (only if needed)
+```
+
+**Block auto-registration:** All blocks are registered automatically via a glob loop in `functions.php`. No manual registration needed when adding new blocks.
+
+**Block JS files** are declared via `viewScript` in `block.json` and loaded automatically by WordPress on pages that use the block.
+
+### Block JS — two loading patterns
+
+Some blocks load their JS via scripts.js rather than viewScript:
+
+- **Gallery** — carousel init lives in scripts.js. No viewScript in block.json.
+- **Accordion** — click handler lives in scripts.js. No viewScript in block.json.
+- **Video** — lightbox JS lives in video.js, loaded via viewScript in block.json.
+
+Why: Gallery and Accordion depend on jQuery and Owl Carousel being loaded first.
+Moving their init code to scripts.js guarantees correct dependency order.
+scripts.js declares both jquery and owl-core-js as dependencies in functions.php.
+
+**Block category:** All 12 blocks use `"category": "boilerplate-blocks"` and appear under the "Boilerplate Blocks" group in the editor. The category is registered via `add_filter( 'block_categories_all' )` in `functions.php`.
+
+### All 12 blocks and their exact name values
+
+⚠️ Note: Block naming is inconsistent — a mix of snake_case, camelCase, and PascalCase. This is a known issue to standardize in a future version. Use the exact values below when referencing blocks.
+
+| Block Folder | block.json name | Title |
+|---|---|---|
+| `Hero/` | `custom_hero` | Hero |
+| `accordion/` | `custom_accordion` | Accordion |
+| `callout/` | `custom_calloutBlock` | Highlighted Content |
+| `contact_block/` | `custom_contactBlock` | Contact Us Call-To-Action |
+| `cta_banner/` | `custom_cta_banner` | CTA Banner |
+| `event/` | `customEvent` | Event |
+| `gallery/` | `custom_gallery` | Custom Gallery |
+| `page_list/` | `custom_Page_List` | Page Blocks |
+| `profiles_block/` | `profilesBlock` | Profiles |
+| `program/` | `customProgram` | Program |
+| `testimonials/` | `custom_testimonials` | Testimonials |
+| `video/` | `custom_video` | Video |
+
+### Block CSS standard header
+
+Every block CSS file must start with this comment header:
+
+```css
+/*
+==========================================================
+BLOCK NAME — block-name.css
+==========================================================
+WHAT IT IS:
+Brief description of what this block is.
+
+WHAT IT DOES:
+Brief description of what it does.
+
+HOW TO USE:
+1. Step one
+2. Step two
+
+All values use boilerplate CSS tokens from style.css.
+==========================================================
+*/
+```
+
+---
+
+## functions.php — important notes
+
+**Do not modify these sections without asking Matt first:**
+- `dashboard_fixes.php` include — sensitive admin hardening
+- Block auto-registration loop — works automatically, don't break it
+- jQuery replacement decision — intentional in this boilerplate
+
+**Safe to modify:**
+- Enqueue section — uncomment plugins as needed per project
+- Menu registration — add new menu locations per project
+- `boilerplate_theme_support()` — add new theme support as needed
+- `boilerplate_create_starter_pages()` — add new auto-created pages
+
+---
+
+## Common features
+
+### ADA Responsive Nav
+Located in `~common_features/ada_responsive_nav/`
+
+- `functions.php` — defines `theme_Menu_Walker` class
+- `view.php` — reference header markup example
+- `script.js` — jQuery hamburger toggle and dropdown handling
+- `style.css` — nav styles using CSS tokens
+
+The nav is active by default in V3:
+- CSS and JS are enqueued from the main `functions.php`
+- `partials/header-html.php` already contains the responsive nav structure
+- submenu arrow uses a pure CSS chevron, so Font Awesome is not required for the nav itself
+- supports `has_custom_logo()` / `the_custom_logo()` with a text fallback via `get_bloginfo('name')`
+
+The walker class is used in `partials/header-html.php`. Do not remove the include in `functions.php`.
+
+### Landing Pages CPT
+Located in `~common_features/landing_pages/`
+
+Registers a `campaign` custom post type for landing pages outside the normal sitemap. The active success page is `partials/campaign-success.php`, which is generic by default and becomes campaign-aware when a `?cid=` parameter matches a campaign `tracking_id`.
+
+---
+
+## JS plugins
+
+All third-party JS plugins live in `~js_plugins/`. Most are commented out in `functions.php` and can be enabled per project as needed:
+
+| Plugin | Use case | Enqueue handle | File path |
+|---|---|---|---|
+| Owl Carousel | Gallery block slider | `owl-core-js` + `owl-core-css` | `~js_plugins/owl-carousel/` |
+| Lightbox | Image lightboxes | `lightbox-core-js` + `lightbox-core-css` | `~js_plugins/lightbox/` |
+| Lity | Inline lightboxes | `lity-core-js` + `lity-core-css` | `~js_plugins/lity/` |
+| FitVids | Responsive video embeds | `fitVids-core-js` | `~js_plugins/fitVids/` |
+
+Owl Carousel is already active in the current V3 boilerplate because the Gallery block depends on it.
+
+---
+
+## ACF field groups
+
+All ACF field group configurations are exported as JSON in `~acf_imports/`:
+
+| File | Purpose |
+|---|---|
+| `seo-meta.json` | SEO meta fields on all pages and posts |
+| `global-tracking-scripts.json` | Theme Settings tracking script slots |
+| `acf-hero-block.json` | Hero block fields |
+| `acf-accordion-block.json` | Accordion block fields |
+| `acf-callout-block.json` | Callout block fields |
+| `acf-contact-block.json` | Contact block fields |
+| `acf-cta-banner-block.json` | CTA Banner block fields |
+| `acf-event-block.json` | Event block fields |
+| `acf-gallery-block.json` | Gallery block fields |
+| `acf-page-list-block.json` | Page List block fields |
+| `acf-profiles-block.json` | Profiles block fields |
+| `acf-program-block.json` | Program block fields |
+| `acf-testimonials-block.json` | Testimonials block fields |
+| `acf-video-block.json` | Video block fields |
+
+**To import on a new project:** ACF → Tools → Import → select all JSON files.
+
+---
+
+## New project setup checklist
+
+When starting a new client project using this boilerplate:
+
+1. Duplicate theme folder → rename to client project name
+2. Update theme header in `style.css` — Theme Name, URI, description
+3. Update `theme.json` — Text Domain if needed
+4. Swap font `@import` URLs in `style.css` Section 1a and 1b
+5. Update `--font-body` and `--font-heading` in `:root`
+6. Update color tokens in `:root` — primary, accent, bg, bg-dark
+7. Mirror all token changes in `theme.json` — palette + fontFamilies + styles
+8. Import ACF field groups via ACF → Tools → Import
+9. Add brand overrides in Section 10 of `style.css`
+10. Remove test font imports (Section 1d) and classes (Section 8c) when fonts chosen
+11. Remove unused blocks from `~wp_blocks/` if not needed
+12. Remove unused templates if not needed
+13. Update `theme.json` customTemplates if templates were removed
+14. Push to staging and verify
+
+---
+
+## Removing bloat for a specific project
+
+This boilerplate ships with everything. Strip it down per project:
+
+| Item | How to remove |
+|---|---|
+| Unused blocks | Delete entire block folder from `~wp_blocks/` |
+| Test fonts | Delete Section 1d imports + Section 8c classes in `style.css` |
+| Font test page | Delete `template-font-test.php` + remove from `theme.json` customTemplates |
+| Boilerplate style guide | Delete `template-boilerplate.php` + remove from `theme.json` customTemplates |
+| Blog templates | Delete `home.php`, `single.php`, `archive.php` if no blog needed |
+| Landing page template | Delete `template-landing.php` + remove from `theme.json` customTemplates |
+| Full width template | Delete `template-full-width.php` + remove from `theme.json` customTemplates |
+
+---
+
+## Known issues and future improvements
+
+- **Block naming inconsistency** — block name values mix snake_case, camelCase and PascalCase. Standardize to kebab-case in V4.
+- **Shared post card CSS** — `.post-card` and `.post-grid` styles duplicated across `index.php`, `archive.php`, `search.php`, `home.php`. Consolidate into `style.css` Section 6 in V4.
+- **ACF JSON location rules** — verify each block field group location rule after importing. Slugs are lowercase hyphenated versions of block names.
+
+## Completed in v3 hardening session
+
+- ✅ All 7 legacy blocks security hardened — esc_html(), esc_url(), wp_kses_post(), is_array() checks
+- ✅ seo_meta.php fully escaped
+- ✅ dashboard_fixes.php — esc_url_raw() and is_object() null check added
+- ✅ flush_rewrite_rules() moved to after_switch_theme hook
+- ✅ campaign-success.php upgraded to support optional `?cid=` campaign lookup
+- ✅ Scroll To Top JS active in js/scripts.js
+- ✅ All 12 blocks now under boilerplate-blocks category
+- ✅ theme.json hardcoded hex values replaced with token references
+- ✅ --color-rating token added to style.css
+- ✅ hero.php is_array() safety check added
+- ✅ .gitignore added to theme root
+- ✅ ADA responsive nav activated by default in the main boilerplate
+- ✅ Theme Settings tracking import fixed to target `theme-general-settings`
+
+---
+
+## Matt's workflow
+
+Matt (Matthew De Nero) is the sole developer. He works with:
+- **Claude Code** (you) — debugging, fixes, new blocks, architecture decisions
+- **Alex (ChatGPT)** — creative direction, UX design, client-facing content
+- **FileZilla** — FTP uploads to staging server
+- **VS Code** — primary code editor
+
+When making changes:
+- Always push updated files to staging via FTP after changes
+- Always copy updated files to the local master boilerplate folder
+- The local master folder is the source of truth for the boilerplate
+
+---
+
+*Boilerplate Master — CLAUDE.md*
+*Built by Matthew De Nero / ByDeNero*
+*https://github.com/MattDee87/boilerplate-master*

@@ -1,0 +1,218 @@
+[
+    {
+        "key": "group_cta_banner_block",
+        "title": "CTA Banner Block",
+        "fields": [
+            {
+                "key": "field_cta_tab_content",
+                "label": "Content",
+                "name": "",
+                "type": "tab",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": { "width": "", "class": "", "id": "" },
+                "placement": "top",
+                "endpoint": 0
+            },
+            {
+                "key": "field_cta_eyebrow",
+                "label": "Eyebrow Text",
+                "name": "cta_eyebrow",
+                "type": "text",
+                "instructions": "Small label shown above the heading. e.g. 'Ready to get started?'",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": { "width": "", "class": "", "id": "" },
+                "default_value": "",
+                "placeholder": "Ready to get started?",
+                "maxlength": ""
+            },
+            {
+                "key": "field_cta_heading",
+                "label": "Heading",
+                "name": "cta_heading",
+                "type": "text",
+                "instructions": "Main CTA heading. Renders as H2.",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": { "width": "", "class": "", "id": "" },
+                "default_value": "",
+                "placeholder": "Let's Work Together",
+                "maxlength": ""
+            },
+            {
+                "key": "field_cta_subheading",
+                "label": "Subheading",
+                "name": "cta_subheading",
+                "type": "text",
+                "instructions": "Optional supporting text below the heading.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": { "width": "", "class": "", "id": "" },
+                "default_value": "",
+                "placeholder": "We'd love to hear about your project.",
+                "maxlength": ""
+            },
+            {
+                "key": "field_cta_tab_buttons",
+                "label": "Buttons",
+                "name": "",
+                "type": "tab",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": { "width": "", "class": "", "id": "" },
+                "placement": "top",
+                "endpoint": 0
+            },
+            {
+                "key": "field_cta_btn_1_label",
+                "label": "Button 1 Label",
+                "name": "cta_btn_1_label",
+                "type": "text",
+                "instructions": "Primary button label.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": { "width": "50", "class": "", "id": "" },
+                "default_value": "",
+                "placeholder": "Contact Us",
+                "maxlength": ""
+            },
+            {
+                "key": "field_cta_btn_1_url",
+                "label": "Button 1 URL",
+                "name": "cta_btn_1_url",
+                "type": "url",
+                "instructions": "Primary button link.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": { "width": "50", "class": "", "id": "" },
+                "default_value": "",
+                "placeholder": "https://"
+            },
+            {
+                "key": "field_cta_btn_2_label",
+                "label": "Button 2 Label",
+                "name": "cta_btn_2_label",
+                "type": "text",
+                "instructions": "Secondary button label. Renders as outline style.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": { "width": "50", "class": "", "id": "" },
+                "default_value": "",
+                "placeholder": "Learn More",
+                "maxlength": ""
+            },
+            {
+                "key": "field_cta_btn_2_url",
+                "label": "Button 2 URL",
+                "name": "cta_btn_2_url",
+                "type": "url",
+                "instructions": "Secondary button link.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": { "width": "50", "class": "", "id": "" },
+                "default_value": "",
+                "placeholder": "https://"
+            },
+            {
+                "key": "field_cta_tab_design",
+                "label": "Design",
+                "name": "",
+                "type": "tab",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": { "width": "", "class": "", "id": "" },
+                "placement": "top",
+                "endpoint": 0
+            },
+            {
+                "key": "field_cta_alignment",
+                "label": "Alignment",
+                "name": "cta_alignment",
+                "type": "select",
+                "instructions": "Content alignment within the banner.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": { "width": "", "class": "", "id": "" },
+                "choices": {
+                    "center": "Center",
+                    "left": "Left"
+                },
+                "default_value": "center",
+                "allow_null": 0,
+                "multiple": 0,
+                "ui": 0,
+                "return_format": "value"
+            },
+            {
+                "key": "field_cta_bg_image",
+                "label": "Background Image",
+                "name": "cta_bg_image",
+                "type": "image",
+                "instructions": "Optional background image. If not set, background color is used.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": { "width": "", "class": "", "id": "" },
+                "return_format": "array",
+                "preview_size": "medium",
+                "library": "all"
+            },
+            {
+                "key": "field_cta_overlay_opacity",
+                "label": "Overlay Opacity",
+                "name": "cta_overlay_opacity",
+                "type": "number",
+                "instructions": "Dark overlay opacity. 0 = no overlay, 100 = fully black. Default: 60.",
+                "required": 0,
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_cta_bg_image",
+                            "operator": "!=empty",
+                            "value": ""
+                        }
+                    ]
+                ],
+                "wrapper": { "width": "", "class": "", "id": "" },
+                "default_value": 60,
+                "min": 0,
+                "max": 100,
+                "step": 5,
+                "placeholder": "60"
+            },
+            {
+                "key": "field_cta_bg_color",
+                "label": "Background Color",
+                "name": "cta_bg_color",
+                "type": "color_picker",
+                "instructions": "Fallback background color when no image is set.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": { "width": "", "class": "", "id": "" },
+                "default_value": "#1A1A1A",
+                "enable_opacity": 0,
+                "return_format": "string"
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "block",
+                    "operator": "==",
+                    "value": "acf/custom-cta-banner"
+                }
+            ]
+        ],
+        "menu_order": 0,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": true,
+        "description": "Field group for the CTA Banner Block — full width conversion strip with buttons."
+    }
+]

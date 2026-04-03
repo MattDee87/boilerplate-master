@@ -1,0 +1,319 @@
+/*
+==========================================================
+VIDEO BLOCK — video.css
+==========================================================
+WHAT IT IS:
+A video block that shows a poster thumbnail with a
+play button. Clicking opens the video in a lightbox
+modal overlay.
+
+WHAT IT DOES:
+Displays a clickable poster image with an animated play
+button. On click, video.js injects an iframe into a
+modal overlay and autoplays the video. Closing the modal
+removes the iframe to stop playback. Supports YouTube,
+Vimeo, Loom, and any direct iframe embed URL.
+
+HOW TO USE:
+1. In the WordPress block editor add the "Video" block
+   to any page or post.
+2. Paste your video URL (YouTube, Vimeo, Loom, or iframe).
+3. Upload a poster/thumbnail image.
+4. Optionally add a title and caption.
+5. Save and preview — click the poster to test the lightbox.
+
+TO SIMPLIFY TO OPTION A (inline embed, no lightbox):
+- Remove video.js entirely
+- Replace .video_trigger with a standard .embed-responsive
+  iframe using the embed URL directly
+- Remove .video_modal styles below
+
+TO UPGRADE TO OPTION C (full section wrapper):
+- Uncomment the Option C fields and markup in video.php
+- Add .video_section styles from the commented section below
+
+NOTE: Requires Font Awesome for the play and close icons.
+FontAwesome script is enqueued in functions.php.
+
+All values use boilerplate CSS tokens from style.css.
+==========================================================
+*/
+
+/* ── Video Block ─────────────────────────────────────── */
+
+.video_block {
+    margin: var(--space-8) 0;
+}
+
+/* Trigger — the clickable poster */
+.video_trigger {
+    position: relative;
+    display: block;
+    width: 100%;
+    cursor: pointer;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    background: var(--color-bg-dark);
+}
+
+/* Poster image */
+.video_poster {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.4s ease, opacity 0.3s ease;
+}
+
+.video_trigger:hover .video_poster {
+    transform: scale(1.02);
+    opacity: 0.85;
+}
+
+/* Fallback poster — no image set */
+.video_poster_fallback {
+    width: 100%;
+    padding-bottom: 56.25%;
+    background: var(--color-bg-dark);
+}
+
+/* Play button overlay */
+.video_play_btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    transition: transform 0.3s ease;
+}
+
+.video_trigger:hover .video_play_btn {
+    transform: translate(-50%, -50%) scale(1.1);
+}
+
+.video_play_icon {
+    width: 72px;
+    height: 72px;
+    border-radius: var(--radius-full);
+    background: var(--color-accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-lg);
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.video_trigger:hover .video_play_icon {
+    background: var(--color-accent-hover);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.video_play_icon i {
+    color: var(--color-white);
+    font-size: var(--text-xl);
+    margin-left: 4px; /* Optical centering for play triangle */
+}
+
+/* Video meta */
+.video_meta {
+    padding: var(--space-4) 0 0 0;
+}
+
+.video_title {
+    font-size: var(--text-base);
+    font-weight: var(--weight-semi);
+    color: var(--color-primary);
+    margin: 0 0 var(--space-2) 0;
+}
+
+.video_caption {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    margin: 0;
+    font-style: italic;
+}
+
+
+/* ── Modal Lightbox ──────────────────────────────────── */
+
+.video_modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.video_modal[hidden] {
+    display: none;
+}
+
+.video_modal.is_open {
+    opacity: 1;
+}
+
+/* Backdrop */
+.video_modal_backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.88);
+    cursor: pointer;
+}
+
+/* Modal content box */
+.video_modal_content {
+    position: relative;
+    z-index: 2;
+    width: 90%;
+    max-width: 960px;
+    transform: scale(0.95);
+    transition: transform 0.3s ease;
+}
+
+.video_modal.is_open .video_modal_content {
+    transform: scale(1);
+}
+
+/* Close button */
+.video_modal_close {
+    position: absolute;
+    top: calc(-1 * var(--space-10));
+    right: 0;
+    background: transparent;
+    border: none;
+    color: var(--color-white);
+    font-size: var(--text-xl);
+    cursor: pointer;
+    padding: var(--space-2) var(--space-3);
+    opacity: 0.75;
+    transition: opacity 0.2s ease;
+    z-index: 3;
+}
+
+.video_modal_close:hover {
+    opacity: 1;
+}
+
+/* iframe house — 16:9 responsive container */
+.video_modal_iframe_house {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    background: var(--color-black);
+    border-radius: var(--radius-md);
+}
+
+.video_modal_iframe_house iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+/* Prevent body scroll when modal is open */
+body.video_modal_open {
+    overflow: hidden;
+}
+
+
+/*
+==========================================================
+OPTION C — Full section wrapper styles
+Uncomment when using the section wrapper in video.php
+==========================================================
+
+.video_section {
+    position: relative;
+    padding: var(--space-20) 0;
+    background-color: var(--color-bg-dark);
+    background-size: cover;
+    background-position: center;
+    margin: var(--space-12) 0;
+}
+
+.video_section_overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+}
+
+.video_section_inner {
+    position: relative;
+    z-index: 2;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--wrapper-padding);
+    text-align: center;
+}
+
+.video_eyebrow {
+    font-family: var(--font-accent);
+    font-size: var(--text-xs);
+    font-weight: var(--weight-bold);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--color-text-inverse);
+    opacity: 0.7;
+    margin: 0 0 var(--space-3) 0;
+}
+
+.video_description {
+    font-size: var(--text-md);
+    color: var(--color-text-inverse);
+    opacity: 0.85;
+    max-width: 620px;
+    margin: 0 auto var(--space-8) auto;
+    line-height: var(--leading-relaxed);
+}
+
+==========================================================
+*/
+
+
+/* ── Responsive ──────────────────────────────────────── */
+
+@media (max-width: 768px) {
+    .video_play_icon {
+        width: 56px;
+        height: 56px;
+    }
+
+    .video_play_icon i {
+        font-size: var(--text-lg);
+    }
+
+    .video_modal_content {
+        width: 95%;
+    }
+
+    .video_modal_close {
+        top: calc(-1 * var(--space-8));
+        font-size: var(--text-lg);
+    }
+}
+
+@media (max-width: 480px) {
+    .video_play_icon {
+        width: 48px;
+        height: 48px;
+    }
+
+    .video_play_icon i {
+        font-size: var(--text-base);
+    }
+}

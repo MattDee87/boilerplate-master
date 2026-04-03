@@ -1,0 +1,34 @@
+{
+  "name": "custom_hero",
+  "title": "Hero",
+  "description": "A full width hero block with background image, heading, subheading, paragraph, and up to two CTA buttons. Supports left, center, and right text alignment.",
+  "style": "file:./hero.css",
+  "editorStyle": "file:./hero.css",
+  "category": "boilerplate-blocks",
+  "icon": "align-full-width",
+  "apiVersion": 2,
+  "keywords": [
+    "hero",
+    "banner",
+    "header",
+    "cta",
+    "full width",
+    "background"
+  ],
+  "acf": {
+    "mode": "preview",
+    "renderTemplate": "./hero.php",
+    "postTypes": [
+      "post",
+      "page"
+    ]
+  },
+  "supports": {
+    "align": [
+      "wide",
+      "full"
+    ]
+  },
+  "attributes": {},
+  "example": {}
+}

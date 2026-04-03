@@ -1,0 +1,44 @@
+[
+  {
+    "key": "group_callout_block",
+    "title": "Callout Block",
+    "fields": [
+      {
+        "key": "field_callout_content",
+        "label": "Content",
+        "name": "content",
+        "type": "wysiwyg",
+        "instructions": "Add the content to highlight in the callout box.",
+        "required": 1,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "default_value": "",
+        "tabs": "all",
+        "toolbar": "basic",
+        "media_upload": 0,
+        "delay": 0
+      }
+    ],
+    "location": [
+      [
+        {
+          "param": "block",
+          "operator": "==",
+          "value": "acf/custom-calloutblock"
+        }
+      ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "Field group for the Callout Block — highlighted content box."
+  }
+]

@@ -1,0 +1,42 @@
+[
+    {
+        "key": "group_page_list_block",
+        "title": "Page List Block",
+        "fields": [
+            {
+                "key": "field_page_list_pages",
+                "label": "Pages",
+                "name": "list_pages",
+                "type": "relationship",
+                "instructions": "Select the pages to display as linked cards.",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": { "width": "", "class": "", "id": "" },
+                "post_type": ["page"],
+                "taxonomy": "",
+                "filters": ["search"],
+                "return_format": "object",
+                "min": 1,
+                "max": 0,
+                "elements": ["featured_image"]
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "block",
+                    "operator": "==",
+                    "value": "acf/custom-page-list"
+                }
+            ]
+        ],
+        "menu_order": 0,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": true,
+        "description": "Field group for the Page List Block — grid of linked page cards."
+    }
+]

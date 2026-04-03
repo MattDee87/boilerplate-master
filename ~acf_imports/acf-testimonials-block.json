@@ -1,0 +1,162 @@
+[
+    {
+        "key": "group_testimonials_block",
+        "title": "Testimonials Block",
+        "fields": [
+            {
+                "key": "field_testimonials_title",
+                "label": "Section Title",
+                "name": "testimonials_title",
+                "type": "text",
+                "instructions": "Optional heading shown above the testimonials grid.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": { "width": "", "class": "", "id": "" },
+                "default_value": "",
+                "placeholder": "What Our Clients Say",
+                "maxlength": ""
+            },
+            {
+                "key": "field_testimonials_columns",
+                "label": "Columns",
+                "name": "testimonials_columns",
+                "type": "select",
+                "instructions": "Number of columns in the testimonials grid.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": { "width": "", "class": "", "id": "" },
+                "choices": {
+                    "2": "2 Columns",
+                    "3": "3 Columns"
+                },
+                "default_value": "3",
+                "allow_null": 0,
+                "multiple": 0,
+                "ui": 0,
+                "return_format": "value"
+            },
+            {
+                "key": "field_testimonials_items",
+                "label": "Testimonials",
+                "name": "testimonials_items",
+                "type": "repeater",
+                "instructions": "Add as many testimonials as needed.",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": { "width": "", "class": "", "id": "" },
+                "layout": "block",
+                "min": 1,
+                "max": 0,
+                "button_label": "Add Testimonial",
+                "sub_fields": [
+                    {
+                        "key": "field_testimonials_quote",
+                        "label": "Quote",
+                        "name": "quote",
+                        "type": "textarea",
+                        "instructions": "The testimonial quote. Do not include quotation marks — they are added automatically.",
+                        "required": 1,
+                        "conditional_logic": 0,
+                        "wrapper": { "width": "", "class": "", "id": "" },
+                        "default_value": "",
+                        "rows": 3,
+                        "new_lines": "",
+                        "placeholder": "This product changed our business completely..."
+                    },
+                    {
+                        "key": "field_testimonials_name",
+                        "label": "Name",
+                        "name": "name",
+                        "type": "text",
+                        "instructions": "Full name of the person giving the testimonial.",
+                        "required": 1,
+                        "conditional_logic": 0,
+                        "wrapper": { "width": "50", "class": "", "id": "" },
+                        "default_value": "",
+                        "placeholder": "Jane Smith",
+                        "maxlength": ""
+                    },
+                    {
+                        "key": "field_testimonials_role",
+                        "label": "Role / Title",
+                        "name": "role",
+                        "type": "text",
+                        "instructions": "Job title or role.",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": { "width": "50", "class": "", "id": "" },
+                        "default_value": "",
+                        "placeholder": "CEO",
+                        "maxlength": ""
+                    },
+                    {
+                        "key": "field_testimonials_company",
+                        "label": "Company",
+                        "name": "company",
+                        "type": "text",
+                        "instructions": "Company or organization name.",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": { "width": "50", "class": "", "id": "" },
+                        "default_value": "",
+                        "placeholder": "Acme Corp",
+                        "maxlength": ""
+                    },
+                    {
+                        "key": "field_testimonials_rating",
+                        "label": "Star Rating",
+                        "name": "rating",
+                        "type": "select",
+                        "instructions": "Optional star rating. Set to 0 to hide stars.",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": { "width": "50", "class": "", "id": "" },
+                        "choices": {
+                            "0": "No Rating",
+                            "1": "1 Star",
+                            "2": "2 Stars",
+                            "3": "3 Stars",
+                            "4": "4 Stars",
+                            "5": "5 Stars"
+                        },
+                        "default_value": "5",
+                        "allow_null": 0,
+                        "multiple": 0,
+                        "ui": 0,
+                        "return_format": "value"
+                    },
+                    {
+                        "key": "field_testimonials_photo",
+                        "label": "Photo",
+                        "name": "photo",
+                        "type": "image",
+                        "instructions": "Optional headshot. Displayed as a small circular avatar.",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": { "width": "", "class": "", "id": "" },
+                        "return_format": "array",
+                        "preview_size": "thumbnail",
+                        "library": "all"
+                    }
+                ]
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "block",
+                    "operator": "==",
+                    "value": "acf/custom-testimonials"
+                }
+            ]
+        ],
+        "menu_order": 0,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": true,
+        "description": "Field group for the Testimonials Block — grid of client quotes with star ratings."
+    }
+]

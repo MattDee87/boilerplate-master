@@ -1,0 +1,182 @@
+/*
+==========================================================
+GALLERY BLOCK — gallery.css
+==========================================================
+WHAT IT IS:
+A themed image gallery slideshow powered by Owl Carousel.
+
+WHAT IT DOES:
+Displays an ACF image gallery as a full width slider
+with prev/next controls and dot navigation. Automatically
+detects portrait vs landscape images and adjusts the
+aspect ratio accordingly. Single image galleries skip
+the slider controls entirely.
+
+HOW TO USE:
+1. In the WordPress block editor add the "Custom Gallery"
+   block to any page or post.
+2. Optionally set a Gallery Title (defaults to "Gallery").
+3. Upload or select images from the media library.
+4. Save and preview the page.
+
+NOTE: Requires Owl Carousel JS and CSS to be loaded.
+Uncomment owl carousel lines in functions.php to enable.
+
+All values use boilerplate CSS tokens from style.css.
+==========================================================
+*/
+
+/* Gallery wrapper */
+.highlights {
+    width: 100%;
+    margin: var(--space-16) 0 var(--space-12) 0;
+    border: 1px solid var(--color-border);
+    position: relative;
+    border-radius: var(--radius-md);
+}
+
+/* Floating title */
+.highlights h2 {
+    position: absolute;
+    font-size: var(--text-lg);
+    left: var(--space-5);
+    top: -22px;
+    margin: 0;
+    line-height: 43px;
+    padding: 0 var(--space-3);
+    background: var(--color-bg);
+}
+
+/* Slider wrapper */
+.highlights_slider_wrapper {
+    width: 100%;
+    position: relative;
+    padding: var(--space-8) var(--space-8) 0 var(--space-8);
+}
+
+.highlights_slider_wrapper.one_slide {
+    padding: var(--space-8);
+}
+
+.highlights_slider_wrapper.one_slide .highlights_slider {
+    display: block !important;
+}
+
+/* Dots */
+.hightlights_dots {
+    display: flex;
+    gap: var(--space-1);
+    justify-content: flex-start;
+}
+
+.hightlights_dots .owl-dot {
+    appearance: none;
+    border: none;
+    height: 15px;
+    width: 15px;
+    background: var(--color-border);
+    border-radius: var(--radius-full);
+    cursor: pointer;
+    transition: ease all 300ms;
+}
+
+.hightlights_dots .owl-dot.active {
+    background-color: var(--color-accent);
+}
+
+/* Slider meta row */
+.slider_meta {
+    padding: var(--space-3) 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Prev / Next controls */
+.highlights_next_prev {
+    display: flex;
+    justify-content: flex-end;
+    gap: var(--space-5);
+}
+
+.highlights_prev,
+.highlights_prev_home,
+.highlights_next,
+.highlights_next_home {
+    padding: var(--space-4) 0 0 0;
+    font-size: var(--text-md);
+    color: var(--color-accent);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
+    height: 50px;
+    width: 50px;
+    text-align: center;
+    transition: all ease 250ms;
+    line-height: 20px;
+    background: var(--color-bg);
+    cursor: pointer;
+}
+
+.highlights_prev:hover,
+.highlights_prev_home:hover,
+.highlights_next:hover,
+.highlights_next_home:hover {
+    border-color: var(--color-accent);
+    background: var(--color-bg-alt);
+}
+
+/* Slide items */
+.highlights_slider .item {
+    padding: 50% 0 0 0;
+    background-size: cover;
+    background-position: center;
+}
+
+.highlights_slider .item.orientation_portrait {
+    padding: 75vh 0 0 0;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-color: var(--color-bg-alt);
+    background-position: center;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .highlights_slider_wrapper {
+        padding: var(--space-8) var(--space-8) 0 var(--space-8);
+    }
+
+    .highlights h2 {
+        font-size: var(--text-md);
+        left: var(--space-5);
+    }
+
+    .hightlights_dots {
+        display: none;
+    }
+
+    .slider_meta {
+        padding: var(--space-3) 0;
+    }
+
+    .highlights_next_prev {
+        flex: 1 1 auto;
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+@media (max-width: 480px) {
+    .highlights {
+        border-left: none;
+        border-right: none;
+        border-bottom: none;
+        margin: var(--space-16) 0 var(--space-5) 0;
+        border-radius: 0;
+    }
+
+    .highlights_slider_wrapper.one_slide,
+    .highlights_slider_wrapper {
+        padding: var(--space-8) 0 0 0;
+    }
+}

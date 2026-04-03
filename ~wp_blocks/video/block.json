@@ -1,0 +1,34 @@
+{
+    "name": "custom_video",
+    "title": "Video",
+    "description": "A video block with lightbox popup player. Supports YouTube, Vimeo, Loom, and any iframe embed URL. Shows a poster thumbnail with a play button — clicking opens the video in a modal overlay.",
+    "style": "file:./video.css",
+    "editorStyle": "file:./video.css",
+    "viewScript": "file:./video.js",
+    "category": "boilerplate-blocks",
+    "icon": "video-alt3",
+    "apiVersion": 2,
+    "keywords": [
+        "video",
+        "youtube",
+        "vimeo",
+        "loom",
+        "embed",
+        "lightbox",
+        "popup",
+        "player"
+    ],
+    "acf": {
+        "mode": "preview",
+        "renderTemplate": "./video.php",
+        "postTypes": [
+            "post",
+            "page"
+        ]
+    },
+    "supports": {
+        "align": ["wide", "full"]
+    },
+    "attributes": {},
+    "example": {}
+}

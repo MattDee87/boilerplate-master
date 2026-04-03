@@ -1,0 +1,31 @@
+{
+    "name": "custom_cta_banner",
+    "title": "CTA Banner",
+    "description": "A full width call-to-action banner strip with background image or color, eyebrow text, heading, subheading, and up to two CTA buttons. Great for conversion nudges between page sections.",
+    "style": "file:./cta_banner.css",
+    "editorStyle": "file:./cta_banner.css",
+    "category": "boilerplate-blocks",
+    "icon": "megaphone",
+    "apiVersion": 2,
+    "keywords": [
+        "cta",
+        "call to action",
+        "banner",
+        "conversion",
+        "strip",
+        "section"
+    ],
+    "acf": {
+        "mode": "preview",
+        "renderTemplate": "./cta_banner.php",
+        "postTypes": [
+            "post",
+            "page"
+        ]
+    },
+    "supports": {
+        "align": ["wide", "full"]
+    },
+    "attributes": {},
+    "example": {}
+}

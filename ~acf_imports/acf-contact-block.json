@@ -1,0 +1,136 @@
+[
+    {
+        "key": "group_contact_block",
+        "title": "Contact Block",
+        "fields": [
+            {
+                "key": "field_contact_tab_content",
+                "label": "Content",
+                "name": "",
+                "type": "tab",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": { "width": "", "class": "", "id": "" },
+                "placement": "top",
+                "endpoint": 0
+            },
+            {
+                "key": "field_contact_title",
+                "label": "Title",
+                "name": "title",
+                "type": "text",
+                "instructions": "The heading for the contact CTA box.",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": { "width": "", "class": "", "id": "" },
+                "default_value": "",
+                "placeholder": "Get In Touch",
+                "maxlength": ""
+            },
+            {
+                "key": "field_contact_copy",
+                "label": "Copy",
+                "name": "copy",
+                "type": "textarea",
+                "instructions": "Supporting text below the title.",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": { "width": "", "class": "", "id": "" },
+                "default_value": "",
+                "placeholder": "Describe how to get in touch...",
+                "rows": 4,
+                "new_lines": "br"
+            },
+            {
+                "key": "field_contact_tab_contact",
+                "label": "Contact",
+                "name": "",
+                "type": "tab",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": { "width": "", "class": "", "id": "" },
+                "placement": "top",
+                "endpoint": 0
+            },
+            {
+                "key": "field_contact_phone",
+                "label": "Phone Number",
+                "name": "phone_number",
+                "type": "text",
+                "instructions": "Optional phone number. Renders as a tap-to-call link on mobile.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": { "width": "", "class": "", "id": "" },
+                "default_value": "",
+                "placeholder": "(000) 000-0000",
+                "maxlength": ""
+            },
+            {
+                "key": "field_contact_tab_form",
+                "label": "Form",
+                "name": "",
+                "type": "tab",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": { "width": "", "class": "", "id": "" },
+                "placement": "top",
+                "endpoint": 0
+            },
+            {
+                "key": "field_contact_include_form",
+                "label": "Include Contact Form?",
+                "name": "include_contact_form",
+                "type": "true_false",
+                "instructions": "Toggle on to display the contact form from Theme Settings.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": { "width": "", "class": "", "id": "" },
+                "default_value": 0,
+                "ui": 1,
+                "ui_on_text": "Yes",
+                "ui_off_text": "No"
+            },
+            {
+                "key": "field_contact_form_html",
+                "label": "Contact Form HTML",
+                "name": "contact_form",
+                "type": "textarea",
+                "instructions": "Paste your contact form embed code here. Stored globally in Theme Settings.",
+                "required": 0,
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_contact_include_form",
+                            "operator": "==",
+                            "value": "1"
+                        }
+                    ]
+                ],
+                "wrapper": { "width": "", "class": "", "id": "" },
+                "default_value": "",
+                "rows": 6,
+                "new_lines": ""
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "block",
+                    "operator": "==",
+                    "value": "acf/custom-contactblock"
+                }
+            ]
+        ],
+        "menu_order": 0,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": true,
+        "description": "Field group for the Contact Block — CTA with phone and optional form."
+    }
+]

@@ -1,0 +1,124 @@
+/*
+==========================================================
+ACCORDION BLOCK — accordion.css
+==========================================================
+WHAT IT IS:
+A collapsible content block with expand/collapse
+functionality powered by jQuery.
+
+WHAT IT DOES:
+Displays a list of ACF repeater items as stacked
+accordion panels. Each panel toggles open and closed
+on button click. Supports multiple open at once.
+Handles window resize to maintain correct heights.
+
+HOW TO USE:
+1. In the WordPress block editor add the "Accordion"
+   block to any page or post.
+2. Add as many accordion items as needed.
+3. Each item has a Title and Content field.
+4. Save and preview the page.
+
+All values use boilerplate CSS tokens from style.css.
+==========================================================
+*/
+
+
+.custom_accordion {
+    border: 1px solid var(--color-border);
+    overflow: hidden;
+    border-radius: var(--radius-md);
+    margin: var(--space-5) 0 var(--space-12) 0;
+}
+
+.ac_body {
+    height: 0;
+    overflow: hidden;
+    transition: ease all 350ms;
+}
+
+.ac_body_inner {
+    padding: var(--space-10);
+    border-top: 1px solid var(--color-border);
+}
+
+.ac_body_inner > :first-child {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+.ac_body_inner > :last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.accordion_header {
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid var(--color-border);
+    border-bottom: none;
+}
+
+.custom_accordion .custom_accordion_item:first-child .accordion_header {
+    border-top: none;
+}
+
+.accordion_header button {
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: var(--space-5) 80px var(--space-5) var(--space-6);
+    border: none;
+    appearance: none;
+    background: var(--color-bg);
+    position: relative;
+    transition: ease all 200ms;
+    color: var(--color-primary);
+    font-size: var(--text-md);
+    font-weight: var(--weight-bold);
+    font-family: var(--font-heading);
+    cursor: pointer;
+}
+
+.accordion_header button:hover {
+    background: var(--color-bg-alt);
+}
+
+.accordion_header button:after {
+    content: '\f107';
+    position: absolute;
+    font-family: 'Font Awesome 5 Free';
+    top: 50%;
+    right: 30px;
+    font-weight: 900;
+    text-align: center;
+    width: 20px;
+    font-size: var(--text-xl);
+    display: block;
+    transform: translate(0, -50%);
+}
+
+.accordion_header button.active:after {
+    content: '\f106';
+}
+
+@media (max-width: 768px) {
+    .accordion_header button {
+        font-size: var(--text-base);
+        padding: var(--space-4) 80px var(--space-4) var(--space-4);
+    }
+
+    .ac_body_inner {
+        padding: var(--space-4) var(--space-4) var(--space-8) var(--space-4);
+    }
+}
+
+@media (max-width: 480px) {
+    .accordion_header button {
+        font-size: var(--text-sm);
+    }
+
+    .custom_accordion {
+        margin-top: var(--space-5);
+    }
+}

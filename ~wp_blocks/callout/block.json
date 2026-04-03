@@ -1,0 +1,28 @@
+{
+    "name": "custom_calloutBlock",
+    "title": "Highlighted Content",
+    "description": "A custom block for placement on any page, highlighting a certain section of content with a border, and slight visual difference.",
+    "style": "file:./callout.css",
+    "editorStyle": "file:./callout.css",
+    "category": "boilerplate-blocks",
+    "icon": "admin-site",
+    "apiVersion": 2,
+    "keywords": [
+        "callout",
+        "boxed off",
+        "highlight",
+        "special",
+        "box"
+    ],
+    "acf": {
+        "mode": "edit",
+        "renderTemplate": "./callout.php",
+        "postTypes": [
+            "post",
+            "page"
+        ]
+    },
+    "supports": {},
+    "attributes": {},
+    "example": {}
+}
