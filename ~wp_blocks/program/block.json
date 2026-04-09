@@ -16,7 +16,7 @@
         "public"
     ],
     "acf": {
-        "mode": "auto",
+        "mode": "edit",
         "renderTemplate": "./program.php",
         "postTypes": [
             "post",

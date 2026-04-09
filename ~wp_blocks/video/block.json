@@ -19,7 +19,7 @@
         "player"
     ],
     "acf": {
-        "mode": "preview",
+        "mode": "edit",
         "renderTemplate": "./video.php",
         "postTypes": [
             "post",

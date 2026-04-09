@@ -1,3 +1,8 @@
+// Don't initialize in the block editor
+if ( typeof wp !== 'undefined' && wp.blocks ) {
+    return;
+}
+
 $(function () {
 
     /*
