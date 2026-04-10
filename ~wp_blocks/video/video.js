@@ -91,11 +91,11 @@ $(function () {
     }
 
     // Click on video trigger
-    $(document).on('click keydown', '.video_trigger', function (e) {
+    $(document).on('click touchend keydown', '.video_trigger', function (e) {
+        e.preventDefault();
 
         // Allow keyboard activation (Enter or Space)
         if (e.type === 'keydown' && e.key !== 'Enter' && e.key !== ' ') return;
-        e.preventDefault();
 
         var trigger     = $(this);
         var videoId     = trigger.data('video-id');

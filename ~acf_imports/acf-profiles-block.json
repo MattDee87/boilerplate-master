@@ -112,7 +112,7 @@
                             },
                             {
                                 "key": "field_profiles_medical_school",
-                                "label": "Medical School",
+                                "label": "School",
                                 "name": "medical_school",
                                 "type": "text",
                                 "instructions": "",
@@ -125,7 +125,7 @@
                             },
                             {
                                 "key": "field_profiles_interests",
-                                "label": "Medical Interests",
+                                "label": "Interests",
                                 "name": "medical_interests",
                                 "type": "text",
                                 "instructions": "",

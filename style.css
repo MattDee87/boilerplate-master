@@ -382,7 +382,7 @@ main {
     margin: var(--space-16) auto;
     padding: 0 var(--wrapper-padding);
 }
- 
+
 #content {
     min-height: 400px;
 }

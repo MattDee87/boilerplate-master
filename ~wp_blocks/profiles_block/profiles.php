@@ -26,7 +26,7 @@
                         <p>
                             <strong>Hometown:</strong> <?php echo esc_html($res_data['hometown']); ?><br>
 
-                            <strong>Medical School:</strong> <?php echo esc_html($res_data['medical_school']); ?><br>
+                            <strong>School:</strong> <?php echo esc_html($res_data['medical_school']); ?><br>
 
                             <strong>Interests:</strong> <?php echo esc_html($res_data['medical_interests']); ?>
                         </p>
