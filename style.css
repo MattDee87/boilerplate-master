@@ -395,6 +395,13 @@ article {
     border-radius: var(--radius-md);
     box-shadow: var(--shadow-sm);
 }
+
+article:has(.hero_style_full-width),
+article:has(.cta_style_full-width) {
+    padding: 0;
+    border-radius: 0;
+    box-shadow: none;
+}
  
  
 /* ============================================================

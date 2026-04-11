@@ -50,6 +50,20 @@ All values use boilerplate CSS tokens from style.css.
     margin: var(--space-12) 0;
 }
 
+/* CTA Banner Style — Full Width */
+.cta_style_full-width {
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+}
+
+/* CTA Banner Style — Contained */
+.cta_style_contained {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+}
+
 /* Overlay */
 .cta_overlay {
     position: absolute;

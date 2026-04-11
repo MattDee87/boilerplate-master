@@ -16,7 +16,7 @@
     "background"
   ],
   "acf": {
-    "mode": "preview",
+    "mode": "edit",
     "renderTemplate": "./hero.php",
     "postTypes": [
       "post",

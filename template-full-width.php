@@ -31,11 +31,10 @@ get_header(); ?>
  
     <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
  
-        <?php if ( get_the_title() ) : ?>
-            <!-- Page Title -->
+        <?php if ( get_the_title() && !has_block('acf/custom-hero') ) : ?>
             <div class="full-width-header">
                 <div class="wrapper">
-                    <h1 class="full-width-title"><?php the_title(); ?></h1>
+                    <h1 class="full-width-title"><?php echo esc_html(get_the_title()); ?></h1>
                 </div>
             </div>
         <?php endif; ?>

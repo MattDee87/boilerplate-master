@@ -4,6 +4,20 @@
         "title": "CTA Banner Block",
         "fields": [
             {
+                "key": "field_cta_style",
+                "label": "Banner Style",
+                "name": "cta_style",
+                "type": "select",
+                "instructions": "Full Width spans edge to edge. Contained stays within the page wrapper.",
+                "required": 0,
+                "choices": {
+                    "full-width": "Full Width",
+                    "contained": "Contained"
+                },
+                "default_value": "full-width",
+                "wrapper": {"width": "", "class": "", "id": ""}
+            },
+            {
                 "key": "field_cta_tab_content",
                 "label": "Content",
                 "name": "",

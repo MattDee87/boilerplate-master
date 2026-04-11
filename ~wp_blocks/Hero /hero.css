@@ -51,6 +51,22 @@ All values use boilerplate CSS tokens from style.css.
     padding: var(--space-20) 0;
 }
  
+/* Hero Style — Full Width */
+.hero_style_full-width {
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    margin-top: calc(-1 * var(--space-16));
+}
+
+/* Hero Style — Contained */
+.hero_style_contained {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+}
+
 /* Overlay */
 .hero_overlay {
     position: absolute;

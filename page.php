@@ -25,7 +25,9 @@ they are rendered by the_content() function below.
 <main id="content" class="page-content">
     <div class="wrapper">
         <article>
-            <h1><?php the_title(); ?></h1>
+            <?php if ( !has_block('acf/custom-hero') ) : ?>
+                <h1><?php esc_html(the_title()); ?></h1>
+            <?php endif; ?>
             
             <?php 
             // Display all page blocks and content

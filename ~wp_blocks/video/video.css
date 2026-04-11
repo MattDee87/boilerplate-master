@@ -51,6 +51,7 @@ All values use boilerplate CSS tokens from style.css.
     display: block;
     width: 100%;
     cursor: pointer;
+    touch-action: manipulation;
     border-radius: var(--radius-md);
     overflow: hidden;
     background: var(--color-bg-dark);

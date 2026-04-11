@@ -60,7 +60,8 @@ $overlay_decimal = ($overlay_opacity / 100);
 if ( $heading ) :
 ?>
  
-<div class="hero_block hero_align_<?php echo esc_attr($alignment); ?>" style="<?php echo $bg_styles; ?>">
+<?php $hero_style = get_field('hero_style') ?: 'full-width'; ?>
+<div class="hero_block hero_style_<?php echo esc_attr($hero_style); ?> hero_align_<?php echo esc_attr($alignment); ?>" style="<?php echo $bg_styles; ?>">
  
     <?php if ( $bg_image ) : ?>
         <!-- Dark overlay — opacity controlled by ACF field -->

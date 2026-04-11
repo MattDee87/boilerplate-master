@@ -4,6 +4,20 @@
         "title": "Hero Block",
         "fields": [
             {
+                "key": "field_hero_style",
+                "label": "Hero Style",
+                "name": "hero_style",
+                "type": "select",
+                "instructions": "Full Width spans edge to edge. Contained stays within the page wrapper.",
+                "required": 0,
+                "choices": {
+                    "full-width": "Full Width",
+                    "contained": "Contained"
+                },
+                "default_value": "full-width",
+                "wrapper": {"width": "", "class": "", "id": ""}
+            },
+            {
                 "key": "field_hero_tab_hero",
                 "label": "Hero",
                 "name": "",

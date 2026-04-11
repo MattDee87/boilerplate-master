@@ -156,6 +156,25 @@ NEVER:
 - Create a new standalone CSS file outside of the block folder structure
 ```
 
+## CSS Rule Order — Critical
+
+Block style variant rules MUST come AFTER the base
+block rule in CSS files. If style rules come before
+the base rule the base rule will override them due
+to CSS cascade order.
+
+CORRECT order in any block CSS file:
+1. Base rule: .block_name { width: 100%; ... }
+2. Style variants AFTER: .hero_style_full-width { width: 100vw; }
+
+WRONG order:
+1. Style variants: .hero_style_full-width { width: 100vw; }
+2. Base rule: .block_name { width: 100%; } ← overrides everything above
+
+This caused a major bug with CTA Banner full width
+not working — fixed by moving style rules after
+the base .cta_banner rule.
+
 ---
 
 ## PHP conventions
