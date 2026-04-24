@@ -76,8 +76,8 @@
             </div>
         <?php endif; ?>
 
-        <?php if ( $items && is_array( $items ) ) : ?>
-            <div class="fcs_items">
+        <?php if ( $items && is_array( $items ) && count( $items ) > 0 ) : ?>
+            <div class="fcs_items fcs_items_count_<?= count( $items ); ?>">
                 <?php foreach ( $items as $item ) :
                     $type    = isset( $item['item_type'] )       ? $item['item_type']       : 'card';
                     $i_head  = isset( $item['item_heading'] )    ? $item['item_heading']    : '';

@@ -472,7 +472,7 @@
                 "conditional_logic": 0,
                 "wrapper": { "width": "50", "class": "", "id": "" },
                 "choices": {
-                    "none": "No Background",
+                    "none": "Transparent",
                     "primary": "Primary (--color-bg-dark)",
                     "alt": "Alt (--color-bg-alt)",
                     "accent": "Accent (--color-accent)"
@@ -492,7 +492,7 @@
                 "name": "content_alignment",
                 "aria-label": "",
                 "type": "select",
-                "instructions": "",
+                "instructions": "Center works for most layouts. Avoid Right alignment when using Split layout with media.",
                 "required": 0,
                 "conditional_logic": 0,
                 "wrapper": { "width": "50", "class": "", "id": "" },

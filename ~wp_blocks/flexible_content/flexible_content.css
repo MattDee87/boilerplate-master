@@ -221,7 +221,7 @@ All values use boilerplate CSS tokens from style.css.
 /* ── Background Variants — AFTER base block rule ─────────────── */
 
 .fcs_bg_none {
-    background-color: var(--color-bg);
+    background-color: transparent;
 }
 
 .fcs_bg_alt {
@@ -298,6 +298,12 @@ All values use boilerplate CSS tokens from style.css.
 
 
 /* ── Alignment Variants — AFTER base block rule ──────────────── */
+
+/*
+   Alignment — use center for most layouts.
+   Right alignment not recommended with split layout + media.
+   Apply cautiously on a per-project basis.
+*/
 
 .fcs_align_left .fcs_content {
     text-align: left;
