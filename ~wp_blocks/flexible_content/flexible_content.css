@@ -1,0 +1,381 @@
+/*
+==========================================================
+FLEXIBLE CONTENT SECTION — flexible_content.css
+==========================================================
+WHAT IT IS:
+A flexible, multi-layout content section block for
+homepages and internal pages.
+
+WHAT IT DOES:
+Renders a full content section with optional eyebrow,
+heading, body copy, media (image or video), repeater
+items (stats, cards, linked cards), CTA buttons, and
+background style. Supports 4 layout modes: centered,
+split, cards-grid, and stats-row.
+
+HOW TO USE:
+1. Add the Flexible Content Section block to any page
+2. Choose a layout mode from the Layout tab
+3. Fill in heading and body copy in the Content tab
+4. Optionally add media, items, and CTA buttons
+5. Choose a background style from the Style tab
+6. Save and preview
+
+All values use boilerplate CSS tokens from style.css.
+==========================================================
+*/
+
+
+/* ── Base Block ─────────────────────────────────────────────── */
+
+.flexible_content_section {
+    padding: var(--space-20) 0;
+    background-color: var(--color-bg);
+}
+
+.fcs_wrapper {
+    width: 100%;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--wrapper-padding);
+}
+
+.fcs_content {
+    width: 100%;
+}
+
+.fcs_eyebrow {
+    font-size: var(--text-sm);
+    font-weight: var(--weight-semi);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-accent);
+    margin-bottom: var(--space-3);
+}
+
+.fcs_heading {
+    font-family: var(--font-heading);
+    font-size: var(--text-3xl);
+    font-weight: var(--weight-bold);
+    color: var(--color-primary);
+    margin-top: 0;
+    margin-bottom: var(--space-5);
+}
+
+.fcs_body {
+    font-size: var(--text-md);
+    color: var(--color-text);
+    margin-bottom: var(--space-6);
+}
+
+.fcs_body p:last-child {
+    margin-bottom: 0;
+}
+
+.fcs_ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+    margin-top: var(--space-6);
+}
+
+.fcs_media {
+    margin-top: var(--space-8);
+    width: 100%;
+}
+
+.fcs_media img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-lg);
+    display: block;
+}
+
+.fcs_items {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--space-6);
+    margin-top: var(--space-10);
+    width: 100%;
+}
+
+.fcs_item {
+    background-color: var(--color-bg-alt);
+    border-radius: var(--radius-md);
+    padding: var(--space-6);
+}
+
+.fcs_item_number {
+    font-family: var(--font-heading);
+    font-size: var(--text-4xl);
+    font-weight: var(--weight-bold);
+    color: var(--color-accent);
+    margin-bottom: var(--space-2);
+    line-height: 1;
+}
+
+.fcs_item_heading {
+    font-family: var(--font-heading);
+    font-size: var(--text-lg);
+    font-weight: var(--weight-semi);
+    color: var(--color-primary);
+    margin: 0 0 var(--space-3) 0;
+}
+
+.fcs_item_text {
+    font-size: var(--text-base);
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-4);
+    line-height: var(--leading-normal);
+}
+
+.fcs_item_link {
+    display: inline-block;
+    font-size: var(--text-sm);
+    font-weight: var(--weight-semi);
+    color: var(--color-accent);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.fcs_item_link:hover {
+    color: var(--color-accent-hover);
+    text-decoration: underline;
+}
+
+
+/* ── Layout Variants — AFTER base block rule ─────────────────── */
+
+/* Centered */
+.fcs_layout_centered .fcs_wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.fcs_layout_centered .fcs_content {
+    max-width: 800px;
+    text-align: center;
+}
+
+.fcs_layout_centered .fcs_ctas {
+    justify-content: center;
+}
+
+/* Split */
+.fcs_layout_split .fcs_wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: var(--space-12);
+}
+
+.fcs_layout_split .fcs_content {
+    flex: 1;
+}
+
+.fcs_layout_split .fcs_media {
+    flex: 1;
+    margin-top: 0;
+}
+
+/* Split — media position controls left/right */
+.fcs_layout_split.fcs_media_right .fcs_wrapper {
+    flex-direction: row;
+}
+
+.fcs_layout_split.fcs_media_left .fcs_wrapper {
+    flex-direction: row-reverse;
+}
+
+/* Cards Grid */
+.fcs_layout_cards_grid .fcs_items {
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+/* Stats Row */
+.fcs_layout_stats_row .fcs_items {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+    padding: var(--space-8) 0;
+    gap: 0;
+}
+
+.fcs_layout_stats_row .fcs_item {
+    background: transparent;
+    border-radius: 0;
+    flex: 1;
+    text-align: center;
+    padding: var(--space-6) var(--space-4);
+    border-right: 1px solid var(--color-border);
+}
+
+.fcs_layout_stats_row .fcs_item:last-child {
+    border-right: none;
+}
+
+
+/* ── Background Variants — AFTER base block rule ─────────────── */
+
+.fcs_bg_none {
+    background-color: var(--color-bg);
+}
+
+.fcs_bg_alt {
+    background-color: var(--color-bg-alt);
+}
+
+.fcs_bg_primary {
+    background-color: var(--color-bg-dark);
+}
+
+.fcs_bg_primary .fcs_heading,
+.fcs_bg_primary .fcs_item_heading {
+    color: var(--color-text-inverse);
+}
+
+.fcs_bg_primary .fcs_body,
+.fcs_bg_primary .fcs_item_text {
+    color: var(--color-text-inverse);
+}
+
+.fcs_bg_primary .fcs_eyebrow {
+    color: var(--color-accent);
+}
+
+.fcs_bg_primary .fcs_item {
+    background-color: rgba(255, 255, 255, 0.08);
+}
+
+.fcs_bg_primary .fcs_layout_stats_row .fcs_item,
+.fcs_layout_stats_row.fcs_bg_primary .fcs_item {
+    background: transparent;
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.fcs_bg_primary .fcs_items {
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.fcs_bg_accent {
+    background-color: var(--color-accent);
+}
+
+.fcs_bg_accent .fcs_heading,
+.fcs_bg_accent .fcs_item_heading {
+    color: var(--color-text-inverse);
+}
+
+.fcs_bg_accent .fcs_body,
+.fcs_bg_accent .fcs_item_text {
+    color: var(--color-text-inverse);
+}
+
+.fcs_bg_accent .fcs_eyebrow {
+    color: var(--color-text-inverse);
+    opacity: 0.8;
+}
+
+.fcs_bg_accent .fcs_item_number {
+    color: var(--color-text-inverse);
+}
+
+.fcs_bg_accent .fcs_item {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+.fcs_bg_accent .fcs_item_link {
+    color: var(--color-text-inverse);
+}
+
+.fcs_bg_accent .fcs_item_link:hover {
+    color: var(--color-text-inverse);
+    opacity: 0.8;
+}
+
+
+/* ── Alignment Variants — AFTER base block rule ──────────────── */
+
+.fcs_align_left .fcs_content {
+    text-align: left;
+}
+
+.fcs_align_left .fcs_ctas {
+    justify-content: flex-start;
+}
+
+.fcs_align_center .fcs_content {
+    text-align: center;
+}
+
+.fcs_align_center .fcs_ctas {
+    justify-content: center;
+}
+
+.fcs_align_right .fcs_content {
+    text-align: right;
+}
+
+.fcs_align_right .fcs_ctas {
+    justify-content: flex-end;
+}
+
+
+/* ── Responsive ──────────────────────────────────────────────── */
+
+@media (max-width: 768px) {
+
+    .fcs_heading {
+        font-size: var(--text-2xl);
+    }
+
+    .fcs_layout_split .fcs_wrapper,
+    .fcs_layout_split.fcs_media_left .fcs_wrapper,
+    .fcs_layout_split.fcs_media_right .fcs_wrapper {
+        flex-direction: column;
+    }
+
+    .fcs_layout_split .fcs_media {
+        margin-top: var(--space-8);
+    }
+
+    .fcs_layout_stats_row .fcs_items {
+        flex-direction: column;
+    }
+
+    .fcs_layout_stats_row .fcs_item {
+        border-right: none;
+        border-bottom: 1px solid var(--color-border);
+    }
+
+    .fcs_layout_stats_row .fcs_item:last-child {
+        border-bottom: none;
+    }
+
+    .fcs_bg_primary .fcs_layout_stats_row .fcs_item,
+    .fcs_layout_stats_row.fcs_bg_primary .fcs_item {
+        border-color: rgba(255, 255, 255, 0.2);
+    }
+}
+
+@media (max-width: 480px) {
+
+    .flexible_content_section {
+        padding: var(--space-12) 0;
+    }
+
+    .fcs_heading {
+        font-size: var(--text-xl);
+    }
+
+    .fcs_items {
+        grid-template-columns: 1fr;
+    }
+
+    .fcs_ctas {
+        flex-direction: column;
+    }
+}

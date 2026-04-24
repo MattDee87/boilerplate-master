@@ -1,0 +1,19 @@
+{
+    "name": "custom_flexible_content",
+    "title": "Flexible Content Section",
+    "description": "A flexible section block supporting multiple layout modes, optional media, repeater items, and CTA buttons.",
+    "category": "boilerplate-blocks",
+    "icon": "layout",
+    "apiVersion": 2,
+    "keywords": ["flexible", "content", "section", "layout", "media"],
+    "style": "file:./flexible_content.css",
+    "editorStyle": "file:./flexible_content.css",
+    "acf": {
+        "mode": "edit",
+        "renderTemplate": "./flexible_content.php",
+        "postTypes": ["post", "page"]
+    },
+    "supports": {},
+    "attributes": {},
+    "example": {}
+}

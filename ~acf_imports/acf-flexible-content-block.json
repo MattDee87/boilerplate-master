@@ -1,0 +1,535 @@
+[
+    {
+        "key": "group_flexible_content_block",
+        "title": "Flexible Content Section",
+        "fields": [
+
+            {
+                "key": "field_fcs_tab_content",
+                "label": "Content",
+                "name": "",
+                "aria-label": "",
+                "type": "tab",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": { "width": "", "class": "", "id": "" },
+                "placement": "top",
+                "endpoint": 0
+            },
+
+            {
+                "key": "field_fcs_eyebrow",
+                "label": "Eyebrow",
+                "name": "section_eyebrow",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "Short label above the heading (e.g. “Our Services”). Optional.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": { "width": "", "class": "", "id": "" },
+                "default_value": "",
+                "maxlength": "",
+                "placeholder": "e.g. Our Services",
+                "prepend": "",
+                "append": ""
+            },
+
+            {
+                "key": "field_fcs_heading",
+                "label": "Heading",
+                "name": "section_heading",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "Main section heading. Required — the block will not render without this.",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": { "width": "", "class": "", "id": "" },
+                "default_value": "",
+                "maxlength": "",
+                "placeholder": "Section heading…",
+                "prepend": "",
+                "append": ""
+            },
+
+            {
+                "key": "field_fcs_body",
+                "label": "Body Copy",
+                "name": "section_body",
+                "aria-label": "",
+                "type": "wysiwyg",
+                "instructions": "Supporting body copy. Optional.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": { "width": "", "class": "", "id": "" },
+                "default_value": "",
+                "tabs": "all",
+                "toolbar": "full",
+                "media_upload": 1,
+                "delay": 0
+            },
+
+            {
+                "key": "field_fcs_tab_layout",
+                "label": "Layout",
+                "name": "",
+                "aria-label": "",
+                "type": "tab",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": { "width": "", "class": "", "id": "" },
+                "placement": "top",
+                "endpoint": 0
+            },
+
+            {
+                "key": "field_fcs_layout",
+                "label": "Layout Mode",
+                "name": "section_layout",
+                "aria-label": "",
+                "type": "select",
+                "instructions": "Choose the overall layout structure for this section.",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": { "width": "50", "class": "", "id": "" },
+                "choices": {
+                    "centered": "Centered",
+                    "split": "Split (Content + Media)",
+                    "cards-grid": "Cards Grid",
+                    "stats-row": "Stats Row"
+                },
+                "default_value": "centered",
+                "return_format": "value",
+                "multiple": 0,
+                "allow_null": 0,
+                "ui": 0,
+                "ajax": 0,
+                "placeholder": ""
+            },
+
+            {
+                "key": "field_fcs_media_type",
+                "label": "Media Type",
+                "name": "media_type",
+                "aria-label": "",
+                "type": "select",
+                "instructions": "Choose whether to show an image, video, or no media.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": { "width": "50", "class": "", "id": "" },
+                "choices": {
+                    "none": "None",
+                    "image": "Image",
+                    "video": "Video"
+                },
+                "default_value": "none",
+                "return_format": "value",
+                "multiple": 0,
+                "allow_null": 0,
+                "ui": 0,
+                "ajax": 0,
+                "placeholder": ""
+            },
+
+            {
+                "key": "field_fcs_media_image",
+                "label": "Media Image",
+                "name": "media_image",
+                "aria-label": "",
+                "type": "image",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_fcs_media_type",
+                            "operator": "==",
+                            "value": "image"
+                        }
+                    ]
+                ],
+                "wrapper": { "width": "", "class": "", "id": "" },
+                "return_format": "array",
+                "library": "all",
+                "preview_size": "medium",
+                "min_width": "",
+                "min_height": "",
+                "min_size": "",
+                "max_width": "",
+                "max_height": "",
+                "max_size": "",
+                "mime_types": ""
+            },
+
+            {
+                "key": "field_fcs_media_video_url",
+                "label": "Video URL",
+                "name": "media_video_url",
+                "aria-label": "",
+                "type": "url",
+                "instructions": "Paste the embed URL for YouTube, Vimeo, or Loom.",
+                "required": 0,
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_fcs_media_type",
+                            "operator": "==",
+                            "value": "video"
+                        }
+                    ]
+                ],
+                "wrapper": { "width": "", "class": "", "id": "" },
+                "default_value": "",
+                "placeholder": "https://www.youtube.com/embed/..."
+            },
+
+            {
+                "key": "field_fcs_media_position",
+                "label": "Media Position",
+                "name": "media_position",
+                "aria-label": "",
+                "type": "select",
+                "instructions": "Which side should the media appear on? Primarily affects Split layout.",
+                "required": 0,
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_fcs_media_type",
+                            "operator": "!=",
+                            "value": "none"
+                        }
+                    ]
+                ],
+                "wrapper": { "width": "50", "class": "", "id": "" },
+                "choices": {
+                    "left": "Left",
+                    "right": "Right"
+                },
+                "default_value": "left",
+                "return_format": "value",
+                "multiple": 0,
+                "allow_null": 0,
+                "ui": 0,
+                "ajax": 0,
+                "placeholder": ""
+            },
+
+            {
+                "key": "field_fcs_tab_items",
+                "label": "Items",
+                "name": "",
+                "aria-label": "",
+                "type": "tab",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": { "width": "", "class": "", "id": "" },
+                "placement": "top",
+                "endpoint": 0
+            },
+
+            {
+                "key": "field_fcs_items",
+                "label": "Section Items",
+                "name": "section_items",
+                "aria-label": "",
+                "type": "repeater",
+                "instructions": "Add up to 4 items. Available in all layout modes — leave empty if not needed.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": { "width": "", "class": "", "id": "" },
+                "layout": "block",
+                "min": 0,
+                "max": 4,
+                "collapsed": "field_fcs_item_heading",
+                "button_label": "Add Item",
+                "sub_fields": [
+
+                    {
+                        "key": "field_fcs_item_type",
+                        "label": "Item Type",
+                        "name": "item_type",
+                        "aria-label": "",
+                        "type": "select",
+                        "instructions": "",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": { "width": "34", "class": "", "id": "" },
+                        "choices": {
+                            "stat": "Stat",
+                            "card": "Card",
+                            "linked_card": "Linked Card"
+                        },
+                        "default_value": "card",
+                        "return_format": "value",
+                        "multiple": 0,
+                        "allow_null": 0,
+                        "ui": 0,
+                        "ajax": 0,
+                        "placeholder": ""
+                    },
+
+                    {
+                        "key": "field_fcs_item_heading",
+                        "label": "Item Heading",
+                        "name": "item_heading",
+                        "aria-label": "",
+                        "type": "text",
+                        "instructions": "",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": { "width": "66", "class": "", "id": "" },
+                        "default_value": "",
+                        "maxlength": "",
+                        "placeholder": "",
+                        "prepend": "",
+                        "append": ""
+                    },
+
+                    {
+                        "key": "field_fcs_item_number",
+                        "label": "Stat Number",
+                        "name": "item_number",
+                        "aria-label": "",
+                        "type": "text",
+                        "instructions": "Large number or value displayed prominently (e.g. “500+” or “99%”). Used for Stat type items.",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": { "width": "50", "class": "", "id": "" },
+                        "default_value": "",
+                        "maxlength": "",
+                        "placeholder": "e.g. 500+",
+                        "prepend": "",
+                        "append": ""
+                    },
+
+                    {
+                        "key": "field_fcs_item_text",
+                        "label": "Item Text",
+                        "name": "item_text",
+                        "aria-label": "",
+                        "type": "textarea",
+                        "instructions": "",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": { "width": "50", "class": "", "id": "" },
+                        "default_value": "",
+                        "rows": 3,
+                        "new_lines": "wpautop",
+                        "maxlength": "",
+                        "placeholder": ""
+                    },
+
+                    {
+                        "key": "field_fcs_item_link",
+                        "label": "Item Link URL",
+                        "name": "item_link",
+                        "aria-label": "",
+                        "type": "url",
+                        "instructions": "",
+                        "required": 0,
+                        "conditional_logic": [
+                            [
+                                {
+                                    "field": "field_fcs_item_type",
+                                    "operator": "==",
+                                    "value": "linked_card"
+                                }
+                            ]
+                        ],
+                        "wrapper": { "width": "50", "class": "", "id": "" },
+                        "default_value": "",
+                        "placeholder": ""
+                    },
+
+                    {
+                        "key": "field_fcs_item_link_label",
+                        "label": "Link Label",
+                        "name": "item_link_label",
+                        "aria-label": "",
+                        "type": "text",
+                        "instructions": "",
+                        "required": 0,
+                        "conditional_logic": [
+                            [
+                                {
+                                    "field": "field_fcs_item_type",
+                                    "operator": "==",
+                                    "value": "linked_card"
+                                }
+                            ]
+                        ],
+                        "wrapper": { "width": "50", "class": "", "id": "" },
+                        "default_value": "Learn More",
+                        "maxlength": "",
+                        "placeholder": "e.g. Learn More",
+                        "prepend": "",
+                        "append": ""
+                    }
+
+                ]
+            },
+
+            {
+                "key": "field_fcs_tab_cta",
+                "label": "CTA",
+                "name": "",
+                "aria-label": "",
+                "type": "tab",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": { "width": "", "class": "", "id": "" },
+                "placement": "top",
+                "endpoint": 0
+            },
+
+            {
+                "key": "field_fcs_cta1_label",
+                "label": "Primary CTA Label",
+                "name": "cta_1_label",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": { "width": "50", "class": "", "id": "" },
+                "default_value": "",
+                "maxlength": "",
+                "placeholder": "e.g. Get Started",
+                "prepend": "",
+                "append": ""
+            },
+
+            {
+                "key": "field_fcs_cta1_url",
+                "label": "Primary CTA URL",
+                "name": "cta_1_url",
+                "aria-label": "",
+                "type": "url",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": { "width": "50", "class": "", "id": "" },
+                "default_value": "",
+                "placeholder": ""
+            },
+
+            {
+                "key": "field_fcs_cta2_label",
+                "label": "Secondary CTA Label",
+                "name": "cta_2_label",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": { "width": "50", "class": "", "id": "" },
+                "default_value": "",
+                "maxlength": "",
+                "placeholder": "e.g. Learn More",
+                "prepend": "",
+                "append": ""
+            },
+
+            {
+                "key": "field_fcs_cta2_url",
+                "label": "Secondary CTA URL",
+                "name": "cta_2_url",
+                "aria-label": "",
+                "type": "url",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": { "width": "50", "class": "", "id": "" },
+                "default_value": "",
+                "placeholder": ""
+            },
+
+            {
+                "key": "field_fcs_tab_style",
+                "label": "Style",
+                "name": "",
+                "aria-label": "",
+                "type": "tab",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": { "width": "", "class": "", "id": "" },
+                "placement": "top",
+                "endpoint": 0
+            },
+
+            {
+                "key": "field_fcs_bg_style",
+                "label": "Background Style",
+                "name": "background_style",
+                "aria-label": "",
+                "type": "select",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": { "width": "50", "class": "", "id": "" },
+                "choices": {
+                    "none": "No Background",
+                    "primary": "Primary (--color-bg-dark)",
+                    "alt": "Alt (--color-bg-alt)",
+                    "accent": "Accent (--color-accent)"
+                },
+                "default_value": "none",
+                "return_format": "value",
+                "multiple": 0,
+                "allow_null": 0,
+                "ui": 0,
+                "ajax": 0,
+                "placeholder": ""
+            },
+
+            {
+                "key": "field_fcs_alignment",
+                "label": "Content Alignment",
+                "name": "content_alignment",
+                "aria-label": "",
+                "type": "select",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": { "width": "50", "class": "", "id": "" },
+                "choices": {
+                    "left": "Left",
+                    "center": "Center",
+                    "right": "Right"
+                },
+                "default_value": "center",
+                "return_format": "value",
+                "multiple": 0,
+                "allow_null": 0,
+                "ui": 0,
+                "ajax": 0,
+                "placeholder": ""
+            }
+
+        ],
+
+        "location": [
+            [
+                {
+                    "param": "block",
+                    "operator": "==",
+                    "value": "acf/custom_flexible_content"
+                }
+            ]
+        ],
+        "menu_order": 0,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": true,
+        "description": "ACF fields for the Flexible Content Section block.",
+        "show_in_rest": 0,
+        "modified": 1745366400
+    }
+]
