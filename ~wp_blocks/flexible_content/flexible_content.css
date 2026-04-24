@@ -206,6 +206,43 @@ All values use boilerplate CSS tokens from style.css.
     width: 100%;
 }
 
+/* Centered — media stacks below content, above items. Suppressed in cards-grid and stats-row (PHP-level). */
+.fcs_layout_centered .fcs_media {
+    width: 100%;
+    max-width: 800px;
+}
+
+/* Centered — cards are contained and balanced for 1–4 items */
+.fcs_layout_centered .fcs_items {
+    width: 100%;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 280px));
+    justify-content: center;
+}
+
+.fcs_layout_centered .fcs_item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.fcs_layout_centered .fcs_item_media {
+    display: flex;
+    justify-content: center;
+}
+
+.fcs_layout_centered .fcs_item_media img {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.fcs_layout_centered .fcs_item_link {
+    align-self: center;
+}
+
 /* Cards Grid */
 .fcs_layout_cards_grid .fcs_items {
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -268,7 +305,6 @@ All values use boilerplate CSS tokens from style.css.
     background-color: rgba(255, 255, 255, 0.08);
 }
 
-.fcs_bg_primary .fcs_layout_stats_row .fcs_item,
 .fcs_layout_stats_row.fcs_bg_primary .fcs_item {
     background: transparent;
     border-color: rgba(255, 255, 255, 0.2);
@@ -379,7 +415,6 @@ All values use boilerplate CSS tokens from style.css.
         border-bottom: none;
     }
 
-    .fcs_bg_primary .fcs_layout_stats_row .fcs_item,
     .fcs_layout_stats_row.fcs_bg_primary .fcs_item {
         border-color: rgba(255, 255, 255, 0.2);
     }

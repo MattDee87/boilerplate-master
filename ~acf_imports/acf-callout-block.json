@@ -46,7 +46,10 @@
         "choices": {
           "default": "Default",
           "homepage-feature": "Homepage Feature",
-          "minimal": "Minimal"
+          "minimal": "Minimal",
+          "split-feature": "Split Feature",
+          "cards-feature": "Cards Feature",
+          "inner-banner": "Inner Banner"
         },
         "default_value": "default",
         "return_format": "value",

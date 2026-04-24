@@ -29,7 +29,7 @@
     $layout_class    = 'fcs_layout_' . str_replace('-', '_', $layout);
     $bg_class        = 'fcs_bg_' . $bg_style;
     $align_class     = 'fcs_align_' . $alignment;
-    $media_class     = ( $media_type !== 'none' ) ? 'fcs_media_' . $media_position : '';
+    $media_class     = ( $layout === 'split' && $media_type !== 'none' ) ? 'fcs_media_' . $media_position : '';
     $variant_class   = 'fcs_variant_' . str_replace('-', '_', $variant);
 
     // Image array safety
@@ -151,16 +151,18 @@
 
             </div>
 
-            <?php if ( $media_type === 'image' && $image_url ) : ?>
-                <div class="fcs_media">
-                    <img src="<?= esc_url( $image_url ); ?>" alt="<?= esc_attr( $image_alt ); ?>">
-                </div>
-            <?php elseif ( $media_type === 'video' && $media_video_url ) : ?>
-                <div class="fcs_media">
-                    <div class="embed-responsive">
-                        <iframe src="<?= esc_url( $media_video_url ); ?>" allowfullscreen></iframe>
+            <?php if ( $layout === 'centered' ) : ?>
+                <?php if ( $media_type === 'image' && $image_url ) : ?>
+                    <div class="fcs_media">
+                        <img src="<?= esc_url( $image_url ); ?>" alt="<?= esc_attr( $image_alt ); ?>">
                     </div>
-                </div>
+                <?php elseif ( $media_type === 'video' && $media_video_url ) : ?>
+                    <div class="fcs_media">
+                        <div class="embed-responsive">
+                            <iframe src="<?= esc_url( $media_video_url ); ?>" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                <?php endif; ?>
             <?php endif; ?>
 
             <?php if ( $items && is_array( $items ) && count( $items ) > 0 ) : ?>
