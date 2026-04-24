@@ -129,6 +129,18 @@ All values use boilerplate CSS tokens from style.css.
     line-height: var(--leading-normal);
 }
 
+.fcs_item_media {
+    margin-bottom: var(--space-4);
+}
+
+.fcs_item_media img {
+    display: block;
+    width: 100%;
+    max-width: 120px;
+    height: auto;
+    border-radius: var(--radius-sm);
+}
+
 .fcs_item_link {
     display: inline-block;
     font-size: var(--text-sm);

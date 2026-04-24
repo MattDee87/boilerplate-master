@@ -89,10 +89,17 @@
                         $i_head  = isset( $item['item_heading'] )    ? $item['item_heading']    : '';
                         $i_num   = isset( $item['item_number'] )     ? $item['item_number']     : '';
                         $i_text  = isset( $item['item_text'] )       ? $item['item_text']       : '';
+                        $i_img   = isset( $item['item_image'] )      ? $item['item_image']      : null;
                         $i_link  = isset( $item['item_link'] )       ? $item['item_link']       : '';
                         $i_label = isset( $item['item_link_label'] ) ? $item['item_link_label'] : '';
                     ?>
                         <div class="fcs_item fcs_item_type_<?= esc_attr( $type ); ?>">
+
+                            <?php if ( is_array( $i_img ) && $i_img['url'] ) : ?>
+                                <div class="fcs_item_media">
+                                    <img src="<?= esc_url( $i_img['url'] ); ?>" alt="<?= esc_attr( $i_img['alt'] ?: $i_head ); ?>">
+                                </div>
+                            <?php endif; ?>
 
                             <?php if ( $type === 'stat' && $i_num ) : ?>
                                 <p class="fcs_item_number"><?= esc_html( $i_num ); ?></p>
@@ -103,7 +110,7 @@
                             <?php endif; ?>
 
                             <?php if ( $i_text ) : ?>
-                                <p class="fcs_item_text"><?= esc_html( $i_text ); ?></p>
+                                <div class="fcs_item_text"><?= wp_kses_post( $i_text ); ?></div>
                             <?php endif; ?>
 
                             <?php if ( $type === 'linked_card' && $i_link && $i_label ) : ?>
@@ -161,10 +168,17 @@
                         $i_head  = isset( $item['item_heading'] )    ? $item['item_heading']    : '';
                         $i_num   = isset( $item['item_number'] )     ? $item['item_number']     : '';
                         $i_text  = isset( $item['item_text'] )       ? $item['item_text']       : '';
+                        $i_img   = isset( $item['item_image'] )      ? $item['item_image']      : null;
                         $i_link  = isset( $item['item_link'] )       ? $item['item_link']       : '';
                         $i_label = isset( $item['item_link_label'] ) ? $item['item_link_label'] : '';
                     ?>
                         <div class="fcs_item fcs_item_type_<?= esc_attr( $type ); ?>">
+
+                            <?php if ( is_array( $i_img ) && $i_img['url'] ) : ?>
+                                <div class="fcs_item_media">
+                                    <img src="<?= esc_url( $i_img['url'] ); ?>" alt="<?= esc_attr( $i_img['alt'] ?: $i_head ); ?>">
+                                </div>
+                            <?php endif; ?>
 
                             <?php if ( $type === 'stat' && $i_num ) : ?>
                                 <p class="fcs_item_number"><?= esc_html( $i_num ); ?></p>
@@ -175,7 +189,7 @@
                             <?php endif; ?>
 
                             <?php if ( $i_text ) : ?>
-                                <p class="fcs_item_text"><?= esc_html( $i_text ); ?></p>
+                                <div class="fcs_item_text"><?= wp_kses_post( $i_text ); ?></div>
                             <?php endif; ?>
 
                             <?php if ( $type === 'linked_card' && $i_link && $i_label ) : ?>
