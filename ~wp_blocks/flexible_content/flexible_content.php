@@ -23,12 +23,14 @@
     // Style Tab
     $bg_style        = get_field('background_style')  ?: 'none';
     $alignment       = get_field('content_alignment') ?: 'center';
+    $variant         = get_field('section_variant')   ?: 'default';
 
     // Build CSS class slugs
     $layout_class    = 'fcs_layout_' . str_replace('-', '_', $layout);
     $bg_class        = 'fcs_bg_' . $bg_style;
     $align_class     = 'fcs_align_' . $alignment;
     $media_class     = ( $media_type !== 'none' ) ? 'fcs_media_' . $media_position : '';
+    $variant_class   = 'fcs_variant_' . str_replace('-', '_', $variant);
 
     // Image array safety
     $image_url = is_array( $media_image ) ? $media_image['url'] : '';
@@ -36,7 +38,7 @@
 
     if ( $heading ) :
 ?>
-<div class="flexible_content_section <?= esc_attr( trim( "$layout_class $bg_class $align_class $media_class" ) ); ?>">
+<div class="flexible_content_section <?= esc_attr( trim( "$layout_class $bg_class $align_class $media_class $variant_class" ) ); ?>">
     <div class="fcs_wrapper">
 
         <?php if ( $layout === 'split' ) : ?>
