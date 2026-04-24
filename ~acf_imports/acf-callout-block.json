@@ -21,6 +21,40 @@
         "toolbar": "basic",
         "media_upload": 0,
         "delay": 0
+      },
+      {
+        "key": "field_callout_tab_style",
+        "label": "Style",
+        "name": "",
+        "type": "tab",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": { "width": "", "class": "", "id": "" },
+        "placement": "top",
+        "endpoint": 0
+      },
+      {
+        "key": "field_callout_section_variant",
+        "label": "Section Variant",
+        "name": "section_variant",
+        "type": "select",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": { "width": "50", "class": "", "id": "" },
+        "choices": {
+          "default": "Default",
+          "homepage-feature": "Homepage Feature",
+          "minimal": "Minimal"
+        },
+        "default_value": "default",
+        "return_format": "value",
+        "multiple": 0,
+        "allow_null": 0,
+        "ui": 0,
+        "ajax": 0,
+        "placeholder": ""
       }
     ],
     "location": [

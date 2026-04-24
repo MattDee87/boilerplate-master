@@ -8,13 +8,13 @@
                 "label": "Profile Type",
                 "name": "type",
                 "type": "true_false",
-                "instructions": "Toggle ON for Resident profiles (shows Hometown, Medical School, Interests). Toggle OFF for standard Bio profiles.",
+                "instructions": "Toggle ON for Extended profiles (shows Hometown, School, Interests). Toggle OFF for standard Bio profiles.",
                 "required": 0,
                 "conditional_logic": 0,
                 "wrapper": { "width": "", "class": "", "id": "" },
                 "default_value": 0,
                 "ui": 1,
-                "ui_on_text": "Resident",
+                "ui_on_text": "Extended",
                 "ui_off_text": "Standard Bio"
             },
             {
@@ -62,7 +62,7 @@
                         "label": "Bio",
                         "name": "copy",
                         "type": "textarea",
-                        "instructions": "Short bio or description. Shown on standard Bio profiles only.",
+                        "instructions": "Short bio or description. Shown on Standard Bio profiles only.",
                         "required": 0,
                         "conditional_logic": [
                             [
@@ -79,11 +79,11 @@
                         "new_lines": "br"
                     },
                     {
-                        "key": "field_profiles_resident_info",
-                        "label": "Resident Info",
-                        "name": "resident_info",
+                        "key": "field_profiles_extended_info",
+                        "label": "Extended Info",
+                        "name": "extended_info",
                         "type": "group",
-                        "instructions": "Resident-specific details. Shown on Resident profiles only.",
+                        "instructions": "Extended profile details. Shown on Extended profiles only.",
                         "required": 0,
                         "conditional_logic": [
                             [
@@ -111,9 +111,9 @@
                                 "maxlength": ""
                             },
                             {
-                                "key": "field_profiles_medical_school",
+                                "key": "field_profiles_school",
                                 "label": "School",
-                                "name": "medical_school",
+                                "name": "school",
                                 "type": "text",
                                 "instructions": "",
                                 "required": 0,
@@ -126,19 +126,67 @@
                             {
                                 "key": "field_profiles_interests",
                                 "label": "Interests",
-                                "name": "medical_interests",
+                                "name": "interests",
                                 "type": "text",
                                 "instructions": "",
                                 "required": 0,
                                 "conditional_logic": 0,
                                 "wrapper": { "width": "", "class": "", "id": "" },
                                 "default_value": "",
-                                "placeholder": "Cardiology, Research...",
+                                "placeholder": "Travel, Photography, Music...",
                                 "maxlength": ""
+                            },
+                            {
+                                "key": "field_profiles_extended_bio",
+                                "label": "Bio",
+                                "name": "bio",
+                                "type": "textarea",
+                                "instructions": "Optional short bio for this profile.",
+                                "required": 0,
+                                "conditional_logic": 0,
+                                "wrapper": { "width": "", "class": "", "id": "" },
+                                "default_value": "",
+                                "rows": 3,
+                                "new_lines": "br",
+                                "placeholder": "Short bio or background..."
                             }
                         ]
                     }
                 ]
+            },
+            {
+                "key": "field_profiles_tab_style",
+                "label": "Style",
+                "name": "",
+                "type": "tab",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": { "width": "", "class": "", "id": "" },
+                "placement": "top",
+                "endpoint": 0
+            },
+            {
+                "key": "field_profiles_section_variant",
+                "label": "Section Variant",
+                "name": "section_variant",
+                "type": "select",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": { "width": "50", "class": "", "id": "" },
+                "choices": {
+                    "default": "Default",
+                    "homepage-feature": "Homepage Feature",
+                    "minimal": "Minimal"
+                },
+                "default_value": "default",
+                "return_format": "value",
+                "multiple": 0,
+                "allow_null": 0,
+                "ui": 0,
+                "ajax": 0,
+                "placeholder": ""
             }
         ],
         "location": [
@@ -157,6 +205,6 @@
         "instruction_placement": "label",
         "hide_on_screen": "",
         "active": true,
-        "description": "Field group for the Profiles Block — standard bio or resident profile listings."
+        "description": "Field group for the Profiles Block — standard bio or extended profile listings."
     }
 ]

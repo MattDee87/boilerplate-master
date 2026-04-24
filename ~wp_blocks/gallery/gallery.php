@@ -1,10 +1,12 @@
 <?php
-    $title = get_field('gallery_title') ? get_field('gallery_title') : "Gallery";
-    $images = get_field('gallery_images');
-    if( $images ) : 
+    $title         = get_field('gallery_title') ? get_field('gallery_title') : "Gallery";
+    $images        = get_field('gallery_images');
+    $variant       = get_field('section_variant') ?: 'default';
+    $variant_class = 'highlights_variant_' . str_replace('-', '_', $variant);
+    if( $images ) :
 ?>
 
-    <div class="highlights<?php if(count($images) > 1) : ?> fire<?php endif; ?>">
+    <div class="highlights<?php if(count($images) > 1) : ?> fire<?php endif; ?> <?= esc_attr($variant_class); ?>">
         <h2 id="<?php echo sanitize_title($title); ?>"><?php echo esc_html($title); ?></h2>
         <div class="highlights_slider_wrapper<?php if(count($images) == 1) : ?> one_slide<?php endif; ?>">
             <div class="highlights_slider owl-carousel owl-theme">

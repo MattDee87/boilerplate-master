@@ -1,15 +1,17 @@
-<?php 
+<?php
     // Get All Fields
     $title          = get_field('title');
     $location       = get_field('location');
     $date           = get_field('date');
     $time           = get_field('time');
+    $variant        = get_field('section_variant') ?: 'default';
+    $variant_class  = 'event_block_variant_' . str_replace('-', '_', $variant);
 
     // Check for Content
     if($title) :
 
 ?>
-    <div class="event_block">
+    <div class="event_block <?= esc_attr($variant_class); ?>">
         <div class="event_block_inner">
 
             <h2><?php echo esc_html($title); ?></h2>

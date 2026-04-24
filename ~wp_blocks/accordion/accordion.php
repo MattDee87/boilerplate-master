@@ -1,5 +1,9 @@
+<?php
+$variant       = get_field('section_variant') ?: 'default';
+$variant_class = 'custom_accordion_variant_' . str_replace('-', '_', $variant);
+?>
 <?php if( have_rows('accordion_items') ) : ?>
-    <div class="custom_accordion">
+    <div class="custom_accordion <?= esc_attr($variant_class); ?>">
         <?php while( have_rows('accordion_items') ): the_row(); ?>
 
             <?php $unique_id    = bin2hex(random_bytes(8)); ?>

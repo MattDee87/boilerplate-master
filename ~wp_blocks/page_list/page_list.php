@@ -1,9 +1,10 @@
 <?php
-
-    $page_list = get_field('list_pages');
-    if( $page_list ): 
+    $page_list     = get_field('list_pages');
+    $variant       = get_field('section_variant') ?: 'default';
+    $variant_class = 'options_list_variant_' . str_replace('-', '_', $variant);
+    if( $page_list ):
 ?>
-    <div class="options_list">
+    <div class="options_list <?= esc_attr($variant_class); ?>">
         <?php foreach( $page_list as $the_page ): 
             $permalink = get_permalink( $the_page->ID );
             $title = get_the_title( $the_page->ID );

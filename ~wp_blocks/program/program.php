@@ -1,16 +1,18 @@
-<?php 
+<?php
     // Get All Fields
-    $title              = get_field('title');
-    $description        = get_field('description');
-    $contact            = get_field('contact');
-    $file               = get_field('file');
-    $thumbnail          = get_field('thumbnail');
+    $title         = get_field('title');
+    $description   = get_field('description');
+    $contact       = get_field('contact');
+    $file          = get_field('file');
+    $thumbnail     = get_field('thumbnail');
+    $variant       = get_field('section_variant') ?: 'default';
+    $variant_class = 'program_block_variant_' . str_replace('-', '_', $variant);
 
     // Check for Content
     if($title) :
 
 ?>
-    <div class="program_block">
+    <div class="program_block <?= esc_attr($variant_class); ?>">
 
         <?php if($file) : ?>
      

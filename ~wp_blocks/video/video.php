@@ -46,10 +46,12 @@ TO UPGRADE TO OPTION C (full section wrapper):
 */
 
 // Get All Fields
-$video_url      = get_field('video_url');
-$poster         = get_field('video_poster');
-$title          = get_field('video_title');
-$caption        = get_field('video_caption');
+$video_url     = get_field('video_url');
+$poster        = get_field('video_poster');
+$title         = get_field('video_title');
+$caption       = get_field('video_caption');
+$variant       = get_field('section_variant') ?: 'default';
+$variant_class = 'video_block_variant_' . str_replace('-', '_', $variant);
 
 /*
 ==========================================================
@@ -101,7 +103,7 @@ OPTION C WRAPPER — uncomment to enable full section
 */
 ?>
 
-<div class="video_block">
+<div class="video_block <?= esc_attr($variant_class); ?>">
 
     <!-- Video Trigger — poster image with play button -->
     <div class="video_trigger"

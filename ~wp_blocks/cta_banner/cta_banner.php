@@ -45,6 +45,8 @@ $alignment          = get_field('cta_alignment') ?: 'center';
 $bg_image           = get_field('cta_bg_image');
 $overlay_opacity    = get_field('cta_overlay_opacity') ?: 60;
 $bg_color           = get_field('cta_bg_color') ?: '';
+$variant            = get_field('section_variant') ?: 'default';
+$variant_class      = 'cta_banner_variant_' . str_replace('-', '_', $variant);
 
 // Build inline background styles
 $bg_styles = '';
@@ -62,7 +64,7 @@ if ( $heading ) :
 ?>
 
 <?php $cta_style = get_field('cta_style') ?: 'full-width'; ?>
-<div class="cta_banner cta_style_<?php echo esc_attr($cta_style); ?> cta_align_<?php echo esc_attr($alignment); ?>" style="<?php echo $bg_styles; ?>">
+<div class="cta_banner cta_style_<?php echo esc_attr($cta_style); ?> cta_align_<?php echo esc_attr($alignment); ?> <?php echo esc_attr($variant_class); ?>" style="<?php echo $bg_styles; ?>">
 
     <?php if ( $bg_image ) : ?>
         <!-- Overlay — opacity controlled by ACF field -->

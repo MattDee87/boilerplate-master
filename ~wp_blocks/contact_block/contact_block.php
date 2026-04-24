@@ -1,9 +1,11 @@
-<?php 
+<?php
     // Get All Fields
     $title          = get_field('title');
     $copy           = get_field('copy');
     $phone_number   = get_field('phone_number');
     $form           = get_field('include_contact_form');
+    $variant        = get_field('section_variant') ?: 'default';
+    $variant_class  = 'contact_cta_variant_' . str_replace('-', '_', $variant);
     if($form){
         $formHTML   = get_field('contact_form','option');
     }
@@ -12,7 +14,7 @@
     if($title && $copy) :
 
 ?>
-    <div class="contact_cta">
+    <div class="contact_cta <?= esc_attr($variant_class); ?>">
         <div class="contact_cta_inner">
 
             <h2><?php echo esc_html($title); ?></h2>

@@ -32,14 +32,16 @@ TO SIMPLIFY TO OPTION B (stacked list):
 */
  
 // Get All Fields
-$title      = get_field('testimonials_title');
-$columns    = get_field('testimonials_columns') ?: '3';
-$items      = get_field('testimonials_items');
- 
+$title         = get_field('testimonials_title');
+$columns       = get_field('testimonials_columns') ?: '3';
+$items         = get_field('testimonials_items');
+$variant       = get_field('section_variant') ?: 'default';
+$variant_class = 'testimonials_block_variant_' . str_replace('-', '_', $variant);
+
 if ( $items ) :
 ?>
- 
-<div class="testimonials_block">
+
+<div class="testimonials_block <?= esc_attr($variant_class); ?>">
  
     <?php if ( $title ) : ?>
         <div class="testimonials_header">

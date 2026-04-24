@@ -1,20 +1,22 @@
-<?php 
+<?php
     // Get All Fields
-    $profiles          = get_field('profiles');
-    $have_rows         = have_rows('profiles');
-    $type              = get_field('type');
+    $profiles      = get_field('profiles');
+    $have_rows     = have_rows('profiles');
+    $type          = get_field('type');
+    $variant       = get_field('section_variant') ?: 'default';
+    $variant_class = 'custom_profiles_variant_' . str_replace('-', '_', $variant);
 
     // Check for Content
     if($profiles) :
         if( have_rows('profiles') ):
 ?>
-    <div class="custom_profiles">
+    <div class="custom_profiles <?= esc_attr($variant_class); ?>">
 
         <?php while( have_rows('profiles') ): the_row(); 
             $image          = get_sub_field('image');
             $name           = get_sub_field('name');
             $copy           = get_sub_field('copy');
-            $res_data       = get_sub_field('resident_info'); 
+            $res_data       = get_sub_field('extended_info');
         ?>
 
             <div class="profile<?php if(!$image) : ?> noimage<?php endif; ?>">
@@ -26,10 +28,13 @@
                         <p>
                             <strong>Hometown:</strong> <?php echo esc_html($res_data['hometown']); ?><br>
 
-                            <strong>School:</strong> <?php echo esc_html($res_data['medical_school']); ?><br>
+                            <strong>School:</strong> <?php echo esc_html($res_data['school']); ?><br>
 
-                            <strong>Interests:</strong> <?php echo esc_html($res_data['medical_interests']); ?>
+                            <strong>Interests:</strong> <?php echo esc_html($res_data['interests']); ?>
                         </p>
+                        <?php if( !empty($res_data['bio']) ) : ?>
+                            <p><?php echo wp_kses_post($res_data['bio']); ?></p>
+                        <?php endif; ?>
                     <?php else: ?>
                         <?php if($copy) : ?>
                             <p><?php echo wp_kses_post($copy); ?></p>

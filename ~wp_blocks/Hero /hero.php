@@ -43,6 +43,8 @@ $alignment          = get_field('hero_alignment') ?: 'left';
 $bg_image           = get_field('hero_bg_image');
 $overlay_opacity    = get_field('hero_overlay_opacity') ?: 40;
 $bg_color           = get_field('hero_bg_color') ?: '';
+$variant            = get_field('section_variant') ?: 'default';
+$variant_class      = 'hero_variant_' . str_replace('-', '_', $variant);
  
 // Build inline styles
 $bg_styles = '';
@@ -61,7 +63,7 @@ if ( $heading ) :
 ?>
  
 <?php $hero_style = get_field('hero_style') ?: 'full-width'; ?>
-<div class="hero_block hero_style_<?php echo esc_attr($hero_style); ?> hero_align_<?php echo esc_attr($alignment); ?>" style="<?php echo $bg_styles; ?>">
+<div class="hero_block hero_style_<?php echo esc_attr($hero_style); ?> hero_align_<?php echo esc_attr($alignment); ?> <?php echo esc_attr($variant_class); ?>" style="<?php echo $bg_styles; ?>">
  
     <?php if ( $bg_image ) : ?>
         <!-- Dark overlay — opacity controlled by ACF field -->
