@@ -163,7 +163,7 @@ All values use boilerplate CSS tokens from style.css.
 }
 
 /* Split */
-.fcs_layout_split .fcs_wrapper {
+.fcs_layout_split .fcs_split_row {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -180,12 +180,18 @@ All values use boilerplate CSS tokens from style.css.
 }
 
 /* Split — media position controls left/right */
-.fcs_layout_split.fcs_media_right .fcs_wrapper {
+.fcs_layout_split.fcs_media_right .fcs_split_row {
     flex-direction: row;
 }
 
-.fcs_layout_split.fcs_media_left .fcs_wrapper {
+.fcs_layout_split.fcs_media_left .fcs_split_row {
     flex-direction: row-reverse;
+}
+
+/* Split — items always render full-width below the split row */
+.fcs_layout_split .fcs_items {
+    margin-top: var(--space-10);
+    width: 100%;
 }
 
 /* Cards Grid */
@@ -338,9 +344,9 @@ All values use boilerplate CSS tokens from style.css.
         font-size: var(--text-2xl);
     }
 
-    .fcs_layout_split .fcs_wrapper,
-    .fcs_layout_split.fcs_media_left .fcs_wrapper,
-    .fcs_layout_split.fcs_media_right .fcs_wrapper {
+    .fcs_layout_split .fcs_split_row,
+    .fcs_layout_split.fcs_media_left .fcs_split_row,
+    .fcs_layout_split.fcs_media_right .fcs_split_row {
         flex-direction: column;
     }
 
