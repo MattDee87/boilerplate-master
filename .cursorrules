@@ -73,17 +73,19 @@ theme-root/
 │   ├── dashboard_fixes.php       ← WP admin hardening + utilities
 │   └── campaign-success.php      ← Landing page thank you with optional ?cid lookup
 │
-├── ~wp_blocks/                   ← All 12 ACF-powered custom blocks
+├── ~wp_blocks/                   ← All 14 ACF-powered custom blocks
 │   ├── Hero/
 │   ├── accordion/
 │   ├── callout/
 │   ├── contact_block/
 │   ├── cta_banner/
 │   ├── event/
+│   ├── flexible_content/
 │   ├── gallery/
 │   ├── page_list/
 │   ├── profiles_block/
 │   ├── program/
+│   ├── split_view/
 │   ├── testimonials/
 │   └── video/
 │
@@ -97,7 +99,7 @@ theme-root/
 │   ├── lity/
 │   └── owl-carousel/             ← Required by gallery block
 │
-├── ~acf_imports/                 ← ACF field group JSON exports (14 files)
+├── ~acf_imports/                 ← ACF field group JSON exports (16 files)
 ├── js/                           ← jquery3.js + scripts.js
 ├── css/                          ← wufoo.css
 └── Guides/                       ← Developer documentation
@@ -154,6 +156,7 @@ NEVER:
 - Hardcode pixel values when a token exists
 - Use !important unless there is absolutely no alternative
 - Create a new standalone CSS file outside of the block folder structure
+- Create page-specific variant names (e.g. about-feature, work-banner). Use body.page-{slug} CSS scoping instead — see Page-Scoped Block Styling section below.
 ```
 
 ## CSS Rule Order — Critical
@@ -216,9 +219,9 @@ Every block follows the same 4-file pattern:
 
 All blocks are auto-registered via a glob loop in functions.php.
 
-All 12 blocks use "category": "boilerplate-blocks" and appear under the "Boilerplate Blocks" group in the editor. Category registered via add_filter( 'block_categories_all' ) in functions.php.
+All 14 blocks use "category": "boilerplate-blocks" and appear under the "Boilerplate Blocks" group in the editor. Category registered via add_filter( 'block_categories_all' ) in functions.php.
 
-### All 12 blocks — exact name values
+### All 14 blocks — exact name values
 
 NOTE: Block naming is inconsistent (known issue). Use exact values below.
 
@@ -230,10 +233,12 @@ NOTE: Block naming is inconsistent (known issue). Use exact values below.
 | contact_block/ | custom_contactBlock | Contact Us CTA |
 | cta_banner/ | custom_cta_banner | CTA Banner |
 | event/ | customEvent | Event |
+| flexible_content/ | custom_flexible_content | Flexible Content Section |
 | gallery/ | custom_gallery | Custom Gallery |
 | page_list/ | custom_Page_List | Page Blocks |
 | profiles_block/ | profilesBlock | Profiles |
 | program/ | customProgram | Program |
+| split_view/ | custom_split_view | Split View |
 | testimonials/ | custom_testimonials | Testimonials |
 | video/ | custom_video | Video |
 
@@ -258,6 +263,52 @@ All values use boilerplate CSS tokens from style.css.
 ==========================================================
 */
 ```
+
+---
+
+## Section variant system
+
+Every block exposes a Section Variant ACF field (Style tab, field name: section_variant). The selected value is output as a scoped CSS class on the block's outer wrapper only — never on inner wrappers.
+
+Standard variant list (same across every block):
+- default — base block styles, no override
+- homepage-feature — elevated or hero-adjacent treatment on the homepage
+- minimal — stripped-back, reduced padding or background
+- split-feature — two-column or asymmetric layout treatment
+- cards-feature — card-heavy section with grid emphasis
+- inner-banner — compact banner treatment for interior pages
+
+Rules:
+- Variants describe design patterns, not pages. Never name a variant after a page (e.g. about-feature, work-banner).
+- Only add a new variant when you have a genuinely new design pattern not covered by the six above.
+- When a new variant is added, add it to every block's ACF JSON export so the dropdown stays consistent.
+
+PHP pattern:
+```php
+$variant       = get_field('section_variant') ?: 'default';
+$variant_class = 'block_prefix_variant_' . str_replace('-', '_', $variant);
+// Outer wrapper only
+<div class="block_outer_class <?= esc_attr($variant_class); ?>">
+```
+
+---
+
+## Page-scoped block styling
+
+WordPress outputs a page-{slug} class on the body tag automatically via body_class(). Use this to scope per-page block overrides without creating new variants or touching block CSS files.
+
+Pattern:
+```css
+/* Base — applies everywhere */
+.hero_variant_inner_banner .hero_block { min-height: 300px; }
+
+/* Exception — one page only */
+body.page-about .hero_variant_inner_banner .hero_block { min-height: 200px; }
+```
+
+Always write the base rule first, scoped exception below. Per-page overrides go in style.css Section 10 — never inside block CSS files.
+
+If you are comma-separating many page slugs, the override should become the base rule and the exceptions should be the outliers.
 
 ---
 
@@ -291,7 +342,7 @@ Uncomment in functions.php per project as needed:
 
 ## ACF imports
 
-All 14 ACF field group JSON files live in ~acf_imports/.
+All 16 ACF field group JSON files live in ~acf_imports/.
 To set up on a new project: ACF → Tools → Import → select all files.
 
 ---
@@ -302,7 +353,7 @@ To set up on a new project: ACF → Tools → Import → select all files.
 2. Update style.css theme header
 3. Swap font @imports in style.css Section 1a + 1b
 4. Update --font-body and --font-heading in :root
-5. Update color tokens in :root
+5. Update color tokens in :root — ACF color picker palette syncs automatically from style.css, no secondary update needed
 6. Mirror all token changes in theme.json
 7. Import ACF field groups via ACF → Tools → Import
 8. Add brand overrides in style.css Section 10

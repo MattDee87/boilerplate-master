@@ -49,6 +49,8 @@
         add_theme_support( 'custom-logo' );
         add_theme_support( 'align-wide' );
         add_theme_support( 'responsive-embeds' );
+        add_theme_support( 'editor-styles' );
+        add_editor_style( 'css/editor.css' );
         // Responsive iframe / embed support
         // Handles Loom, YouTube, Vimeo and any oEmbed provider
         add_filter( 'embed_oembed_html', function( $html ) {
@@ -143,5 +145,44 @@
 
     }
     add_action( 'after_switch_theme', 'boilerplate_create_starter_pages' );
+
+    // Add slug-based body classes for page-scoped CSS targeting
+    // Adds page-home on the front page and page-{slug} on all other pages
+    // Use these in style.css Section 10 to scope block overrides per page
+    add_filter( 'body_class', function( $classes ) {
+        if ( is_front_page() ) {
+            $classes[] = 'page-home';
+        }
+        if ( is_page() ) {
+            $post = get_queried_object();
+            if ( $post && ! empty( $post->post_name ) ) {
+                $classes[] = 'page-' . sanitize_html_class( $post->post_name );
+            }
+        }
+        return array_unique( $classes );
+    });
+
+    // ACF color picker — token palette swatches
+    // Parses --color-* hex values from style.css at runtime so the palette
+    // always stays in sync with the project's token system automatically.
+    add_action( 'acf/input/admin_footer', function() {
+        $css    = file_get_contents( get_stylesheet_directory() . '/style.css' );
+        $colors = [];
+        preg_match_all( '/--color-[\w-]+\s*:\s*(#[0-9a-fA-F]{3,8})\s*;/', $css, $matches );
+        if ( ! empty( $matches[1] ) ) {
+            $colors = array_values( array_unique( $matches[1] ) );
+        }
+        ?>
+        <script>
+        (function($) {
+            if (typeof acf === 'undefined') return;
+            acf.add_filter('color_picker_args', function(args, field) {
+                args.palettes = <?= json_encode( $colors ); ?>;
+                return args;
+            });
+        })(jQuery);
+        </script>
+        <?php
+    });
 
 ?>

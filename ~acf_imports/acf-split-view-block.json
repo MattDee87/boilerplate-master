@@ -1,0 +1,725 @@
+[
+    {
+        "key": "group_split_view_block",
+        "title": "Split View Block",
+        "fields": [
+
+            {
+                "key": "field_sv_tab_content",
+                "label": "Content",
+                "name": "",
+                "type": "tab",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": { "width": "", "class": "", "id": "" },
+                "placement": "top",
+                "endpoint": 0
+            },
+
+            {
+                "key": "field_sv_header_enabled",
+                "label": "Show Header",
+                "name": "sv_header_enabled",
+                "type": "true_false",
+                "instructions": "Toggle to show an optional heading above the rows.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": { "width": "", "class": "", "id": "" },
+                "message": "Enable header section",
+                "default_value": 0,
+                "ui": 1,
+                "ui_on_text": "On",
+                "ui_off_text": "Off"
+            },
+
+            {
+                "key": "field_sv_header_heading",
+                "label": "Header Heading",
+                "name": "sv_header_heading",
+                "type": "text",
+                "instructions": "Section heading displayed above the rows.",
+                "required": 0,
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_sv_header_enabled",
+                            "operator": "==",
+                            "value": "1"
+                        }
+                    ]
+                ],
+                "wrapper": { "width": "75", "class": "", "id": "" },
+                "default_value": "",
+                "placeholder": "What I Do",
+                "maxlength": ""
+            },
+
+            {
+                "key": "field_sv_header_alignment",
+                "label": "Header Alignment",
+                "name": "sv_header_alignment",
+                "type": "select",
+                "instructions": "Text alignment of the header heading.",
+                "required": 0,
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_sv_header_enabled",
+                            "operator": "==",
+                            "value": "1"
+                        }
+                    ]
+                ],
+                "wrapper": { "width": "25", "class": "", "id": "" },
+                "choices": {
+                    "left": "Left",
+                    "center": "Center",
+                    "right": "Right"
+                },
+                "default_value": "center",
+                "allow_null": 0,
+                "multiple": 0,
+                "ui": 0,
+                "return_format": "value"
+            },
+
+            {
+                "key": "field_sv_rows",
+                "label": "Rows",
+                "name": "sv_rows",
+                "type": "repeater",
+                "instructions": "Add up to 4 rows. Each row has two columns — set each column independently to image, video, or text.",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": { "width": "", "class": "", "id": "" },
+                "layout": "block",
+                "min": 1,
+                "max": 4,
+                "button_label": "Add Row",
+                "sub_fields": [
+
+                    {
+                        "key": "field_sv_col_1_type",
+                        "label": "Column 1 — Type",
+                        "name": "col_1_type",
+                        "type": "select",
+                        "instructions": "What does column 1 contain?",
+                        "required": 1,
+                        "conditional_logic": 0,
+                        "wrapper": { "width": "50", "class": "", "id": "" },
+                        "choices": {
+                            "image": "Image",
+                            "video": "Video",
+                            "text": "Text (H3 + Paragraph)"
+                        },
+                        "default_value": "text",
+                        "allow_null": 0,
+                        "multiple": 0,
+                        "ui": 0,
+                        "return_format": "value"
+                    },
+
+                    {
+                        "key": "field_sv_col_2_type",
+                        "label": "Column 2 — Type",
+                        "name": "col_2_type",
+                        "type": "select",
+                        "instructions": "What does column 2 contain?",
+                        "required": 1,
+                        "conditional_logic": 0,
+                        "wrapper": { "width": "50", "class": "", "id": "" },
+                        "choices": {
+                            "image": "Image",
+                            "video": "Video",
+                            "text": "Text (H3 + Paragraph)"
+                        },
+                        "default_value": "image",
+                        "allow_null": 0,
+                        "multiple": 0,
+                        "ui": 0,
+                        "return_format": "value"
+                    },
+
+                    {
+                        "key": "field_sv_col_1_image",
+                        "label": "Column 1 — Image",
+                        "name": "col_1_image",
+                        "type": "image",
+                        "instructions": "",
+                        "required": 0,
+                        "conditional_logic": [
+                            [
+                                {
+                                    "field": "field_sv_col_1_type",
+                                    "operator": "==",
+                                    "value": "image"
+                                }
+                            ]
+                        ],
+                        "wrapper": { "width": "50", "class": "", "id": "" },
+                        "return_format": "array",
+                        "preview_size": "medium",
+                        "library": "all"
+                    },
+
+                    {
+                        "key": "field_sv_col_2_image",
+                        "label": "Column 2 — Image",
+                        "name": "col_2_image",
+                        "type": "image",
+                        "instructions": "",
+                        "required": 0,
+                        "conditional_logic": [
+                            [
+                                {
+                                    "field": "field_sv_col_2_type",
+                                    "operator": "==",
+                                    "value": "image"
+                                }
+                            ]
+                        ],
+                        "wrapper": { "width": "50", "class": "", "id": "" },
+                        "return_format": "array",
+                        "preview_size": "medium",
+                        "library": "all"
+                    },
+
+                    {
+                        "key": "field_sv_col_1_video_url",
+                        "label": "Column 1 — Video URL",
+                        "name": "col_1_video_url",
+                        "type": "url",
+                        "instructions": "YouTube, Vimeo, Loom, or any iframe embed URL.",
+                        "required": 0,
+                        "conditional_logic": [
+                            [
+                                {
+                                    "field": "field_sv_col_1_type",
+                                    "operator": "==",
+                                    "value": "video"
+                                }
+                            ]
+                        ],
+                        "wrapper": { "width": "50", "class": "", "id": "" },
+                        "default_value": "",
+                        "placeholder": "https://"
+                    },
+
+                    {
+                        "key": "field_sv_col_2_video_url",
+                        "label": "Column 2 — Video URL",
+                        "name": "col_2_video_url",
+                        "type": "url",
+                        "instructions": "YouTube, Vimeo, Loom, or any iframe embed URL.",
+                        "required": 0,
+                        "conditional_logic": [
+                            [
+                                {
+                                    "field": "field_sv_col_2_type",
+                                    "operator": "==",
+                                    "value": "video"
+                                }
+                            ]
+                        ],
+                        "wrapper": { "width": "50", "class": "", "id": "" },
+                        "default_value": "",
+                        "placeholder": "https://"
+                    },
+
+                    {
+                        "key": "field_sv_col_1_heading",
+                        "label": "Column 1 — Heading",
+                        "name": "col_1_heading",
+                        "type": "text",
+                        "instructions": "Renders as an H3.",
+                        "required": 0,
+                        "conditional_logic": [
+                            [
+                                {
+                                    "field": "field_sv_col_1_type",
+                                    "operator": "==",
+                                    "value": "text"
+                                }
+                            ]
+                        ],
+                        "wrapper": { "width": "50", "class": "", "id": "" },
+                        "default_value": "",
+                        "placeholder": "Section Heading",
+                        "maxlength": ""
+                    },
+
+                    {
+                        "key": "field_sv_col_2_heading",
+                        "label": "Column 2 — Heading",
+                        "name": "col_2_heading",
+                        "type": "text",
+                        "instructions": "Renders as an H3.",
+                        "required": 0,
+                        "conditional_logic": [
+                            [
+                                {
+                                    "field": "field_sv_col_2_type",
+                                    "operator": "==",
+                                    "value": "text"
+                                }
+                            ]
+                        ],
+                        "wrapper": { "width": "50", "class": "", "id": "" },
+                        "default_value": "",
+                        "placeholder": "Section Heading",
+                        "maxlength": ""
+                    },
+
+                    {
+                        "key": "field_sv_col_1_body",
+                        "label": "Column 1 — Body",
+                        "name": "col_1_body",
+                        "type": "wysiwyg",
+                        "instructions": "",
+                        "required": 0,
+                        "conditional_logic": [
+                            [
+                                {
+                                    "field": "field_sv_col_1_type",
+                                    "operator": "==",
+                                    "value": "text"
+                                }
+                            ]
+                        ],
+                        "wrapper": { "width": "50", "class": "", "id": "" },
+                        "default_value": "",
+                        "tabs": "visual",
+                        "toolbar": "basic",
+                        "media_upload": 0,
+                        "delay": 0
+                    },
+
+                    {
+                        "key": "field_sv_col_2_body",
+                        "label": "Column 2 — Body",
+                        "name": "col_2_body",
+                        "type": "wysiwyg",
+                        "instructions": "",
+                        "required": 0,
+                        "conditional_logic": [
+                            [
+                                {
+                                    "field": "field_sv_col_2_type",
+                                    "operator": "==",
+                                    "value": "text"
+                                }
+                            ]
+                        ],
+                        "wrapper": { "width": "50", "class": "", "id": "" },
+                        "default_value": "",
+                        "tabs": "visual",
+                        "toolbar": "basic",
+                        "media_upload": 0,
+                        "delay": 0
+                    },
+
+                    {
+                        "key": "field_sv_row_bg",
+                        "label": "Row Background",
+                        "name": "row_bg",
+                        "type": "select",
+                        "instructions": "Only applies in Separated mode. Sets the background for this row independently.",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": { "width": "50", "class": "", "id": "" },
+                        "choices": {
+                            "default": "Default",
+                            "minimal": "Minimal (Transparent)",
+                            "dark": "Dark",
+                            "gradient-1": "Gradient 1",
+                            "gradient-2": "Gradient 2",
+                            "gradient-3": "Gradient 3"
+                        },
+                        "default_value": "default",
+                        "allow_null": 0,
+                        "multiple": 0,
+                        "ui": 0,
+                        "return_format": "value"
+                    },
+
+                    {
+                        "key": "field_sv_row_bg_color",
+                        "label": "Row Background Color",
+                        "name": "row_bg_color",
+                        "type": "color_picker",
+                        "instructions": "Pick a token color or custom color. Only applies in Separated mode. Overrides the Background select above.",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": { "width": "50", "class": "", "id": "" },
+                        "default_value": "",
+                        "enable_opacity": 0,
+                        "return_format": "string"
+                    },
+
+                    {
+                        "key": "field_sv_row_bg_image",
+                        "label": "Row Background Image",
+                        "name": "row_bg_image",
+                        "type": "image",
+                        "instructions": "Background image for this row. Only applies in Separated mode. Overrides color if set.",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": { "width": "50", "class": "", "id": "" },
+                        "return_format": "array",
+                        "preview_size": "medium",
+                        "library": "all"
+                    }
+
+                ]
+            },
+
+            {
+                "key": "field_sv_tab_ctas",
+                "label": "Buttons",
+                "name": "",
+                "type": "tab",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": { "width": "", "class": "", "id": "" },
+                "placement": "top",
+                "endpoint": 0
+            },
+
+            {
+                "key": "field_sv_cta_1_label",
+                "label": "Button 1 Label",
+                "name": "sv_cta_1_label",
+                "type": "text",
+                "instructions": "Primary button. Leave blank to hide.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": { "width": "50", "class": "", "id": "" },
+                "default_value": "",
+                "placeholder": "Get In Touch",
+                "maxlength": ""
+            },
+
+            {
+                "key": "field_sv_cta_1_url",
+                "label": "Button 1 URL",
+                "name": "sv_cta_1_url",
+                "type": "url",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": { "width": "50", "class": "", "id": "" },
+                "default_value": "",
+                "placeholder": "https://"
+            },
+
+            {
+                "key": "field_sv_cta_2_label",
+                "label": "Button 2 Label",
+                "name": "sv_cta_2_label",
+                "type": "text",
+                "instructions": "Secondary button (outline style). Leave blank to hide.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": { "width": "50", "class": "", "id": "" },
+                "default_value": "",
+                "placeholder": "See My Work",
+                "maxlength": ""
+            },
+
+            {
+                "key": "field_sv_cta_2_url",
+                "label": "Button 2 URL",
+                "name": "sv_cta_2_url",
+                "type": "url",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": { "width": "50", "class": "", "id": "" },
+                "default_value": "",
+                "placeholder": "https://"
+            },
+
+            {
+                "key": "field_sv_tab_style",
+                "label": "Style",
+                "name": "",
+                "type": "tab",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": { "width": "", "class": "", "id": "" },
+                "placement": "top",
+                "endpoint": 0
+            },
+
+            {
+                "key": "field_sv_mode",
+                "label": "Layout Mode",
+                "name": "sv_mode",
+                "type": "select",
+                "instructions": "Connected — all rows share one background panel. Separated — each row has its own background.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": { "width": "50", "class": "", "id": "" },
+                "choices": {
+                    "connected": "Connected (shared background)",
+                    "separated": "Separated (per-row backgrounds)"
+                },
+                "default_value": "connected",
+                "allow_null": 0,
+                "multiple": 0,
+                "ui": 0,
+                "return_format": "value"
+            },
+
+            {
+                "key": "field_sv_variant",
+                "label": "Section Variant",
+                "name": "sv_variant",
+                "type": "select",
+                "instructions": "Adds a modifier class (sv_variant_*) to the block wrapper for CSS targeting. In Connected mode this controls the panel background. In Separated mode use it as a CSS hook for per-page overrides.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": { "width": "50", "class": "", "id": "" },
+                "choices": {
+                    "default": "Default",
+                    "minimal": "Minimal",
+                    "dark": "Dark",
+                    "gradient-1": "Gradient 1",
+                    "gradient-2": "Gradient 2",
+                    "gradient-3": "Gradient 3"
+                },
+                "default_value": "default",
+                "allow_null": 0,
+                "multiple": 0,
+                "ui": 0,
+                "return_format": "value"
+            },
+
+            {
+                "key": "field_sv_bg_color",
+                "label": "Background Color",
+                "name": "sv_bg_color",
+                "type": "color_picker",
+                "instructions": "Pick a solid background color for the connected panel. Overrides the Section Variant color above.",
+                "required": 0,
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_sv_mode",
+                            "operator": "==",
+                            "value": "connected"
+                        }
+                    ]
+                ],
+                "wrapper": { "width": "50", "class": "", "id": "" },
+                "default_value": "",
+                "enable_opacity": 0,
+                "return_format": "string"
+            },
+
+            {
+                "key": "field_sv_bg_image",
+                "label": "Background Image",
+                "name": "sv_bg_image",
+                "type": "image",
+                "instructions": "Background image for the connected panel. Overrides color if set.",
+                "required": 0,
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_sv_mode",
+                            "operator": "==",
+                            "value": "connected"
+                        }
+                    ]
+                ],
+                "wrapper": { "width": "50", "class": "", "id": "" },
+                "return_format": "array",
+                "preview_size": "medium",
+                "library": "all"
+            },
+
+            {
+                "key": "field_sv_bg_overlay_opacity",
+                "label": "Overlay Opacity",
+                "name": "sv_bg_overlay_opacity",
+                "type": "number",
+                "instructions": "Dark overlay on top of the background image. 0 = no overlay, 80 = 80% dark. Only applies when a background image is set.",
+                "required": 0,
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_sv_bg_image",
+                            "operator": "!=empty"
+                        },
+                        {
+                            "field": "field_sv_mode",
+                            "operator": "==",
+                            "value": "connected"
+                        }
+                    ]
+                ],
+                "wrapper": { "width": "50", "class": "", "id": "" },
+                "default_value": 40,
+                "placeholder": "40",
+                "min": 0,
+                "max": 100,
+                "step": 5,
+                "prepend": "",
+                "append": "%"
+            },
+
+            {
+                "key": "field_sv_header_connected_bg_color",
+                "label": "Header Background Color",
+                "name": "sv_header_connected_bg_color",
+                "type": "color_picker",
+                "instructions": "Custom background color for the header section in Connected mode. In Island style this colors the floating card. In Flow style it colors the full header strip.",
+                "required": 0,
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_sv_mode",
+                            "operator": "==",
+                            "value": "connected"
+                        },
+                        {
+                            "field": "field_sv_header_enabled",
+                            "operator": "==",
+                            "value": "1"
+                        }
+                    ]
+                ],
+                "wrapper": { "width": "50", "class": "", "id": "" },
+                "default_value": "",
+                "enable_opacity": 0,
+                "return_format": "string"
+            },
+
+            {
+                "key": "field_sv_header_bg",
+                "label": "Header Background",
+                "name": "sv_header_bg",
+                "type": "select",
+                "instructions": "Background for the header panel when in Separated mode.",
+                "required": 0,
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_sv_mode",
+                            "operator": "==",
+                            "value": "separated"
+                        }
+                    ]
+                ],
+                "wrapper": { "width": "50", "class": "", "id": "" },
+                "choices": {
+                    "default": "Default",
+                    "minimal": "Minimal (Transparent)",
+                    "dark": "Dark",
+                    "gradient-1": "Gradient 1",
+                    "gradient-2": "Gradient 2",
+                    "gradient-3": "Gradient 3"
+                },
+                "default_value": "default",
+                "allow_null": 0,
+                "multiple": 0,
+                "ui": 0,
+                "return_format": "value"
+            },
+
+            {
+                "key": "field_sv_header_bg_color",
+                "label": "Header Background Color",
+                "name": "sv_header_bg_color",
+                "type": "color_picker",
+                "instructions": "Pick a custom background color for the header panel. Only applies in Separated mode. Overrides the Header Background select above.",
+                "required": 0,
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_sv_mode",
+                            "operator": "==",
+                            "value": "separated"
+                        }
+                    ]
+                ],
+                "wrapper": { "width": "50", "class": "", "id": "" },
+                "default_value": "",
+                "enable_opacity": 0,
+                "return_format": "string"
+            },
+
+            {
+                "key": "field_sv_header_bg_image",
+                "label": "Header Background Image",
+                "name": "sv_header_bg_image",
+                "type": "image",
+                "instructions": "Background image for the header panel. Only applies in Separated mode.",
+                "required": 0,
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_sv_mode",
+                            "operator": "==",
+                            "value": "separated"
+                        }
+                    ]
+                ],
+                "wrapper": { "width": "50", "class": "", "id": "" },
+                "return_format": "array",
+                "preview_size": "medium",
+                "library": "all"
+            },
+
+            {
+                "key": "field_sv_header_style",
+                "label": "Header Style",
+                "name": "sv_header_style",
+                "type": "select",
+                "instructions": "Flow — header sits naturally in the page flow. Island — header appears as a floating card above the rows.",
+                "required": 0,
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_sv_header_enabled",
+                            "operator": "==",
+                            "value": "1"
+                        }
+                    ]
+                ],
+                "wrapper": { "width": "50", "class": "", "id": "" },
+                "choices": {
+                    "flow": "Flow",
+                    "island": "Island (floating card)"
+                },
+                "default_value": "flow",
+                "allow_null": 0,
+                "multiple": 0,
+                "ui": 0,
+                "return_format": "value"
+            }
+
+        ],
+        "location": [
+            [
+                {
+                    "param": "block",
+                    "operator": "==",
+                    "value": "acf/custom-split-view"
+                }
+            ]
+        ],
+        "menu_order": 0,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": true,
+        "description": "Field group for the Split View Block — multi-row two-column layout with connected or separated backgrounds."
+    }
+]

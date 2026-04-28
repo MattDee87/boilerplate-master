@@ -1,0 +1,313 @@
+/*
+==========================================================
+SPLIT VIEW — split_view.css
+==========================================================
+WHAT IT IS:
+A multi-row two-column layout block for building
+structured content sections with shared or separated
+row backgrounds.
+
+WHAT IT DOES:
+Renders an optional header, a repeater of two-column
+rows (each column independently set to image, video,
+or text), and optional CTA buttons. Supports two modes:
+connected (one shared background panel) and separated
+(each row has its own background).
+
+HOW TO USE:
+1. Add the Split View block to any page
+2. Choose Connected or Separated in the Style tab
+3. Add rows — set a type for each column
+4. Style with section variants (connected) or
+   per-row backgrounds (separated)
+
+All values use boilerplate CSS tokens from style.css.
+==========================================================
+*/
+
+
+/* ── Base Block ─────────────────────────────────────────────── */
+
+.split_view {
+    width: 100%;
+}
+
+.sv_wrapper {
+    width: 100%;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--wrapper-padding);
+}
+
+
+/* ── Connected Mode ──────────────────────────────────────────── */
+
+.sv_mode_connected .sv_panel {
+    position: relative;
+    padding: var(--space-20) 0;
+    background-color: var(--color-bg);
+}
+
+
+/* ── Separated Mode ──────────────────────────────────────────── */
+
+.sv_mode_separated .sv_header_panel,
+.sv_mode_separated .sv_row_panel {
+    position: relative;
+    padding: var(--space-16) 0;
+}
+
+
+/* ── Background Overlay ──────────────────────────────────────── */
+
+.sv_overlay {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.sv_mode_connected .sv_panel > .sv_wrapper {
+    position: relative;
+    z-index: 1;
+}
+
+
+/* ── Header ──────────────────────────────────────────────────── */
+
+.sv_header {
+    margin-bottom: var(--space-12);
+}
+
+.sv_header_align_left    { text-align: left; }
+.sv_header_align_center  { text-align: center; }
+.sv_header_align_right   { text-align: right; }
+
+.sv_header_heading {
+    font-family: var(--font-heading);
+    font-size: var(--text-3xl);
+    font-weight: var(--weight-bold);
+    color: var(--color-primary);
+    margin: 0;
+    line-height: 1.1;
+}
+
+
+/* ── Header Island Style ─────────────────────────────────────── */
+
+/* Island container is a flex row — alignment controls card position */
+.sv_header_island {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.sv_header_align_center.sv_header_island { justify-content: center; }
+.sv_header_align_right.sv_header_island  { justify-content: flex-end; }
+
+/* The heading becomes the card */
+.sv_header_island .sv_header_heading {
+    display: inline-block;
+    background-color: var(--sv-header-card-bg, var(--color-bg-alt));
+    border-radius: var(--radius-lg);
+    padding: var(--space-6) var(--space-8);
+    box-shadow: var(--shadow-md);
+    margin: 0;
+}
+
+/* Flow style — header bg color applies to the full container */
+.sv_header_flow {
+    background-color: var(--sv-header-card-bg, transparent);
+}
+
+
+/* ── Rows ────────────────────────────────────────────────────── */
+
+.sv_rows {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-12);
+}
+
+.sv_row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: var(--space-12);
+}
+
+
+/* ── Columns ─────────────────────────────────────────────────── */
+
+.sv_col {
+    flex: 1;
+    min-width: 0;
+}
+
+/* Image column */
+.sv_col_img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-lg);
+}
+
+/* Video column */
+.sv_col_video.embed-responsive {
+    position: relative;
+    padding-top: 56.25%;
+    overflow: hidden;
+    border-radius: var(--radius-lg);
+}
+
+.sv_col_video.embed-responsive iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+/* Text column */
+.sv_col_heading {
+    font-family: var(--font-heading);
+    font-size: var(--text-xl);
+    font-weight: var(--weight-semi);
+    color: var(--color-primary);
+    margin: 0 0 var(--space-4) 0;
+    line-height: 1.2;
+}
+
+.sv_col_body {
+    font-size: var(--text-base);
+    color: var(--color-text);
+    line-height: var(--leading-normal);
+}
+
+.sv_col_body p:last-child {
+    margin-bottom: 0;
+}
+
+
+/* ── CTAs ────────────────────────────────────────────────────── */
+
+.sv_ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+    margin-top: var(--space-12);
+}
+
+.sv_ctas_separated {
+    max-width: var(--max-width);
+    margin-left: auto;
+    margin-right: auto;
+    padding: var(--space-8) var(--wrapper-padding) 0;
+}
+
+
+/* ── Section Variants — connected mode — AFTER base rules ─────── */
+
+.sv_variant_default .sv_panel {
+    background-color: var(--color-bg);
+}
+
+.sv_variant_minimal .sv_panel {
+    background-color: transparent;
+    padding-top: var(--space-12);
+    padding-bottom: var(--space-12);
+}
+
+.sv_variant_dark .sv_panel {
+    background-color: var(--color-bg-dark);
+}
+
+.sv_variant_dark .sv_header_heading,
+.sv_variant_dark .sv_col_heading {
+    color: var(--color-text-inverse);
+}
+
+.sv_variant_dark .sv_col_body {
+    color: var(--color-text-inverse);
+}
+
+/* Gradient variants — define per project */
+.sv_variant_gradient_1 .sv_panel { /* add gradient here */ }
+.sv_variant_gradient_2 .sv_panel { /* add gradient here */ }
+.sv_variant_gradient_3 .sv_panel { /* add gradient here */ }
+
+
+/* ── Row Background Variants — separated mode — AFTER base rules ─ */
+
+.sv_bg_default {
+    background-color: var(--color-bg);
+}
+
+.sv_bg_minimal {
+    background-color: transparent;
+}
+
+.sv_bg_dark {
+    background-color: var(--color-bg-dark);
+}
+
+.sv_bg_dark .sv_header_heading,
+.sv_bg_dark .sv_col_heading {
+    color: var(--color-text-inverse);
+}
+
+.sv_bg_dark .sv_col_body {
+    color: var(--color-text-inverse);
+}
+
+/* Gradient row backgrounds — define per project */
+.sv_bg_gradient_1 { /* add gradient here */ }
+.sv_bg_gradient_2 { /* add gradient here */ }
+.sv_bg_gradient_3 { /* add gradient here */ }
+
+
+/* ── Responsive ──────────────────────────────────────────────── */
+
+@media (max-width: 768px) {
+
+    .sv_mode_connected .sv_panel {
+        padding: var(--space-12) 0;
+    }
+
+    .sv_mode_separated .sv_header_panel,
+    .sv_mode_separated .sv_row_panel {
+        padding: var(--space-12) 0;
+    }
+
+    .sv_row {
+        flex-direction: column;
+        gap: var(--space-8);
+    }
+
+    .sv_rows {
+        gap: var(--space-10);
+    }
+
+    .sv_header_heading {
+        font-size: var(--text-2xl);
+    }
+
+    .sv_col_heading {
+        font-size: var(--text-lg);
+    }
+
+    .sv_ctas {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .sv_mode_connected .sv_panel {
+        padding: var(--space-12) 0;
+    }
+
+    .sv_header_heading {
+        font-size: var(--text-xl);
+    }
+}

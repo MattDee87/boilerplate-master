@@ -1,0 +1,19 @@
+{
+    "name": "custom_split_view",
+    "title": "Split View",
+    "description": "A multi-row two-column layout block with an optional header, flexible column types (image, video, text), and connected or separated row backgrounds.",
+    "category": "boilerplate-blocks",
+    "icon": "columns",
+    "apiVersion": 2,
+    "keywords": ["split", "columns", "layout", "rows", "panel", "two column"],
+    "style": "file:./split_view.css",
+    "editorStyle": "file:./split_view.css",
+    "acf": {
+        "mode": "edit",
+        "renderTemplate": "./split_view.php",
+        "postTypes": ["post", "page"]
+    },
+    "supports": {},
+    "attributes": {},
+    "example": {}
+}

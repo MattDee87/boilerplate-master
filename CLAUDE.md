@@ -78,17 +78,19 @@ theme-root/
 │   ├── dashboard_fixes.php       ← WP admin hardening + utilities
 │   └── campaign-success.php      ← Landing page thank you with optional ?cid lookup
 │
-├── ~wp_blocks/                   ← All 12 ACF-powered custom blocks
+├── ~wp_blocks/                   ← All 14 ACF-powered custom blocks
 │   ├── Hero/
 │   ├── accordion/
 │   ├── callout/
 │   ├── contact_block/
 │   ├── cta_banner/
 │   ├── event/
+│   ├── flexible_content/
 │   ├── gallery/
 │   ├── page_list/
 │   ├── profiles_block/
 │   ├── program/
+│   ├── split_view/
 │   ├── testimonials/
 │   └── video/
 │
@@ -179,6 +181,7 @@ When updating tokens for a new project — update BOTH files.
 ❌ Never use !important unless there is no alternative
 ❌ Never create a new standalone CSS file outside of the block folder structure
 ❌ Never add styles to an arbitrary location — everything has a designated home
+❌ Never create page-specific variant names (e.g. about-feature, work-banner). Use body.page-{slug} selectors in CSS to scope per-page overrides. See STYLESHEET_GUIDE.md for the full pattern.
 ```
 
 ## CSS Rule Order — Critical
@@ -257,9 +260,9 @@ Why: Gallery and Accordion depend on jQuery and Owl Carousel being loaded first.
 Moving their init code to scripts.js guarantees correct dependency order.
 scripts.js declares both jquery and owl-core-js as dependencies in functions.php.
 
-**Block category:** All 12 blocks use `"category": "boilerplate-blocks"` and appear under the "Boilerplate Blocks" group in the editor. The category is registered via `add_filter( 'block_categories_all' )` in `functions.php`.
+**Block category:** All 14 blocks use `"category": "boilerplate-blocks"` and appear under the "Boilerplate Blocks" group in the editor. The category is registered via `add_filter( 'block_categories_all' )` in `functions.php`.
 
-### All 12 blocks and their exact name values
+### All 14 blocks and their exact name values
 
 ⚠️ Note: Block naming is inconsistent — a mix of snake_case, camelCase, and PascalCase. This is a known issue to standardize in a future version. Use the exact values below when referencing blocks.
 
@@ -271,10 +274,12 @@ scripts.js declares both jquery and owl-core-js as dependencies in functions.php
 | `contact_block/` | `custom_contactBlock` | Contact Us Call-To-Action |
 | `cta_banner/` | `custom_cta_banner` | CTA Banner |
 | `event/` | `customEvent` | Event |
+| `flexible_content/` | `custom_flexible_content` | Flexible Content Section |
 | `gallery/` | `custom_gallery` | Custom Gallery |
 | `page_list/` | `custom_Page_List` | Page Blocks |
 | `profiles_block/` | `profilesBlock` | Profiles |
 | `program/` | `customProgram` | Program |
+| `split_view/` | `custom_split_view` | Split View |
 | `testimonials/` | `custom_testimonials` | Testimonials |
 | `video/` | `custom_video` | Video |
 
@@ -373,10 +378,12 @@ All ACF field group configurations are exported as JSON in `~acf_imports/`:
 | `acf-contact-block.json` | Contact block fields |
 | `acf-cta-banner-block.json` | CTA Banner block fields |
 | `acf-event-block.json` | Event block fields |
+| `acf-flexible-content-block.json` | Flexible Content Section block fields |
 | `acf-gallery-block.json` | Gallery block fields |
 | `acf-page-list-block.json` | Page List block fields |
 | `acf-profiles-block.json` | Profiles block fields |
 | `acf-program-block.json` | Program block fields |
+| `acf-split-view-block.json` | Split View block fields |
 | `acf-testimonials-block.json` | Testimonials block fields |
 | `acf-video-block.json` | Video block fields |
 
@@ -393,7 +400,7 @@ When starting a new client project using this boilerplate:
 3. Update `theme.json` — Text Domain if needed
 4. Swap font `@import` URLs in `style.css` Section 1a and 1b
 5. Update `--font-body` and `--font-heading` in `:root`
-6. Update color tokens in `:root` — primary, accent, bg, bg-dark
+6. Update color tokens in `:root` — primary, accent, bg, bg-dark. The ACF color picker palette syncs automatically — no secondary update needed anywhere.
 7. Mirror all token changes in `theme.json` — palette + fontFamilies + styles
 8. Import ACF field groups via ACF → Tools → Import
 9. Add brand overrides in Section 10 of `style.css`

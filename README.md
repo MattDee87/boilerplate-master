@@ -71,6 +71,7 @@ In `style.css` `:root` update these five at minimum:
 --color-bg:             #YOUR_COLOR;
 --color-bg-dark:        #YOUR_COLOR;
 ```
+The ACF color picker palette reads `--color-*` hex values directly from `style.css` at runtime — updating your tokens here automatically updates the swatches in every ACF color picker field. No secondary update needed.
 
 ### 5. Mirror changes in theme.json
 Update the matching entries in `theme.json`:
@@ -79,7 +80,7 @@ Update the matching entries in `theme.json`:
 - `styles.elements` — heading, link, and button colors
 
 ### 6. Import ACF field groups
-Go to **ACF → Tools → Import** and import all JSON files from `~acf_imports/`. All 14 field groups will be set up instantly.
+Go to **ACF → Tools → Import** and import all JSON files from `~acf_imports/`. All 16 field groups will be set up instantly.
 
 ### 7. Add brand overrides
 Scroll to **Section 10** at the bottom of `style.css` and add project-specific styles — nav branding, special button treatments, glow effects, custom header styling.
@@ -194,17 +195,19 @@ theme-root/
 │   ├── dashboard_fixes.php       ← WP admin hardening + utilities
 │   └── campaign-success.php      ← Landing page thank you page with optional ?cid lookup
 │
-├── ~wp_blocks/                   ← 12 ACF-powered custom blocks
+├── ~wp_blocks/                   ← 14 ACF-powered custom blocks
 │   ├── Hero/
 │   ├── accordion/
 │   ├── callout/
 │   ├── contact_block/
 │   ├── cta_banner/
 │   ├── event/
+│   ├── flexible_content/
 │   ├── gallery/
 │   ├── page_list/
 │   ├── profiles_block/
 │   ├── program/
+│   ├── split_view/
 │   ├── testimonials/
 │   └── video/
 │
@@ -218,7 +221,7 @@ theme-root/
 │   ├── lity/
 │   └── fitVids/
 │
-├── ~acf_imports/                 ← ACF field group JSON exports (14 files)
+├── ~acf_imports/                 ← ACF field group JSON exports (16 files)
 │
 ├── js/
 │   ├── jquery3.js                ← Custom jQuery
@@ -246,10 +249,12 @@ All blocks appear under the **Boilerplate Blocks** category in the WordPress blo
 | contact_block | Contact Us CTA | Contact box with phone number and optional form embed |
 | cta_banner | CTA Banner | Full width conversion strip between page sections |
 | event | Event | Event card with title, location, date, and time |
+| flexible_content | Flexible Content Section | Multi-layout content section: centered, split, cards grid, or stats row. Optional media, repeater items, and CTAs |
 | gallery | Custom Gallery | Image slideshow powered by Owl Carousel |
 | page_list | Page Blocks | Grid of linked page cards |
 | profiles_block | Profiles | Team member or staff profiles with bio and photo |
 | program | Program | Program info card with optional PDF download |
+| split_view | Split View | Multi-row two-column layout. Each column independently set to image, video, or text. Connected or separated row backgrounds |
 | testimonials | Testimonials | Client testimonial grid with star ratings |
 | video | Video | Lightbox popup video player supporting YouTube, Vimeo, and Loom |
 
@@ -257,7 +262,7 @@ All blocks appear under the **Boilerplate Blocks** category in the WordPress blo
 
 ## ACF field groups
 
-All 14 ACF field group configurations are exported as JSON in `~acf_imports/`. On a new project import all files via **ACF → Tools → Import** for instant setup.
+All 16 ACF field group configurations are exported as JSON in `~acf_imports/`. On a new project import all files via **ACF → Tools → Import** for instant setup.
 
 | File | Purpose |
 |---|---|
@@ -269,10 +274,12 @@ All 14 ACF field group configurations are exported as JSON in `~acf_imports/`. O
 | `acf-contact-block.json` | Contact block fields |
 | `acf-cta-banner-block.json` | CTA Banner block fields |
 | `acf-event-block.json` | Event block fields |
+| `acf-flexible-content-block.json` | Flexible Content Section block fields |
 | `acf-gallery-block.json` | Gallery block fields |
 | `acf-page-list-block.json` | Page List block fields |
 | `acf-profiles-block.json` | Profiles block fields |
 | `acf-program-block.json` | Program block fields |
+| `acf-split-view-block.json` | Split View block fields |
 | `acf-testimonials-block.json` | Testimonials block fields |
 | `acf-video-block.json` | Video block fields |
 
@@ -360,6 +367,10 @@ The block auto-registers immediately — no code changes to `functions.php` need
 - Always use `var(--token-name)` — never hardcode hex values
 - Never use `!important` unless there is absolutely no alternative
 - Block CSS lives inside the block folder only
+- Never create page-specific variant names (e.g. `about-feature`, `work-banner`). Use `body.page-{slug}` selectors in `style.css` Section 10 to scope per-page overrides instead.
+
+**Section variants:**
+Every block exposes a Section Variant ACF field (Style tab, field name: `section_variant`). The standard choices are: `default`, `homepage-feature`, `minimal`, `split-feature`, `cards-feature`, `inner-banner`. The variant class is output on the outer block wrapper only. Add new variants only for genuinely new design patterns — not for page-specific one-offs. See `Guides/Block_Creating_Guide.md` Section 07 for the full system.
 
 **Golden rules for block PHP:**
 - Always escape output — `esc_html()`, `esc_url()`, `esc_attr()`, `wp_kses_post()`

@@ -1,0 +1,31 @@
+/*
+==========================================================
+EDITOR STYLES — editor.css
+==========================================================
+WHAT IT IS:
+Block editor-only stylesheet. Loaded exclusively inside
+the WordPress block editor — never on the front end.
+
+WHAT IT DOES:
+Adds visual spacing and separation between blocks in the
+editor so stacked ACF blocks are easier to distinguish
+and work with.
+
+HOW TO USE:
+No action needed. Registered via add_editor_style() in
+functions.php and loads automatically in the editor.
+==========================================================
+*/
+
+
+/* ── ACF Block Spacing ───────────────────────────────────────── */
+
+.block-editor-block-list__layout > [data-type^="acf/"] {
+    margin-bottom: 8px;
+    padding: 12px 0;
+    border-bottom: 2px dashed #e0e0e0;
+}
+
+.block-editor-block-list__layout > [data-type^="acf/"]:last-child {
+    border-bottom: none;
+}
