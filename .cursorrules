@@ -82,6 +82,7 @@ theme-root/
 │   ├── event/
 │   ├── flexible_content/
 │   ├── gallery/
+│   ├── image_grid/
 │   ├── page_list/
 │   ├── profiles_block/
 │   ├── program/
@@ -99,7 +100,7 @@ theme-root/
 │   ├── lity/
 │   └── owl-carousel/             ← Required by gallery block
 │
-├── ~acf_imports/                 ← ACF field group JSON exports (16 files)
+├── ~acf_imports/                 ← ACF field group JSON exports (17 files)
 ├── js/                           ← jquery3.js + scripts.js
 ├── css/                          ← wufoo.css
 └── Guides/                       ← Developer documentation
@@ -219,9 +220,9 @@ Every block follows the same 4-file pattern:
 
 All blocks are auto-registered via a glob loop in functions.php.
 
-All 14 blocks use "category": "boilerplate-blocks" and appear under the "Boilerplate Blocks" group in the editor. Category registered via add_filter( 'block_categories_all' ) in functions.php.
+All 15 blocks use "category": "boilerplate-blocks" and appear under the "Boilerplate Blocks" group in the editor. Category registered via add_filter( 'block_categories_all' ) in functions.php.
 
-### All 14 blocks — exact name values
+### All 15 blocks — exact name values
 
 NOTE: Block naming is inconsistent (known issue). Use exact values below.
 
@@ -235,6 +236,7 @@ NOTE: Block naming is inconsistent (known issue). Use exact values below.
 | event/ | customEvent | Event |
 | flexible_content/ | custom_flexible_content | Flexible Content Section |
 | gallery/ | custom_gallery | Custom Gallery |
+| image_grid/ | custom_image_grid | Image Grid |
 | page_list/ | custom_Page_List | Page Blocks |
 | profiles_block/ | profilesBlock | Profiles |
 | program/ | customProgram | Program |
@@ -342,7 +344,7 @@ Uncomment in functions.php per project as needed:
 
 ## ACF imports
 
-All 16 ACF field group JSON files live in ~acf_imports/.
+All 17 ACF field group JSON files live in ~acf_imports/.
 To set up on a new project: ACF → Tools → Import → select all files.
 
 ---

@@ -1,0 +1,261 @@
+/*
+==========================================================
+IMAGE GRID — image_grid.css
+==========================================================
+WHAT IT IS:
+A responsive CSS grid block for images and text cards.
+
+WHAT IT DOES:
+Renders a configurable grid of image or text items with
+optional header, Lity lightbox support, item links,
+and CTA buttons at the bottom. Column count (2–6) is
+set by the user and applied via the --ig-cols CSS
+custom property.
+
+HOW TO USE:
+1. Add the Image Grid block to any page
+2. Set column count in the Style tab (2–6)
+3. Add up to 12 items — each is image or text
+4. Toggle lightbox per image item if desired
+5. Use the Style tab for background and section variant
+
+Note: --ig-cols is set as an inline style on the block
+wrapper by PHP. The responsive breakpoints override it
+with !important — the only valid use case in this theme,
+because inline styles cannot be overridden otherwise.
+
+All values use boilerplate CSS tokens from style.css.
+==========================================================
+*/
+
+
+/* ── Base Block ─────────────────────────────────────────────── */
+
+.image_grid {
+    width: 100%;
+}
+
+.ig_wrapper {
+    width: 100%;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: var(--space-20) var(--wrapper-padding);
+}
+
+
+/* ── Header ──────────────────────────────────────────────────── */
+
+.ig_header {
+    margin-bottom: var(--space-12);
+}
+
+.ig_header_align_left   { text-align: left; }
+.ig_header_align_center { text-align: center; }
+.ig_header_align_right  { text-align: right; }
+
+.ig_header_heading {
+    font-family: var(--font-heading);
+    font-size: var(--text-3xl);
+    font-weight: var(--weight-bold);
+    color: var(--color-primary);
+    margin: 0 0 var(--space-3) 0;
+    line-height: 1.1;
+}
+
+.ig_header_subheading {
+    font-size: var(--text-lg);
+    color: var(--color-secondary);
+    margin: 0 0 var(--space-4) 0;
+    font-weight: var(--weight-semi);
+}
+
+.ig_header_body {
+    font-size: var(--text-base);
+    color: var(--color-text);
+    line-height: var(--leading-normal);
+    max-width: 700px;
+}
+
+.ig_header_align_center .ig_header_body { margin-left: auto; margin-right: auto; }
+.ig_header_align_right  .ig_header_body { margin-left: auto; }
+
+
+/* ── Grid ────────────────────────────────────────────────────── */
+
+.ig_grid {
+    display: grid;
+    grid-template-columns: repeat(var(--ig-cols, 3), 1fr);
+    gap: var(--space-4);
+}
+
+
+/* ── Items — Image ───────────────────────────────────────────── */
+
+.ig_item_type_image .ig_item_inner {
+    overflow: hidden;
+    border-radius: var(--radius-md);
+}
+
+.ig_item_type_image img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.ig_lightbox_trigger:hover img,
+.ig_item_link_wrap:hover img {
+    transform: scale(1.04);
+}
+
+.ig_lightbox_trigger,
+.ig_item_link_wrap {
+    display: block;
+    overflow: hidden;
+    border-radius: var(--radius-md);
+    line-height: 0;
+}
+
+.ig_caption {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    margin-top: var(--space-2);
+    text-align: center;
+    line-height: var(--leading-normal);
+}
+
+
+/* ── Items — Text ────────────────────────────────────────────── */
+
+.ig_item_type_text .ig_item_inner {
+    background-color: var(--color-bg-alt);
+    border-radius: var(--radius-md);
+    padding: var(--space-6);
+    height: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+}
+
+.ig_item_text {
+    font-size: var(--text-base);
+    color: var(--color-text);
+    line-height: var(--leading-normal);
+    flex: 1;
+}
+
+.ig_item_text p:last-child {
+    margin-bottom: 0;
+}
+
+.ig_item_link {
+    display: inline-block;
+    margin-top: var(--space-4);
+    font-size: var(--text-sm);
+    color: var(--color-accent);
+    text-decoration: none;
+    font-weight: var(--weight-semi);
+}
+
+.ig_item_link:hover {
+    color: var(--color-accent-hover);
+    text-decoration: underline;
+}
+
+
+/* ── CTAs ────────────────────────────────────────────────────── */
+
+.ig_ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+    margin-top: var(--space-12);
+    justify-content: center;
+}
+
+
+/* ── Background Variants — AFTER base rules ──────────────────── */
+
+.ig_bg_default {
+    background-color: var(--color-bg);
+}
+
+.ig_bg_minimal {
+    background-color: transparent;
+}
+
+.ig_bg_minimal .ig_wrapper {
+    padding-top: var(--space-12);
+    padding-bottom: var(--space-12);
+}
+
+.ig_bg_dark {
+    background-color: var(--color-bg-dark);
+}
+
+.ig_bg_dark .ig_header_heading {
+    color: var(--color-text-inverse);
+}
+
+.ig_bg_dark .ig_header_subheading,
+.ig_bg_dark .ig_header_body,
+.ig_bg_dark .ig_caption {
+    color: var(--color-text-inverse);
+}
+
+.ig_bg_dark .ig_item_type_text .ig_item_inner {
+    background-color: rgba(255, 255, 255, 0.08);
+}
+
+.ig_bg_dark .ig_item_text,
+.ig_bg_dark .ig_item_link {
+    color: var(--color-text-inverse);
+}
+
+/* Gradient backgrounds — define per project */
+.ig_bg_gradient_1 { /* add gradient here */ }
+.ig_bg_gradient_2 { /* add gradient here */ }
+.ig_bg_gradient_3 { /* add gradient here */ }
+
+
+/* ── Responsive ──────────────────────────────────────────────── */
+
+@media (max-width: 900px) {
+    /* 5–6 col: cap at 3 on tablet */
+    .ig_grid {
+        grid-template-columns: repeat(min(var(--ig-cols, 3), 3), 1fr) !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .ig_wrapper {
+        padding-top: var(--space-12);
+        padding-bottom: var(--space-12);
+    }
+
+    .ig_header_heading {
+        font-size: var(--text-2xl);
+    }
+
+    /* All column counts collapse to 2 on mobile */
+    .ig_grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+
+    .ig_ctas {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Single column on very small screens */
+    .ig_grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    .ig_header_heading {
+        font-size: var(--text-xl);
+    }
+}

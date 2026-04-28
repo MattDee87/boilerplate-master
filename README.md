@@ -204,6 +204,7 @@ theme-root/
 │   ├── event/
 │   ├── flexible_content/
 │   ├── gallery/
+│   ├── image_grid/
 │   ├── page_list/
 │   ├── profiles_block/
 │   ├── program/
@@ -221,7 +222,7 @@ theme-root/
 │   ├── lity/
 │   └── fitVids/
 │
-├── ~acf_imports/                 ← ACF field group JSON exports (16 files)
+├── ~acf_imports/                 ← ACF field group JSON exports (17 files)
 │
 ├── js/
 │   ├── jquery3.js                ← Custom jQuery
@@ -235,7 +236,7 @@ theme-root/
 
 ---
 
-## The 12 custom blocks
+## The 15 custom blocks
 
 All blocks live in `~wp_blocks/` and auto-register via a glob loop in `functions.php`. Every block follows the same 4-file pattern: `block.json`, `.php`, `.css`, and optionally `.js`.
 
@@ -251,6 +252,7 @@ All blocks appear under the **Boilerplate Blocks** category in the WordPress blo
 | event | Event | Event card with title, location, date, and time |
 | flexible_content | Flexible Content Section | Multi-layout content section: centered, split, cards grid, or stats row. Optional media, repeater items, and CTAs |
 | gallery | Custom Gallery | Image slideshow powered by Owl Carousel |
+| image_grid | Image Grid | Responsive CSS grid of images and text cards. 2–6 columns, optional lightbox (Lity), optional header and CTAs |
 | page_list | Page Blocks | Grid of linked page cards |
 | profiles_block | Profiles | Team member or staff profiles with bio and photo |
 | program | Program | Program info card with optional PDF download |
@@ -262,7 +264,7 @@ All blocks appear under the **Boilerplate Blocks** category in the WordPress blo
 
 ## ACF field groups
 
-All 16 ACF field group configurations are exported as JSON in `~acf_imports/`. On a new project import all files via **ACF → Tools → Import** for instant setup.
+All 17 ACF field group configurations are exported as JSON in `~acf_imports/`. On a new project import all files via **ACF → Tools → Import** for instant setup.
 
 | File | Purpose |
 |---|---|
@@ -276,6 +278,7 @@ All 16 ACF field group configurations are exported as JSON in `~acf_imports/`. O
 | `acf-event-block.json` | Event block fields |
 | `acf-flexible-content-block.json` | Flexible Content Section block fields |
 | `acf-gallery-block.json` | Gallery block fields |
+| `acf-image-grid-block.json` | Image Grid block fields |
 | `acf-page-list-block.json` | Page List block fields |
 | `acf-profiles-block.json` | Profiles block fields |
 | `acf-program-block.json` | Program block fields |

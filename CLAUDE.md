@@ -78,7 +78,7 @@ theme-root/
 │   ├── dashboard_fixes.php       ← WP admin hardening + utilities
 │   └── campaign-success.php      ← Landing page thank you with optional ?cid lookup
 │
-├── ~wp_blocks/                   ← All 14 ACF-powered custom blocks
+├── ~wp_blocks/                   ← All 15 ACF-powered custom blocks
 │   ├── Hero/
 │   ├── accordion/
 │   ├── callout/
@@ -87,6 +87,7 @@ theme-root/
 │   ├── event/
 │   ├── flexible_content/
 │   ├── gallery/
+│   ├── image_grid/
 │   ├── page_list/
 │   ├── profiles_block/
 │   ├── program/
@@ -260,9 +261,9 @@ Why: Gallery and Accordion depend on jQuery and Owl Carousel being loaded first.
 Moving their init code to scripts.js guarantees correct dependency order.
 scripts.js declares both jquery and owl-core-js as dependencies in functions.php.
 
-**Block category:** All 14 blocks use `"category": "boilerplate-blocks"` and appear under the "Boilerplate Blocks" group in the editor. The category is registered via `add_filter( 'block_categories_all' )` in `functions.php`.
+**Block category:** All 15 blocks use `"category": "boilerplate-blocks"` and appear under the "Boilerplate Blocks" group in the editor. The category is registered via `add_filter( 'block_categories_all' )` in `functions.php`.
 
-### All 14 blocks and their exact name values
+### All 15 blocks and their exact name values
 
 ⚠️ Note: Block naming is inconsistent — a mix of snake_case, camelCase, and PascalCase. This is a known issue to standardize in a future version. Use the exact values below when referencing blocks.
 
@@ -276,6 +277,7 @@ scripts.js declares both jquery and owl-core-js as dependencies in functions.php
 | `event/` | `customEvent` | Event |
 | `flexible_content/` | `custom_flexible_content` | Flexible Content Section |
 | `gallery/` | `custom_gallery` | Custom Gallery |
+| `image_grid/` | `custom_image_grid` | Image Grid |
 | `page_list/` | `custom_Page_List` | Page Blocks |
 | `profiles_block/` | `profilesBlock` | Profiles |
 | `program/` | `customProgram` | Program |
@@ -380,6 +382,7 @@ All ACF field group configurations are exported as JSON in `~acf_imports/`:
 | `acf-event-block.json` | Event block fields |
 | `acf-flexible-content-block.json` | Flexible Content Section block fields |
 | `acf-gallery-block.json` | Gallery block fields |
+| `acf-image-grid-block.json` | Image Grid block fields |
 | `acf-page-list-block.json` | Page List block fields |
 | `acf-profiles-block.json` | Profiles block fields |
 | `acf-program-block.json` | Program block fields |

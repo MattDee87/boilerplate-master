@@ -1,0 +1,470 @@
+[
+    {
+        "key": "group_image_grid_block",
+        "title": "Image Grid Block",
+        "fields": [
+
+            {
+                "key": "field_ig_tab_content",
+                "label": "Content",
+                "name": "",
+                "type": "tab",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": { "width": "", "class": "", "id": "" },
+                "placement": "top",
+                "endpoint": 0
+            },
+
+            {
+                "key": "field_ig_show_header",
+                "label": "Show Header",
+                "name": "ig_show_header",
+                "type": "true_false",
+                "instructions": "Toggle to show an optional heading, subheading, and body above the grid.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": { "width": "", "class": "", "id": "" },
+                "message": "Enable header section",
+                "default_value": 0,
+                "ui": 1,
+                "ui_on_text": "On",
+                "ui_off_text": "Off"
+            },
+
+            {
+                "key": "field_ig_header_heading",
+                "label": "Heading",
+                "name": "ig_header_heading",
+                "type": "text",
+                "instructions": "Main heading above the grid. Renders as H2.",
+                "required": 0,
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_ig_show_header",
+                            "operator": "==",
+                            "value": "1"
+                        }
+                    ]
+                ],
+                "wrapper": { "width": "60", "class": "", "id": "" },
+                "default_value": "",
+                "placeholder": "Our Work",
+                "maxlength": ""
+            },
+
+            {
+                "key": "field_ig_header_alignment",
+                "label": "Alignment",
+                "name": "ig_header_alignment",
+                "type": "select",
+                "instructions": "Text alignment of the header.",
+                "required": 0,
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_ig_show_header",
+                            "operator": "==",
+                            "value": "1"
+                        }
+                    ]
+                ],
+                "wrapper": { "width": "20", "class": "", "id": "" },
+                "choices": {
+                    "left": "Left",
+                    "center": "Center",
+                    "right": "Right"
+                },
+                "default_value": "center",
+                "allow_null": 0,
+                "multiple": 0,
+                "ui": 0,
+                "return_format": "value"
+            },
+
+            {
+                "key": "field_ig_header_subheading",
+                "label": "Subheading",
+                "name": "ig_header_subheading",
+                "type": "text",
+                "instructions": "Optional subheading displayed below the heading.",
+                "required": 0,
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_ig_show_header",
+                            "operator": "==",
+                            "value": "1"
+                        }
+                    ]
+                ],
+                "wrapper": { "width": "80", "class": "", "id": "" },
+                "default_value": "",
+                "placeholder": "A short supporting line",
+                "maxlength": ""
+            },
+
+            {
+                "key": "field_ig_header_body",
+                "label": "Body",
+                "name": "ig_header_body",
+                "type": "textarea",
+                "instructions": "Optional paragraph below the subheading.",
+                "required": 0,
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_ig_show_header",
+                            "operator": "==",
+                            "value": "1"
+                        }
+                    ]
+                ],
+                "wrapper": { "width": "", "class": "", "id": "" },
+                "default_value": "",
+                "placeholder": "",
+                "maxlength": "",
+                "rows": 3,
+                "new_lines": "br"
+            },
+
+            {
+                "key": "field_ig_items",
+                "label": "Grid Items",
+                "name": "ig_items",
+                "type": "repeater",
+                "instructions": "Add up to 12 items. Each item is either an image or a text card.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": { "width": "", "class": "", "id": "" },
+                "layout": "block",
+                "min": 0,
+                "max": 12,
+                "button_label": "Add Item",
+                "sub_fields": [
+
+                    {
+                        "key": "field_ig_item_type",
+                        "label": "Item Type",
+                        "name": "ig_item_type",
+                        "type": "select",
+                        "instructions": "What does this grid cell contain?",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": { "width": "25", "class": "", "id": "" },
+                        "choices": {
+                            "image": "Image",
+                            "text": "Text Card"
+                        },
+                        "default_value": "image",
+                        "allow_null": 0,
+                        "multiple": 0,
+                        "ui": 0,
+                        "return_format": "value"
+                    },
+
+                    {
+                        "key": "field_ig_item_image",
+                        "label": "Image",
+                        "name": "ig_item_image",
+                        "type": "image",
+                        "instructions": "Upload or select an image.",
+                        "required": 0,
+                        "conditional_logic": [
+                            [
+                                {
+                                    "field": "field_ig_item_type",
+                                    "operator": "==",
+                                    "value": "image"
+                                }
+                            ]
+                        ],
+                        "wrapper": { "width": "75", "class": "", "id": "" },
+                        "return_format": "array",
+                        "preview_size": "medium",
+                        "library": "all"
+                    },
+
+                    {
+                        "key": "field_ig_item_lightbox_enabled",
+                        "label": "Lightbox",
+                        "name": "ig_item_lightbox_enabled",
+                        "type": "true_false",
+                        "instructions": "Open full image in a Lity lightbox on click. Overrides link.",
+                        "required": 0,
+                        "conditional_logic": [
+                            [
+                                {
+                                    "field": "field_ig_item_type",
+                                    "operator": "==",
+                                    "value": "image"
+                                }
+                            ]
+                        ],
+                        "wrapper": { "width": "25", "class": "", "id": "" },
+                        "message": "Enable lightbox",
+                        "default_value": 0,
+                        "ui": 1,
+                        "ui_on_text": "On",
+                        "ui_off_text": "Off"
+                    },
+
+                    {
+                        "key": "field_ig_item_caption",
+                        "label": "Caption",
+                        "name": "ig_item_caption",
+                        "type": "text",
+                        "instructions": "Optional caption shown below the image.",
+                        "required": 0,
+                        "conditional_logic": [
+                            [
+                                {
+                                    "field": "field_ig_item_type",
+                                    "operator": "==",
+                                    "value": "image"
+                                }
+                            ]
+                        ],
+                        "wrapper": { "width": "75", "class": "", "id": "" },
+                        "default_value": "",
+                        "placeholder": "",
+                        "maxlength": ""
+                    },
+
+                    {
+                        "key": "field_ig_item_text",
+                        "label": "Text Content",
+                        "name": "ig_item_text",
+                        "type": "wysiwyg",
+                        "instructions": "Content for the text card.",
+                        "required": 0,
+                        "conditional_logic": [
+                            [
+                                {
+                                    "field": "field_ig_item_type",
+                                    "operator": "==",
+                                    "value": "text"
+                                }
+                            ]
+                        ],
+                        "wrapper": { "width": "", "class": "", "id": "" },
+                        "default_value": "",
+                        "tabs": "visual",
+                        "toolbar": "basic",
+                        "media_upload": 0,
+                        "delay": 0
+                    },
+
+                    {
+                        "key": "field_ig_item_link_url",
+                        "label": "Link URL",
+                        "name": "ig_item_link_url",
+                        "type": "url",
+                        "instructions": "For images (no lightbox): wraps the image in a link. For text cards: used with the Link Label below.",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": { "width": "60", "class": "", "id": "" },
+                        "default_value": "",
+                        "placeholder": "https://"
+                    },
+
+                    {
+                        "key": "field_ig_item_link_label",
+                        "label": "Link Label",
+                        "name": "ig_item_link_label",
+                        "type": "text",
+                        "instructions": "Text for the link shown below a text card. Leave blank to hide.",
+                        "required": 0,
+                        "conditional_logic": [
+                            [
+                                {
+                                    "field": "field_ig_item_type",
+                                    "operator": "==",
+                                    "value": "text"
+                                }
+                            ]
+                        ],
+                        "wrapper": { "width": "40", "class": "", "id": "" },
+                        "default_value": "",
+                        "placeholder": "Learn More",
+                        "maxlength": ""
+                    }
+
+                ]
+            },
+
+            {
+                "key": "field_ig_tab_cta",
+                "label": "CTAs",
+                "name": "",
+                "type": "tab",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": { "width": "", "class": "", "id": "" },
+                "placement": "top",
+                "endpoint": 0
+            },
+
+            {
+                "key": "field_ig_cta_1_label",
+                "label": "CTA 1 Label",
+                "name": "ig_cta_1_label",
+                "type": "text",
+                "instructions": "Primary button label. Leave blank to hide.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": { "width": "50", "class": "", "id": "" },
+                "default_value": "",
+                "placeholder": "View All",
+                "maxlength": ""
+            },
+
+            {
+                "key": "field_ig_cta_1_url",
+                "label": "CTA 1 URL",
+                "name": "ig_cta_1_url",
+                "type": "url",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": { "width": "50", "class": "", "id": "" },
+                "default_value": "",
+                "placeholder": "https://"
+            },
+
+            {
+                "key": "field_ig_cta_2_label",
+                "label": "CTA 2 Label",
+                "name": "ig_cta_2_label",
+                "type": "text",
+                "instructions": "Secondary button label. Leave blank to hide.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": { "width": "50", "class": "", "id": "" },
+                "default_value": "",
+                "placeholder": "Contact Us",
+                "maxlength": ""
+            },
+
+            {
+                "key": "field_ig_cta_2_url",
+                "label": "CTA 2 URL",
+                "name": "ig_cta_2_url",
+                "type": "url",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": { "width": "50", "class": "", "id": "" },
+                "default_value": "",
+                "placeholder": "https://"
+            },
+
+            {
+                "key": "field_ig_tab_style",
+                "label": "Style",
+                "name": "",
+                "type": "tab",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": { "width": "", "class": "", "id": "" },
+                "placement": "top",
+                "endpoint": 0
+            },
+
+            {
+                "key": "field_ig_columns",
+                "label": "Columns",
+                "name": "ig_columns",
+                "type": "select",
+                "instructions": "Number of columns. On mobile, collapses to 2 (or 1 on very small screens).",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": { "width": "50", "class": "", "id": "" },
+                "choices": {
+                    "2": "2 Columns",
+                    "3": "3 Columns",
+                    "4": "4 Columns",
+                    "5": "5 Columns",
+                    "6": "6 Columns"
+                },
+                "default_value": "3",
+                "allow_null": 0,
+                "multiple": 0,
+                "ui": 0,
+                "return_format": "value"
+            },
+
+            {
+                "key": "field_ig_background_style",
+                "label": "Background",
+                "name": "ig_background_style",
+                "type": "select",
+                "instructions": "Block background color or treatment.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": { "width": "50", "class": "", "id": "" },
+                "choices": {
+                    "default": "Default (site bg)",
+                    "minimal": "Minimal (transparent)",
+                    "dark": "Dark",
+                    "gradient-1": "Gradient 1",
+                    "gradient-2": "Gradient 2",
+                    "gradient-3": "Gradient 3"
+                },
+                "default_value": "default",
+                "allow_null": 0,
+                "multiple": 0,
+                "ui": 0,
+                "return_format": "value"
+            },
+
+            {
+                "key": "field_ig_section_variant",
+                "label": "Section Variant",
+                "name": "section_variant",
+                "type": "select",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": { "width": "50", "class": "", "id": "" },
+                "choices": {
+                    "default": "Default",
+                    "homepage-feature": "Homepage Feature",
+                    "minimal": "Minimal",
+                    "split-feature": "Split Feature",
+                    "cards-feature": "Cards Feature",
+                    "inner-banner": "Inner Banner"
+                },
+                "default_value": "default",
+                "return_format": "value",
+                "multiple": 0,
+                "allow_null": 0,
+                "ui": 0,
+                "ajax": 0,
+                "placeholder": ""
+            }
+
+        ],
+        "location": [
+            [
+                {
+                    "param": "block",
+                    "operator": "==",
+                    "value": "acf/custom-image-grid"
+                }
+            ]
+        ],
+        "menu_order": 0,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": true,
+        "description": "Field group for the Image Grid Block — responsive CSS grid of images and text cards with optional lightbox, links, header, and CTAs."
+    }
+]

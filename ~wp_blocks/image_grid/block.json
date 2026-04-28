@@ -1,0 +1,19 @@
+{
+    "name": "custom_image_grid",
+    "title": "Image Grid",
+    "description": "A responsive image or text grid with optional header, lightbox, links, and CTA buttons. Supports 2–6 columns.",
+    "category": "boilerplate-blocks",
+    "icon": "grid-view",
+    "apiVersion": 2,
+    "keywords": ["grid", "image", "gallery", "photo", "cards"],
+    "style": "file:./image_grid.css",
+    "editorStyle": "file:./image_grid.css",
+    "acf": {
+        "mode": "edit",
+        "renderTemplate": "./image_grid.php",
+        "postTypes": ["post", "page"]
+    },
+    "supports": {},
+    "attributes": {},
+    "example": {}
+}

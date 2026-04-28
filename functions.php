@@ -84,7 +84,7 @@
             // Main Stylesheet
             wp_enqueue_style( 'site-core-css', get_stylesheet_uri(), array(), null, 'all' );
             wp_enqueue_style( 'ada-nav-css', get_template_directory_uri() . '/~common_features/ada_responsive_nav/style.css', array( 'site-core-css' ), null, 'all' );
-            // wp_enqueue_style( 'lity-core-css', get_template_directory_uri() . '/~js_plugins/lity/lity.min.css', array(), null, 'all' );
+            wp_enqueue_style( 'lity-core-css', get_template_directory_uri() . '/~js_plugins/lity/lity.min.css', array(), null, 'all' );
             // wp_enqueue_style( 'lightbox-core-css', get_template_directory_uri() . '/~js_plugins/lightbox/lightbox.min.css', array(), null, 'all' );
             wp_enqueue_style( 'owl-core-css', get_template_directory_uri() . '/~js_plugins/owl-carousel/owl.carousel.css', array(), null, 'all' );
 
@@ -101,7 +101,7 @@
             
             // Plugins
             // wp_enqueue_script('lightbox-core-js', get_template_directory_uri() .'/~js_plugins/lightbox/lightbox.min.js' , array('jquery'), null, array('strategy' => 'defer'));
-            // wp_enqueue_script('lity-core-js', get_template_directory_uri() .'/~js_plugins/lity/lity.min.js' , array('jquery'), null, array('strategy' => 'defer'));
+            wp_enqueue_script('lity-core-js', get_template_directory_uri() .'/~js_plugins/lity/lity.min.js' , array('jquery'), null, array('strategy' => 'defer'));
             wp_enqueue_script('ada-nav-js', get_template_directory_uri() . '/~common_features/ada_responsive_nav/script.js', array('jquery'), null, array('strategy' => 'defer'));
             wp_enqueue_script('owl-core-js', get_template_directory_uri() . '/~js_plugins/owl-carousel/owl.carousel.min.js' , array('jquery'), null, array('strategy' => 'defer'));
             // wp_enqueue_script('fitVids-core-js', get_template_directory_uri() .'/~js_plugins/fitVids/jquery.fitvids.js' , array('jquery'), null, array('strategy' => 'defer'));
