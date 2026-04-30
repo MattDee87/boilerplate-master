@@ -110,7 +110,7 @@
                 "key": "field_ig_header_body",
                 "label": "Body",
                 "name": "ig_header_body",
-                "type": "textarea",
+                "type": "wysiwyg",
                 "instructions": "Optional paragraph below the subheading.",
                 "required": 0,
                 "conditional_logic": [
@@ -124,10 +124,10 @@
                 ],
                 "wrapper": { "width": "", "class": "", "id": "" },
                 "default_value": "",
-                "placeholder": "",
-                "maxlength": "",
-                "rows": 3,
-                "new_lines": "br"
+                "tabs": "all",
+                "toolbar": "full",
+                "media_upload": 0,
+                "delay": 0
             },
 
             {
@@ -238,7 +238,36 @@
                         "label": "Text Content",
                         "name": "ig_item_text",
                         "type": "wysiwyg",
-                        "instructions": "Content for the text card.",
+                        "instructions": "Content for the text card. Hidden when Flip Card is enabled.",
+                        "required": 0,
+                        "conditional_logic": [
+                            [
+                                {
+                                    "field": "field_ig_item_type",
+                                    "operator": "==",
+                                    "value": "text"
+                                },
+                                {
+                                    "field": "field_ig_item_flip_enabled",
+                                    "operator": "!=",
+                                    "value": "1"
+                                }
+                            ]
+                        ],
+                        "wrapper": { "width": "", "class": "", "id": "" },
+                        "default_value": "",
+                        "tabs": "all",
+                        "toolbar": "full",
+                        "media_upload": 0,
+                        "delay": 0
+                    },
+
+                    {
+                        "key": "field_ig_item_flip_enabled",
+                        "label": "Enable Flip Card",
+                        "name": "ig_item_flip_enabled",
+                        "type": "true_false",
+                        "instructions": "Toggle on to make this text card a flip card with a front and back face.",
                         "required": 0,
                         "conditional_logic": [
                             [
@@ -249,10 +278,93 @@
                                 }
                             ]
                         ],
+                        "wrapper": { "width": "25", "class": "", "id": "" },
+                        "message": "Enable flip card",
+                        "default_value": 0,
+                        "ui": 1,
+                        "ui_on_text": "On",
+                        "ui_off_text": "Off"
+                    },
+
+                    {
+                        "key": "field_ig_card_front_heading",
+                        "label": "Front Heading",
+                        "name": "ig_card_front_heading",
+                        "type": "text",
+                        "instructions": "Short heading shown on the front face.",
+                        "required": 0,
+                        "conditional_logic": [
+                            [
+                                {
+                                    "field": "field_ig_item_type",
+                                    "operator": "==",
+                                    "value": "text"
+                                },
+                                {
+                                    "field": "field_ig_item_flip_enabled",
+                                    "operator": "==",
+                                    "value": "1"
+                                }
+                            ]
+                        ],
+                        "wrapper": { "width": "75", "class": "", "id": "" },
+                        "default_value": "",
+                        "placeholder": "e.g. Custom Built",
+                        "maxlength": ""
+                    },
+
+                    {
+                        "key": "field_ig_card_front_image",
+                        "label": "Front Image",
+                        "name": "ig_card_front_image",
+                        "type": "image",
+                        "instructions": "Optional image shown on the front face.",
+                        "required": 0,
+                        "conditional_logic": [
+                            [
+                                {
+                                    "field": "field_ig_item_type",
+                                    "operator": "==",
+                                    "value": "text"
+                                },
+                                {
+                                    "field": "field_ig_item_flip_enabled",
+                                    "operator": "==",
+                                    "value": "1"
+                                }
+                            ]
+                        ],
+                        "wrapper": { "width": "", "class": "", "id": "" },
+                        "return_format": "array",
+                        "preview_size": "medium",
+                        "library": "all"
+                    },
+
+                    {
+                        "key": "field_ig_card_back_body",
+                        "label": "Back Body",
+                        "name": "ig_card_back_body",
+                        "type": "wysiwyg",
+                        "instructions": "Content shown on the back face.",
+                        "required": 0,
+                        "conditional_logic": [
+                            [
+                                {
+                                    "field": "field_ig_item_type",
+                                    "operator": "==",
+                                    "value": "text"
+                                },
+                                {
+                                    "field": "field_ig_item_flip_enabled",
+                                    "operator": "==",
+                                    "value": "1"
+                                }
+                            ]
+                        ],
                         "wrapper": { "width": "", "class": "", "id": "" },
                         "default_value": "",
-                        "tabs": "visual",
-                        "toolbar": "basic",
+                        "tabs": "all",
+                        "toolbar": "full",
                         "media_upload": 0,
                         "delay": 0
                     },
@@ -262,7 +374,7 @@
                         "label": "Link URL",
                         "name": "ig_item_link_url",
                         "type": "url",
-                        "instructions": "For images (no lightbox): wraps the image in a link. For text cards: used with the Link Label below.",
+                        "instructions": "For images (no lightbox): wraps the image in a link. For text cards: shown below card content. For flip cards: shown on the back face.",
                         "required": 0,
                         "conditional_logic": 0,
                         "wrapper": { "width": "60", "class": "", "id": "" },

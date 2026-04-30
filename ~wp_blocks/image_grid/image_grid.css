@@ -164,6 +164,147 @@ All values use boilerplate CSS tokens from style.css.
 }
 
 
+/* ── Items — Flip Text Cards ─────────────────────────────────── */
+/*
+ * .ig_card_faces height is controlled by --ig-flip-height (default 260px).
+ * Override this CSS custom property per project as needed:
+ *   .image_grid { --ig-flip-height: 320px; }
+ */
+
+.ig_item_type_text_flip {
+    perspective: 1000px;
+}
+
+.ig_item_type_text_flip .ig_item_inner {
+    background-color: transparent;
+    padding: 0;
+    height: 100%;
+}
+
+.ig_card_faces {
+    --ig-flip-height: 260px;
+    position: relative;
+    width: 100%;
+    height: var(--ig-flip-height);
+    transform-style: preserve-3d;
+    transition: transform 0.5s ease;
+    border-radius: var(--radius-md);
+}
+
+.ig_item_type_text_flip:hover .ig_card_faces {
+    transform: rotateY(180deg);
+}
+
+.ig_card_face {
+    position: absolute;
+    inset: 0;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: var(--space-6);
+    box-sizing: border-box;
+}
+
+.ig_card_face_front {
+    background-color: var(--color-bg-alt);
+}
+
+.ig_card_face_back {
+    background-color: var(--color-bg-dark);
+    transform: rotateY(180deg);
+    padding: var(--space-8);
+    justify-content: flex-start;
+    overflow-y: auto;
+}
+
+/* Front face image */
+.ig_card_front_image {
+    width: 100%;
+    margin-bottom: var(--space-4);
+}
+
+.ig_card_front_image img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border-radius: var(--radius-sm);
+}
+
+.ig_card_front_heading {
+    font-family: var(--font-heading);
+    font-size: var(--text-lg);
+    font-weight: var(--weight-semi);
+    color: var(--color-primary);
+    margin: 0;
+    line-height: 1.2;
+    text-align: center;
+}
+
+/* Back face content */
+.ig_card_back_body {
+    font-size: var(--text-base);
+    color: var(--color-text-inverse);
+    line-height: var(--leading-normal);
+    flex: 1;
+}
+
+.ig_card_back_body p:last-child {
+    margin-bottom: 0;
+}
+
+.ig_card_face_back .ig_item_link {
+    color: var(--color-text-inverse);
+    margin-top: var(--space-4);
+}
+
+.ig_card_face_back .ig_item_link:hover {
+    color: var(--color-text-inverse);
+    opacity: 0.8;
+}
+
+/* Dark bg override — front face */
+.ig_bg_dark .ig_card_face_front {
+    background-color: rgba(255, 255, 255, 0.08);
+}
+
+.ig_bg_dark .ig_card_front_heading {
+    color: var(--color-text-inverse);
+}
+
+/* Mobile — disable 3D flip, stack faces vertically */
+@media (max-width: 768px) {
+
+    .ig_item_type_text_flip {
+        perspective: none;
+    }
+
+    .ig_card_faces {
+        transform-style: flat;
+        height: auto;
+        min-height: 0;
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-2);
+    }
+
+    .ig_item_type_text_flip:hover .ig_card_faces {
+        transform: none;
+    }
+
+    .ig_card_face {
+        position: static;
+        transform: none !important;
+        backface-visibility: visible;
+        -webkit-backface-visibility: visible;
+    }
+}
+
+
 /* ── CTAs ────────────────────────────────────────────────────── */
 
 .ig_ctas {

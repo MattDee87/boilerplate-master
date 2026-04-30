@@ -60,8 +60,15 @@
                     $img_url          = is_array( $image ) ? $image['url']         : '';
                     $img_alt          = is_array( $image ) ? $image['alt']         : '';
                     $img_full         = is_array( $image ) && isset( $image['sizes']['large'] ) ? $image['sizes']['large'] : $img_url;
+                    $flip_enabled     = isset( $item['ig_item_flip_enabled'] )     ? (bool) $item['ig_item_flip_enabled'] : false;
+                    $front_heading    = isset( $item['ig_card_front_heading'] )    ? $item['ig_card_front_heading']    : '';
+                    $front_img        = isset( $item['ig_card_front_image'] )      ? $item['ig_card_front_image']      : null;
+                    $back_body        = isset( $item['ig_card_back_body'] )        ? $item['ig_card_back_body']        : '';
+                    $front_img_url    = is_array( $front_img ) ? $front_img['url'] : '';
+                    $front_img_alt    = is_array( $front_img ) ? $front_img['alt'] : '';
+                    $flip_class       = ( $type === 'text' && $flip_enabled ) ? ' ig_item_type_text_flip' : '';
                 ?>
-                    <div class="ig_item ig_item_type_<?= esc_attr( $type ); ?>">
+                    <div class="ig_item ig_item_type_<?= esc_attr( $type ); ?><?= esc_attr( $flip_class ); ?>">
                         <div class="ig_item_inner">
 
                             <?php if ( $type === 'image' && $img_url ) : ?>
@@ -84,12 +91,48 @@
 
                             <?php elseif ( $type === 'text' ) : ?>
 
-                                <?php if ( $item_text ) : ?>
-                                    <div class="ig_item_text"><?= wp_kses_post( $item_text ); ?></div>
-                                <?php endif; ?>
+                                <?php if ( $flip_enabled ) : ?>
 
-                                <?php if ( $link_url && $link_label ) : ?>
-                                    <a href="<?= esc_url( $link_url ); ?>" class="ig_item_link"><?= esc_html( $link_label ); ?></a>
+                                    <div class="ig_card_faces">
+
+                                        <div class="ig_card_face ig_card_face_front">
+
+                                            <?php if ( $front_img_url ) : ?>
+                                                <div class="ig_card_front_image">
+                                                    <img src="<?= esc_url( $front_img_url ); ?>" alt="<?= esc_attr( $front_img_alt ?: $front_heading ); ?>" loading="lazy">
+                                                </div>
+                                            <?php endif; ?>
+
+                                            <?php if ( $front_heading ) : ?>
+                                                <h3 class="ig_card_front_heading"><?= esc_html( $front_heading ); ?></h3>
+                                            <?php endif; ?>
+
+                                        </div>
+
+                                        <div class="ig_card_face ig_card_face_back">
+
+                                            <?php if ( $back_body ) : ?>
+                                                <div class="ig_card_back_body"><?= wp_kses_post( $back_body ); ?></div>
+                                            <?php endif; ?>
+
+                                            <?php if ( $link_url && $link_label ) : ?>
+                                                <a href="<?= esc_url( $link_url ); ?>" class="ig_item_link"><?= esc_html( $link_label ); ?></a>
+                                            <?php endif; ?>
+
+                                        </div>
+
+                                    </div>
+
+                                <?php else : ?>
+
+                                    <?php if ( $item_text ) : ?>
+                                        <div class="ig_item_text"><?= wp_kses_post( $item_text ); ?></div>
+                                    <?php endif; ?>
+
+                                    <?php if ( $link_url && $link_label ) : ?>
+                                        <a href="<?= esc_url( $link_url ); ?>" class="ig_item_link"><?= esc_html( $link_label ); ?></a>
+                                    <?php endif; ?>
+
                                 <?php endif; ?>
 
                             <?php endif; ?>

@@ -289,8 +289,8 @@
                         ],
                         "wrapper": { "width": "50", "class": "", "id": "" },
                         "default_value": "",
-                        "tabs": "visual",
-                        "toolbar": "basic",
+                        "tabs": "all",
+                        "toolbar": "full",
                         "media_upload": 0,
                         "delay": 0
                     },
@@ -313,8 +313,8 @@
                         ],
                         "wrapper": { "width": "50", "class": "", "id": "" },
                         "default_value": "",
-                        "tabs": "visual",
-                        "toolbar": "basic",
+                        "tabs": "all",
+                        "toolbar": "full",
                         "media_upload": 0,
                         "delay": 0
                     },
