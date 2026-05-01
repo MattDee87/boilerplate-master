@@ -154,7 +154,7 @@ When updating tokens for a new project — update BOTH files.
 --text-xs through --text-4xl
 
 /* Spacing */
---space-1 through --space-24
+Spacing tokens are not continuous. Only use spacing tokens explicitly defined in `style.css` `:root`: `--space-1`, `--space-2`, `--space-3`, `--space-4`, `--space-5`, `--space-6`, `--space-8`, `--space-10`, `--space-12`, `--space-16`, `--space-20`, and `--space-24`. Do not invent intermediate tokens such as `--space-14`.
 
 /* Borders */
 --radius-sm, --radius-md, --radius-lg, --radius-xl, --radius-full
