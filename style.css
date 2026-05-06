@@ -385,41 +385,16 @@ pre {
 }
  
 /* ── 5b. Main ───────────────────────────────────────────────
-   ⚠️  LEGACY CONSTRAINT — read before changing.
-
-   This rule globally constrains all content inside <main>.
-   It is convenient for normal text-heavy page templates, but
-   block-driven full-width sections must break out using:
-
-       width: 100vw;
-       margin-left: calc(50% - 50vw);
-       margin-right: calc(50% - 50vw);
-
-   That breakout math currently lives in multiple block CSS
-   files (Hero, CTA Banner, and others).
-
-   DO NOT remove or change this rule in isolation. The live
-   Boilerplate Master demo and current block CSS both rely on
-   it. Removing it without also updating every block will
-   break centering across the entire site.
-
-   Long-term block-driven direction:
-   — main should become unconstrained by default
-   — outer <section> owns full-width behavior and vertical spacing
-   — inner .wrapper owns max-width, centering, horizontal padding
-   — normal text pages use a dedicated content wrapper instead
-     of relying on the global main constraint
-
-   This should only be changed during a coordinated layout
-   cleanup that also removes or centralizes the breakout math
-   from all block CSS files in the same pass.
-   See STYLESHEET_GUIDE.md — CSS Organization Architecture.
+   Unconstrained. Each block owns its containment via .wrapper.
+   Vertical margin creates breathing room above and below main.
+   Templates that need content containment use .wrapper inside
+   <main> directly (page.php, single.php, home.php, etc.).
+   Full-width block templates (front-page.php) let blocks render
+   directly in main — each block's inner .wrapper handles it.
    ────────────────────────────────────────────────────────── */
 
 main {
-    max-width: var(--max-width);
-    margin: var(--space-16) auto;
-    padding: 0 var(--wrapper-padding);
+    margin: var(--space-16) 0;
 }
 
 #content {

@@ -25,8 +25,8 @@
 
     if ( ! $items && ! $show_header ) return;
 ?>
-<div class="image_grid <?= esc_attr( "$bg_class $variant_class" ); ?>" style="--ig-cols: <?= $columns; ?>">
-    <div class="ig_wrapper">
+<section class="image_grid <?= esc_attr( "$bg_class $variant_class" ); ?>" style="--ig-cols: <?= $columns; ?>">
+    <div class="wrapper ig_wrapper">
 
         <?php if ( $show_header && ( $header_heading || $header_sub || $header_body ) ) : ?>
             <div class="ig_header <?= esc_attr( $align_class ); ?>">
@@ -157,4 +157,4 @@
         <?php endif; ?>
 
     </div>
-</div>
+</section>

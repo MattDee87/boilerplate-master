@@ -63,14 +63,14 @@ if ( $heading ) :
 ?>
  
 <?php $hero_style = get_field('hero_style') ?: 'full-width'; ?>
-<div class="hero_block hero_style_<?php echo esc_attr($hero_style); ?> hero_align_<?php echo esc_attr($alignment); ?> <?php echo esc_attr($variant_class); ?>" style="<?php echo $bg_styles; ?>">
+<section class="hero_block hero_style_<?php echo esc_attr($hero_style); ?> hero_align_<?php echo esc_attr($alignment); ?> <?php echo esc_attr($variant_class); ?>" style="<?php echo $bg_styles; ?>">
  
     <?php if ( $bg_image ) : ?>
         <!-- Dark overlay — opacity controlled by ACF field -->
         <div class="hero_overlay" style="background: rgba(0,0,0,<?php echo $overlay_decimal; ?>);"></div>
     <?php endif; ?>
  
-    <div class="hero_inner">
+    <div class="wrapper hero_inner">
  
         <?php if ( $subheading ) : ?>
             <p class="hero_subheading"><?php echo esc_html($subheading); ?></p>
@@ -102,6 +102,6 @@ if ( $heading ) :
  
     </div><!-- /.hero_inner -->
  
-</div><!-- /.hero_block -->
+</section><!-- /.hero_block -->
  
 <?php endif; ?>

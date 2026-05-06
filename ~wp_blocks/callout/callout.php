@@ -8,9 +8,11 @@
     if($content) :
 
 ?>
-    <div class="special_callout <?= esc_attr($variant_class); ?>">
-        <div class="special_callout_inner">
-            <?php echo wp_kses_post($content); ?>
+    <section class="special_callout <?= esc_attr($variant_class); ?>">
+        <div class="wrapper special_callout_wrapper">
+            <div class="special_callout_inner">
+                <?php echo wp_kses_post($content); ?>
+            </div>
         </div>
-    </div>
+    </section>
 <?php endif; ?>

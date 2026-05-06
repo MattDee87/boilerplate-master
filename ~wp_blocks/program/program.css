@@ -30,12 +30,15 @@ All values use boilerplate CSS tokens from style.css.
 */
 
 .program_block {
+    margin: var(--space-8) 0;
+}
+
+.program_block_card {
     background: var(--color-bg-alt);
     border: 1px solid var(--color-border);
     border-radius: var(--radius-md);
     transition: ease all 300ms;
     position: relative;
-    margin: var(--space-8) 0;
     overflow: hidden;
 }
 
@@ -43,7 +46,7 @@ All values use boilerplate CSS tokens from style.css.
    BOILERPLATE NOTE: Full rule kept here so this block is self-contained
    when copied to a new project. On a live project, remove this and rely
    on the shared definition in §10f. */
-.program_block:after {
+.program_block_card:after {
     content: '';
     height: 20px;
     width: 20px;

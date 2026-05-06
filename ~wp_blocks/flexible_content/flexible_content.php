@@ -38,8 +38,8 @@
 
     if ( $heading ) :
 ?>
-<div class="flexible_content_section <?= esc_attr( trim( "$layout_class $bg_class $align_class $media_class $variant_class" ) ); ?>">
-    <div class="fcs_wrapper">
+<section class="flexible_content_section <?= esc_attr( trim( "$layout_class $bg_class $align_class $media_class $variant_class" ) ); ?>">
+    <div class="wrapper fcs_wrapper">
 
         <?php if ( $layout === 'split' ) : ?>
 
@@ -208,5 +208,5 @@
         <?php endif; ?>
 
     </div>
-</div>
+</section>
 <?php endif; ?>

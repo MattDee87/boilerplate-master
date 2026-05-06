@@ -64,14 +64,14 @@ if ( $heading ) :
 ?>
 
 <?php $cta_style = get_field('cta_style') ?: 'full-width'; ?>
-<div class="cta_banner cta_style_<?php echo esc_attr($cta_style); ?> cta_align_<?php echo esc_attr($alignment); ?> <?php echo esc_attr($variant_class); ?>" style="<?php echo $bg_styles; ?>">
+<section class="cta_banner cta_style_<?php echo esc_attr($cta_style); ?> cta_align_<?php echo esc_attr($alignment); ?> <?php echo esc_attr($variant_class); ?>" style="<?php echo $bg_styles; ?>">
 
     <?php if ( $bg_image ) : ?>
         <!-- Overlay — opacity controlled by ACF field -->
         <div class="cta_overlay" style="background: rgba(0,0,0,<?php echo $overlay_decimal; ?>);"></div>
     <?php endif; ?>
 
-    <div class="cta_inner">
+    <div class="wrapper cta_inner">
 
         <!-- Eyebrow -->
         <?php if ( $eyebrow ) : ?>
@@ -107,6 +107,6 @@ if ( $heading ) :
 
     </div><!-- /.cta_inner -->
 
-</div><!-- /.cta_banner -->
+</section><!-- /.cta_banner -->
 
 <?php endif; ?>

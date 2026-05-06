@@ -81,7 +81,7 @@ function sv_bg_inline_style( $color, $image ) {
 if ( $rows && is_array( $rows ) ) :
 ?>
 
-<div class="split_view sv_mode_<?= esc_attr( $mode ); ?> <?= esc_attr( $variant_class ); ?>">
+<section class="split_view sv_mode_<?= esc_attr( $mode ); ?> <?= esc_attr( $variant_class ); ?>">
 
     <?php if ( $mode === 'connected' ) : ?>
 
@@ -94,7 +94,7 @@ if ( $rows && is_array( $rows ) ) :
             <?php if ( $has_bg_image && intval( $sv_bg_overlay_opacity ) > 0 ) : ?>
                 <div class="sv_overlay"<?= $overlay_style; ?>></div>
             <?php endif; ?>
-            <div class="sv_wrapper">
+            <div class="wrapper sv_wrapper">
 
                 <?php if ( $header_enabled && $header_heading ) :
                     $header_card_style = $sv_header_connected_bg_color
@@ -183,7 +183,7 @@ if ( $rows && is_array( $rows ) ) :
             $header_panel_bg = sv_bg_inline_style( $sv_header_bg_color, $sv_header_bg_image );
         ?>
             <div class="sv_header_panel sv_bg_<?= esc_attr( str_replace('-', '_', $header_bg) ); ?>"<?= $header_panel_bg; ?>>
-                <div class="sv_wrapper">
+                <div class="wrapper sv_wrapper">
                     <div class="sv_header sv_header_align_<?= esc_attr( $header_alignment ); ?> sv_header_<?= esc_attr( $header_style ); ?>">
                         <h2 class="sv_header_heading"><?= esc_html( $header_heading ); ?></h2>
                     </div>
@@ -212,7 +212,7 @@ if ( $rows && is_array( $rows ) ) :
         ?>
 
             <div class="sv_row_panel sv_bg_<?= esc_attr( str_replace('-', '_', $row_bg) ); ?>"<?= $row_panel_bg; ?>>
-                <div class="sv_wrapper">
+                <div class="wrapper sv_wrapper">
                     <div class="sv_row">
 
                         <div class="sv_col sv_col_type_<?= esc_attr( $col_1_type ); ?>">
@@ -268,6 +268,6 @@ if ( $rows && is_array( $rows ) ) :
 
     <?php endif; ?>
 
-</div><!-- /.split_view -->
+</section><!-- /.split_view -->
 
 <?php endif; ?>

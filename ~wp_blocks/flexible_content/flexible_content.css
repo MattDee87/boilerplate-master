@@ -33,13 +33,6 @@ All values use boilerplate CSS tokens from style.css.
     background-color: var(--color-bg);
 }
 
-.fcs_wrapper {
-    width: 100%;
-    max-width: var(--max-width);
-    margin: 0 auto;
-    padding: 0 var(--wrapper-padding);
-}
-
 .fcs_content {
     width: 100%;
 }

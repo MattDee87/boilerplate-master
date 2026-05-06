@@ -33,13 +33,7 @@ All values use boilerplate CSS tokens from style.css.
 
 .image_grid {
     width: 100%;
-}
-
-.ig_wrapper {
-    width: 100%;
-    max-width: var(--max-width);
-    margin: 0 auto;
-    padding: var(--space-20) var(--wrapper-padding);
+    padding: var(--space-20) 0;
 }
 
 
@@ -326,7 +320,7 @@ All values use boilerplate CSS tokens from style.css.
     background-color: transparent;
 }
 
-.ig_bg_minimal .ig_wrapper {
+.ig_bg_minimal {
     padding-top: var(--space-12);
     padding-bottom: var(--space-12);
 }
@@ -370,7 +364,7 @@ All values use boilerplate CSS tokens from style.css.
 }
 
 @media (max-width: 768px) {
-    .ig_wrapper {
+    .image_grid {
         padding-top: var(--space-12);
         padding-bottom: var(--space-12);
     }

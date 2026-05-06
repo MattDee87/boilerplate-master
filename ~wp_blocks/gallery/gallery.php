@@ -6,9 +6,11 @@
     if( $images ) :
 ?>
 
-    <div class="highlights<?php if(count($images) > 1) : ?> fire<?php endif; ?> <?= esc_attr($variant_class); ?>">
-        <h2 id="<?php echo sanitize_title($title); ?>"><?php echo esc_html($title); ?></h2>
-        <div class="highlights_slider_wrapper<?php if(count($images) == 1) : ?> one_slide<?php endif; ?>">
+    <section class="highlights<?php if(count($images) > 1) : ?> fire<?php endif; ?> <?= esc_attr($variant_class); ?>">
+        <div class="wrapper highlights_wrapper">
+            <div class="highlights_card">
+                <h2 id="<?php echo sanitize_title($title); ?>"><?php echo esc_html($title); ?></h2>
+                <div class="highlights_slider_wrapper<?php if(count($images) == 1) : ?> one_slide<?php endif; ?>">
             <div class="highlights_slider owl-carousel owl-theme">
                 <?php foreach( $images as $image ): ?>
                     <?php 
@@ -41,8 +43,10 @@
                     </div>
                 </div>
             <?php endif; ?>
-        </div>
-    </div>
+                </div>
+            </div><!-- /.highlights_card -->
+        </div><!-- /.highlights_wrapper -->
+    </section>
 
 
 <?php endif; ?>

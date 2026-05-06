@@ -1,6 +1,6 @@
 # CLAUDE.md — Boilerplate Master
 ### AI Context File for Claude Code
-### Last updated: March 2026
+### Last updated: May 2026
 
 ---
 
@@ -266,9 +266,11 @@ Global element selectors (`h1`–`h6`, `p`, `a`) in `style.css` §4 must stay fo
 
 Full reference: `Guides/STYLESHEET_GUIDE.md` — CSS Organization Architecture section.
 
-### main layout constraint — known legacy issue
+### main layout — cleanup completed (May 2026)
 
-`main` in `style.css` §5b is currently constrained with `max-width`, `margin: auto`, and horizontal padding. This is convenient for normal text-heavy page templates but forces full-width blocks to break out using:
+`main` in `style.css` §5b was unconstrained as part of a coordinated layout cleanup. It now has only `margin: var(--space-16) 0` — no `max-width`, no horizontal padding. All 15 blocks are migrated to the outer `<section>` + inner `.wrapper` pattern and each block owns its containment via `.wrapper`.
+
+**Breakout math is still present** on Hero and CTA Banner full-width variants:
 
 ```css
 width: 100vw;
@@ -276,12 +278,12 @@ margin-left: calc(50% - 50vw);
 margin-right: calc(50% - 50vw);
 ```
 
-**Rules:**
-- Do not add this breakout math to new blocks — it is a workaround for the constrained `main`, not the right pattern
-- Do not change the `main` rule in isolation — it must be changed as part of a coordinated layout cleanup that simultaneously removes breakout math from all block CSS files and ensures every block uses the outer `<section>` + inner `.wrapper` pattern
-- The `.wrapper` class already handles correct containment — once `main` is unconstrained, blocks using `.wrapper` will work correctly without breakout math
+This is still needed — not because `main` is constrained, but because `the_content()` renders inside a `.wrapper` div in `page.php`. The full-width outer `<section>` must escape that wrapper.
 
-**Long-term direction:** `main` becomes unconstrained. Each block owns its containment via `.wrapper`. Normal text-heavy pages use a dedicated content wrapper instead of relying on the global `main` constraint.
+**Rules:**
+- Do not remove the breakout math from Hero or CTA Banner — it is still required
+- Do not add breakout math to other blocks — it is not the pattern for new work
+- Ensure `body` or `html` has `overflow-x: hidden` — without it, `100vw` can cause a few pixels of horizontal scroll on pages with a visible scrollbar
 
 ---
 
@@ -531,6 +533,14 @@ This boilerplate ships with everything. Strip it down per project:
 - ✅ .gitignore added to theme root
 - ✅ ADA responsive nav activated by default in the main boilerplate
 - ✅ Theme Settings tracking import fixed to target `theme-general-settings`
+
+## Completed in layout cleanup session (May 2026)
+
+- ✅ All 15 blocks migrated to outer `<section>` + inner `.wrapper` pattern — each block owns its containment
+- ✅ `main` unconstrained — removed `max-width`, `margin: auto`, and horizontal padding from §5b
+- ✅ Shared CSS patterns consolidated into §10b (CTA buttons), §10c (eyebrow labels), §10f (corner triangle decoration)
+- ✅ page.php: `<article>` replaced with `<div class="page-inner">` — `<article>` is semantically incorrect for inner pages (About, Services, Contact, etc.)
+- ✅ page.php: fixed `esc_html(the_title())` → `echo esc_html( get_the_title() )` — the original was escaping nothing because `the_title()` echoes directly and returns null
 
 ---
 

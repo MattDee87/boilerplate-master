@@ -20,12 +20,15 @@ All values use boilerplate CSS tokens from style.css.
 ==========================================================
 */
 
+.special_callout {
+    margin: var(--space-8) 0;
+}
+
 .special_callout .special_callout_inner {
     border: 1px solid var(--color-border);
     background: var(--color-bg-alt);
     padding: var(--space-8);
     border-radius: var(--radius-md);
-    margin: var(--space-8) 0;
 }
 
 .special_callout_inner > :first-child {

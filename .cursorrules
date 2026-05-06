@@ -1,6 +1,6 @@
 # Boilerplate Master — .cursorrules
 # AI Context File for ChatGPT / Codex in VS Code
-# Last updated: March 2026
+# Last updated: May 2026
 
 ## Project identity
 
@@ -266,27 +266,28 @@ that choice with a comment.
 
 Full reference: Guides/STYLESHEET_GUIDE.md
 
-### main layout constraint — known legacy issue
+### main layout — cleanup completed (May 2026)
 
-`main` in style.css §5b is currently constrained with max-width,
-margin auto, and horizontal padding. This forces full-width blocks
-to use breakout math:
+`main` in style.css §5b was unconstrained as part of a coordinated
+layout cleanup. It now has only margin: var(--space-16) 0 — no
+max-width, no horizontal padding. All 15 blocks are migrated to the
+outer section + inner .wrapper pattern and each block owns containment.
+
+Breakout math is still present on Hero and CTA Banner full-width variants:
 
     width: 100vw;
     margin-left: calc(50% - 50vw);
     margin-right: calc(50% - 50vw);
 
-RULES:
-- Do NOT add breakout math to new blocks — it is a workaround
-- Do NOT change the main rule in isolation — it must be changed
-  during a coordinated layout cleanup that removes breakout math
-  from all block CSS files at the same time
-- .wrapper already handles correct containment — once main is
-  unconstrained, blocks using .wrapper work without breakout math
+Still needed — not because main is constrained, but because
+the_content() renders inside a .wrapper div in page.php. The
+full-width outer section must escape that wrapper.
 
-LONG-TERM DIRECTION:
-main becomes unconstrained. Each block owns its containment
-via .wrapper. Text-heavy pages use a dedicated content wrapper.
+RULES:
+- Do NOT remove the breakout math from Hero or CTA Banner — still required
+- Do NOT add breakout math to other blocks — not the pattern for new work
+- Ensure body or html has overflow-x: hidden — without it, 100vw can
+  cause a few pixels of horizontal scroll on pages with a visible scrollbar
 
 ---
 
@@ -398,8 +399,8 @@ PHP pattern:
 ```php
 $variant       = get_field('section_variant') ?: 'default';
 $variant_class = 'block_prefix_variant_' . str_replace('-', '_', $variant);
-// Outer wrapper only
-<div class="block_outer_class <?= esc_attr($variant_class); ?>">
+// Outer section only — never on the inner .wrapper div
+<section class="block_outer_class <?= esc_attr($variant_class); ?>">
 ```
 
 ---

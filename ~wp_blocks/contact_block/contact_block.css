@@ -25,10 +25,13 @@ All values use boilerplate CSS tokens from style.css.
 */
 
 .contact_cta {
+    margin: var(--space-8) 0;
+}
+
+.contact_cta_inner {
     background: var(--color-bg-alt);
     padding: var(--space-10);
     border-radius: var(--radius-md);
-    margin: var(--space-8) 0;
     border: 1px solid var(--color-border);
 }
 
@@ -61,7 +64,7 @@ a.phone_num:hover {
 }
 
 @media (max-width: 768px) {
-    .contact_cta {
+    .contact_cta_inner {
         padding: var(--space-6);
     }
 
@@ -71,7 +74,7 @@ a.phone_num:hover {
 }
 
 @media (max-width: 480px) {
-    .contact_cta {
+    .contact_cta_inner {
         padding: var(--space-4);
     }
 }

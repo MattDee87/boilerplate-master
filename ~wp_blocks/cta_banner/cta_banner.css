@@ -79,9 +79,6 @@ All values use boilerplate CSS tokens from style.css.
     position: relative;
     z-index: 2;
     width: 100%;
-    max-width: var(--max-width);
-    margin: 0 auto;
-    padding: 0 var(--wrapper-padding);
 }
 
 /* Alignment variants */

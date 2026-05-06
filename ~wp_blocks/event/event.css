@@ -26,16 +26,20 @@ All values use boilerplate CSS tokens from style.css.
 */
 
 .event_block {
+    margin: var(--space-8) 0;
+}
+
+.event_block_inner {
     background: var(--color-bg-alt);
     border: 1px solid var(--color-border);
     border-radius: var(--radius-md);
     transition: ease all 300ms;
     position: relative;
-    margin: var(--space-8) 0;
     overflow: hidden;
+    padding: var(--space-5);
 }
 
-.event_block:hover {
+.event_block_inner:hover {
     box-shadow: var(--shadow-md);
 }
 
@@ -43,7 +47,7 @@ All values use boilerplate CSS tokens from style.css.
    BOILERPLATE NOTE: Full rule kept here so this block is self-contained
    when copied to a new project. On a live project, remove this and rely
    on the shared definition in §10f. */
-.event_block:after {
+.event_block_inner:after {
     content: '';
     height: 20px;
     width: 20px;
@@ -56,10 +60,6 @@ All values use boilerplate CSS tokens from style.css.
     border-bottom: 10px solid transparent;
     border-left: 10px solid transparent;
     box-sizing: border-box;
-}
-
-.event_block_inner {
-    padding: var(--space-5);
 }
 
 .event_block_inner h2 {

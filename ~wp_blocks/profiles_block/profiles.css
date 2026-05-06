@@ -26,10 +26,13 @@ All values use boilerplate CSS tokens from style.css.
 */
 
 .custom_profiles {
+    margin: var(--space-8) 0;
+}
+
+.custom_profiles_card {
     border: 1px solid var(--color-accent);
     background: var(--color-bg-alt);
     border-radius: var(--radius-md);
-    margin: var(--space-8) 0;
     overflow: hidden;
 }
 

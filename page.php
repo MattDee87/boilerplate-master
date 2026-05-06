@@ -24,20 +24,19 @@ they are rendered by the_content() function below.
 
 <main id="content" class="page-content">
     <div class="wrapper">
-        <article>
+        <div class="page-inner">
             <?php if ( !has_block('acf/custom-hero') ) : ?>
-                <h1><?php esc_html(the_title()); ?></h1>
+                <h1><?php echo esc_html( get_the_title() ); ?></h1>
             <?php endif; ?>
-            
-            <?php 
-            // Display all page blocks and content
-            if ( have_posts() ) : 
-                while ( have_posts() ) : the_post(); 
+
+            <?php
+            if ( have_posts() ) :
+                while ( have_posts() ) : the_post();
                     the_content();
-                endwhile;  
-            endif; 
+                endwhile;
+            endif;
             ?>
-        </article>
+        </div>
     </div>
 </main>
 

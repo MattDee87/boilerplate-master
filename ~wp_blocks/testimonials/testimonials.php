@@ -41,14 +41,15 @@ $variant_class = 'testimonials_block_variant_' . str_replace('-', '_', $variant)
 if ( $items ) :
 ?>
 
-<div class="testimonials_block <?= esc_attr($variant_class); ?>">
- 
+<section class="testimonials_block <?= esc_attr($variant_class); ?>">
+    <div class="wrapper testimonials_wrapper">
+
     <?php if ( $title ) : ?>
         <div class="testimonials_header">
             <h2 class="testimonials_title"><?php echo esc_html($title); ?></h2>
         </div>
     <?php endif; ?>
- 
+
     <div class="testimonials_grid testimonials_cols_<?php echo esc_attr($columns); ?>">
  
         <?php foreach ( $items as $item ) :
@@ -105,7 +106,8 @@ if ( $items ) :
         <?php endforeach; ?>
  
     </div><!-- /.testimonials_grid -->
- 
-</div><!-- /.testimonials_block -->
+
+    </div><!-- /.testimonials_wrapper -->
+</section><!-- /.testimonials_block -->
  
 <?php endif; ?>

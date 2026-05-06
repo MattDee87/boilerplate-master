@@ -103,7 +103,8 @@ OPTION C WRAPPER — uncomment to enable full section
 */
 ?>
 
-<div class="video_block <?= esc_attr($variant_class); ?>">
+<section class="video_block <?= esc_attr($variant_class); ?>">
+    <div class="wrapper video_block_wrapper">
 
     <!-- Video Trigger — poster image with play button -->
     <div class="video_trigger"
@@ -147,7 +148,8 @@ OPTION C WRAPPER — uncomment to enable full section
         </div>
     <?php endif; ?>
 
-</div><!-- /.video_block -->
+    </div><!-- /.video_block_wrapper -->
+</section><!-- /.video_block -->
 
 <?php
 /*

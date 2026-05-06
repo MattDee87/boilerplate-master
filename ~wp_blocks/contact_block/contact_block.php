@@ -14,27 +14,29 @@
     if($title && $copy) :
 
 ?>
-    <div class="contact_cta <?= esc_attr($variant_class); ?>">
-        <div class="contact_cta_inner">
+    <section class="contact_cta <?= esc_attr($variant_class); ?>">
+        <div class="wrapper contact_cta_wrapper">
+            <div class="contact_cta_inner">
 
-            <h2><?php echo esc_html($title); ?></h2>
-            
-            <p><?php echo wp_kses_post($copy); ?></p>
+                <h2><?php echo esc_html($title); ?></h2>
 
-            <?php if($phone_number) : ?>
-                <a href="tel:<?php echo esc_attr($phone_number); ?>" class="phone_num"><?php echo esc_html($phone_number); ?></a>
-            <?php endif; ?>
+                <p><?php echo wp_kses_post($copy); ?></p>
 
-            <?php if($form) : ?>
-                <?php if($formHTML) : ?>
-                    <div class="cta_form_html_house">
-                        <?php echo wp_kses_post($formHTML); ?>
-                    </div>
+                <?php if($phone_number) : ?>
+                    <a href="tel:<?php echo esc_attr($phone_number); ?>" class="phone_num"><?php echo esc_html($phone_number); ?></a>
                 <?php endif; ?>
-            <?php endif; ?>
 
+                <?php if($form) : ?>
+                    <?php if($formHTML) : ?>
+                        <div class="cta_form_html_house">
+                            <?php echo wp_kses_post($formHTML); ?>
+                        </div>
+                    <?php endif; ?>
+                <?php endif; ?>
+
+            </div>
         </div>
-    </div>
+    </section>
 
 
 
