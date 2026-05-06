@@ -165,6 +165,22 @@ NEVER:
 - Create page-specific variant names (e.g. about-feature, work-banner). Use body.page-{slug} CSS scoping instead — see Page-Scoped Block Styling section below.
 ```
 
+## Boilerplate-specific: intentional CSS duplication in block files
+
+This is the boilerplate master — not a live project. Blocks are regularly copied individually to new client projects. When that happens, the block folder must work completely standalone. It cannot rely on shared patterns that only exist in `style.css §10` of this boilerplate.
+
+**Rule: Every block CSS file in the boilerplate must be fully self-contained.** Some CSS rules will intentionally appear in BOTH a block CSS file AND in `style.css §10`. That duplication is required here and is NOT a violation of the shared pattern rule.
+
+**How the two files relate:**
+- `style.css §10` — shows the consolidated pattern as it would look on a live project. Working documentation and a developer reference.
+- Block CSS file — ships the complete rule so the block works in any new project, with or without §10 in place.
+
+**On a live project:** once a pattern is consolidated in §10, remove the duplicate from the block CSS. In the boilerplate, never remove it.
+
+Look for `BOILERPLATE NOTE:` comments in block CSS files — these mark intentionally duplicated rules and explain what to trim on a live project.
+
+---
+
 ## CSS Rule Order — Critical
 
 Block style variant rules MUST come AFTER the base

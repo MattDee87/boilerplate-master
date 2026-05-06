@@ -48,7 +48,10 @@ All values use boilerplate CSS tokens from style.css.
     box-shadow: var(--shadow-md);
 }
 
-/* Decorative corner accent */
+/* Decorative corner accent — shared rule defined in style.css §10f.
+   BOILERPLATE NOTE: Full rule kept here so this block is self-contained
+   when copied to a new project. On a live project, remove this and rely
+   on the shared definition in §10f. */
 .options_list .option:after {
     content: '';
     height: 20px;

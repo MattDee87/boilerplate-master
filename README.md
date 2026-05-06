@@ -236,6 +236,22 @@ theme-root/
 
 ---
 
+## Block portability and intentional CSS duplication
+
+Blocks in this boilerplate are designed to be **copied individually** to new client projects. When you copy a block folder, only the four files inside it travel with it — `block.json`, `.php`, `.css`, and `.js`. The block's CSS file must therefore be completely self-contained and cannot depend on shared patterns that only exist in `style.css §10` of the boilerplate.
+
+**This means some CSS rules intentionally appear in two places:**
+- **`style.css §10`** — shows what the consolidated shared pattern looks like on a live project. It is working documentation and a developer reference.
+- **The block CSS file** — contains the full rule so the block works standalone in any project.
+
+This is not a mistake or a violation of the "don't duplicate CSS" rule — it is a deliberate architectural choice specific to the boilerplate.
+
+**On a live project:** once you've confirmed a pattern is consolidated in `style.css §10`, you can remove the duplicate from the individual block CSS files. In the boilerplate itself, never remove it.
+
+Look for `BOILERPLATE NOTE:` comments in block CSS files — these mark intentionally duplicated rules and explain exactly what to trim on a live project.
+
+---
+
 ## The 15 custom blocks
 
 All blocks live in `~wp_blocks/` and auto-register via a glob loop in `functions.php`. Every block follows the same 4-file pattern: `block.json`, `.php`, `.css`, and optionally `.js`.

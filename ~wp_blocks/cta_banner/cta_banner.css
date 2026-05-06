@@ -97,7 +97,11 @@ All values use boilerplate CSS tokens from style.css.
     text-align: left;
 }
 
-/* Eyebrow */
+/* Eyebrow — structural base in style.css §10c.
+   Dark background context: text-inverse color + reduced opacity.
+   BOILERPLATE NOTE: Full rule kept here so this block is self-contained
+   when copied to a new project. On a live project, keep only the context-
+   specific overrides (color, opacity) and rely on §10c for shared structure. */
 .cta_eyebrow {
     font-family: var(--font-accent);
     font-size: var(--text-xs);
@@ -138,6 +142,11 @@ All values use boilerplate CSS tokens from style.css.
     margin-left: auto;
     margin-right: auto;
 }
+
+/* CTA button styles — defined in style.css §10b.
+   BOILERPLATE NOTE: Full rules kept here so this block is self-contained
+   when copied to a new project. On a live project, remove these and rely
+   on the shared definitions in §10b. */
 
 /* Button row */
 .cta_btn_row {

@@ -190,6 +190,22 @@ Spacing tokens are not continuous. Only use spacing tokens explicitly defined in
 ❌ Never create page-specific variant names (e.g. about-feature, work-banner). Use body.page-{slug} selectors in CSS to scope per-page overrides. See STYLESHEET_GUIDE.md for the full pattern.
 ```
 
+## Boilerplate-specific: intentional CSS duplication in block files
+
+This is the boilerplate master — not a live project. Blocks are regularly copied individually to new client projects. When that happens, the block folder (`~wp_blocks/block-name/`) must work completely standalone. It cannot rely on shared patterns that only exist in `style.css §10` of this boilerplate.
+
+**Rule: Every block CSS file in the boilerplate must be fully self-contained.** This means some CSS rules intentionally appear in BOTH a block CSS file AND in `style.css §10`. That duplication is required here and is NOT a violation of the shared pattern rule.
+
+**How the two files relate:**
+- `style.css §10` — shows the shared consolidated version as it would look on a live project. Serves as working documentation and a reference for developers.
+- Block CSS file — ships the complete rule so the block works when dropped into any new project, with or without the §10 consolidation in place.
+
+**What to do on a live project:** Once a pattern is consolidated into `style.css §10`, you can remove the duplicate from the block CSS file. In the boilerplate, never remove it.
+
+Look for `BOILERPLATE NOTE:` comments in block CSS files — these mark exactly which rules are intentionally duplicated and explain what to trim on a live project.
+
+---
+
 ## CSS Rule Order — Critical
 
 Block style variant rules MUST come AFTER the base

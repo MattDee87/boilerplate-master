@@ -105,7 +105,13 @@ All values use boilerplate CSS tokens from style.css.
     justify-content: flex-end;
 }
  
-/* Subheading */
+/* Subheading — structural base in style.css §10c.
+   Dark background context: text-inverse color, reduced opacity,
+   and slightly more bottom margin than the base space-3.
+   BOILERPLATE NOTE: Full rule kept here so this block is self-contained
+   when copied to a new project. On a live project you would keep only
+   the context-specific overrides (color, opacity, margin) and rely on §10c
+   for the shared structural properties. */
 .hero_subheading {
     font-family: var(--font-accent);
     font-size: var(--text-sm);
@@ -143,6 +149,11 @@ All values use boilerplate CSS tokens from style.css.
     max-width: 620px;
 }
  
+/* CTA buttons — styles defined in style.css §10b.
+   BOILERPLATE NOTE: Full rules kept here so this block is self-contained
+   when copied to a new project. On a live project, remove these and rely
+   on the shared definitions in §10b. */
+
 /* CTA buttons row */
 .hero_cta_row {
     display: flex;
@@ -150,7 +161,7 @@ All values use boilerplate CSS tokens from style.css.
     gap: var(--space-4);
     align-items: center;
 }
- 
+
 /* Primary CTA */
 .hero_cta_primary {
     background-color: var(--color-accent);
@@ -159,14 +170,14 @@ All values use boilerplate CSS tokens from style.css.
     padding: var(--space-4) var(--space-8);
     font-size: var(--text-base);
 }
- 
+
 .hero_cta_primary:hover {
     background-color: var(--color-accent-hover);
     border-color: var(--color-accent-hover);
     color: var(--color-white);
     text-decoration: none;
 }
- 
+
 /* Secondary CTA — outline style on dark background */
 .hero_cta_secondary {
     background-color: transparent;
@@ -175,7 +186,7 @@ All values use boilerplate CSS tokens from style.css.
     padding: var(--space-4) var(--space-8);
     font-size: var(--text-base);
 }
- 
+
 .hero_cta_secondary:hover {
     background-color: var(--color-white);
     color: var(--color-primary);

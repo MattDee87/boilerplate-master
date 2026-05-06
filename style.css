@@ -975,13 +975,64 @@ figcaption {
    geometry — unless documented as an exception.              */
 
 /* ── 10b. Shared Buttons ────────────────────────────────────
-   If pill or styled buttons repeat across multiple blocks,
-   define them once here.
-   Example: .btn-pill-primary { }                            */
+   Primary / secondary CTA button pair used by Hero and CTA Banner.
+   Both blocks use identical styling — defined once here.
+   Responsive width overrides (full-width on mobile) stay in
+   each block's own CSS file since they depend on block layout. */
+
+.hero_cta_primary,
+.cta_btn_primary {
+    background-color: var(--color-accent);
+    border-color: var(--color-accent);
+    color: var(--color-white);
+    padding: var(--space-4) var(--space-8);
+    font-size: var(--text-base);
+}
+
+.hero_cta_primary:hover,
+.cta_btn_primary:hover {
+    background-color: var(--color-accent-hover);
+    border-color: var(--color-accent-hover);
+    color: var(--color-white);
+    text-decoration: none;
+}
+
+/* Secondary — outline style on dark background */
+.hero_cta_secondary,
+.cta_btn_secondary {
+    background-color: transparent;
+    border: 2px solid var(--color-white);
+    color: var(--color-white);
+    padding: var(--space-4) var(--space-8);
+    font-size: var(--text-base);
+}
+
+.hero_cta_secondary:hover,
+.cta_btn_secondary:hover {
+    background-color: var(--color-white);
+    color: var(--color-primary);
+    text-decoration: none;
+}
 
 /* ── 10c. Shared Eyebrow / Pill Labels ─────────────────────
-   Repeated eyebrow text or pill-style labels above headings.
-   Define once here and reference across blocks.             */
+   Structural eyebrow pattern used by Hero, CTA Banner, and FCS.
+   All structural properties are shared: font-family, size,
+   weight, case, letter-spacing, and margin.
+   Color differs by background context — overridden per block:
+   - Dark background (Hero, CTA Banner): color-text-inverse + opacity
+   - Light background (FCS): color-accent, no opacity
+   Color overrides live in each block's own CSS file.         */
+
+.hero_subheading,
+.cta_eyebrow,
+.fcs_eyebrow {
+    font-family: var(--font-accent);
+    font-size: var(--text-sm);
+    font-weight: var(--weight-semi);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: var(--space-3);
+}
 
 /* ── 10d. Shared Title Plate Patterns ──────────────────────
    Repeated headline treatment or title plate structure used
@@ -992,8 +1043,30 @@ figcaption {
    heading lines. Define once here as opt-in classes.        */
 
 /* ── 10f. Shared Glass / Card Panels ───────────────────────
-   Repeated card, glass morphism, or panel treatments.
-   Define once here and apply via shared class.              */
+   Corner triangle decoration — shared across Event, Page List,
+   and Program cards. All three use an identical :after rule.
+   Each block's card element sets position: relative (in its
+   own CSS file) as the stacking context for this decoration.
+   Note: full card panel styles (background, radius, shadow)
+   differ per block and are NOT consolidated here — see each
+   block's own CSS file for card-level styles.               */
+
+.event_block:after,
+.options_list .option:after,
+.program_block:after {
+    content: '';
+    height: 20px;
+    width: 20px;
+    top: -1px;
+    right: -1px;
+    display: block;
+    position: absolute;
+    border-top: 10px solid var(--color-accent);
+    border-right: 10px solid var(--color-accent);
+    border-bottom: 10px solid transparent;
+    border-left: 10px solid transparent;
+    box-sizing: border-box;
+}
 
 /* ── 10g. Header ────────────────────────────────────────────
    Project-specific header brand styles. Base nav styles live

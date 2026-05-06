@@ -44,7 +44,16 @@ All values use boilerplate CSS tokens from style.css.
     width: 100%;
 }
 
+/* Eyebrow — structural base in style.css §10c.
+   Light background context: accent color, no opacity.
+   BOILERPLATE NOTE: Full rule kept here so this block is self-contained
+   when copied to a new project. On a live project, keep only the context-
+   specific override (color) and rely on §10c for shared structure.
+   Note: font-accent added explicitly here for portability — §10c sets it
+   on the shared selector, so this override ensures consistency if §10c is
+   not present on the new project. */
 .fcs_eyebrow {
+    font-family: var(--font-accent);
     font-size: var(--text-sm);
     font-weight: var(--weight-semi);
     text-transform: uppercase;
