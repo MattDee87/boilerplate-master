@@ -15,6 +15,8 @@ CORE PRINCIPLES
 The Token Handshake: All styles derive from `:root` variables in `style.css`, mirrored in `theme.json` so editor and frontend stay aligned.
 Late Escaping: Dynamic output is cleaned at the point of output with standard WordPress escaping functions.
 Cleanliness: Organized folder structure with a self-registering block loop and reusable common features.
+CSS Separation: `style.css` is the project design system — it owns all shared patterns. Block CSS files contain only styles unique to that block. If a pattern repeats across blocks, it belongs in `style.css` Section 10, not in each block file.
+Block Wrapper Consistency: Every block uses an outer `<section>` (owns background, full-width, spacing) and an inner `.wrapper` div (owns max-width, margin auto, horizontal padding). Variant and style classes belong on the outer section. Block-specific wrapper classes handle block layout only — not geometry redeclaration.
 
 COMPLETE DOCUMENTATION GUIDES
 Core: `README.md`, `SETUP_GUIDE.md`, `FINISHING_GUIDE.md`
@@ -54,7 +56,7 @@ theme-root/
 │   ├── dashboard_fixes.php       [Admin hardening + utilities]
 │   └── campaign-success.php      [Thank-you page with optional ?cid lookup]
 │
-├── ~wp_blocks/                   [12 ACF-powered custom blocks]
+├── ~wp_blocks/                   [15 ACF-powered custom blocks]
 ├── ~acf_imports/                 [14 JSON field groups]
 ├── ~common_features/
 │   ├── ada_responsive_nav/       [Responsive nav system active by default]
@@ -63,7 +65,7 @@ theme-root/
 ├── js/                           [jquery3.js + scripts.js]
 └── Guides/                       [All markdown documentation]
 
-AVAILABLE BLOCKS (12)
+AVAILABLE BLOCKS (15)
 All blocks live in the "Boilerplate Blocks" category in the editor.
 
 Hero — impact banner with dual CTAs and background image support
@@ -120,5 +122,9 @@ FOR AI ASSISTANTS
 - Blocks auto-register from `~wp_blocks/`
 - ADA nav is already active by default in V3
 - `campaign-success.php` supports generic fallback plus optional `?cid=` lookup
+- Every block uses outer `<section>` + inner `.wrapper div`. Variant/style classes go on the outer section. Do not redefine max-width or padding in block CSS.
+- Shared visual patterns (buttons, pills, title plates, cards, gradient lines) belong in `style.css` Section 10, not duplicated across block CSS files
+- Global element selectors (h1-h6, p, a) must stay foundational — decorative overrides are opt-in classes in Section 10
+- Full CSS organization rules: `Guides/STYLESHEET_GUIDE.md` — CSS Organization Architecture section
 
-Last Updated: April 2026
+Last Updated: May 2026

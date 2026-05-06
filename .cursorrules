@@ -73,7 +73,7 @@ theme-root/
 │   ├── dashboard_fixes.php       ← WP admin hardening + utilities
 │   └── campaign-success.php      ← Landing page thank you with optional ?cid lookup
 │
-├── ~wp_blocks/                   ← All 14 ACF-powered custom blocks
+├── ~wp_blocks/                   ← All 15 ACF-powered custom blocks
 │   ├── Hero/
 │   ├── accordion/
 │   ├── callout/
@@ -150,6 +150,9 @@ ALWAYS:
 - Use CSS tokens — var(--token-name) for all colors, spacing, radii, shadows
 - Put block CSS inside the block folder only
 - Put site-wide styles in style.css only
+  EXCEPTION: ~common_features/ CSS files and css/ third-party files are exempt.
+  Those locations exist for common feature systems (ada_responsive_nav) and
+  third-party plugin styles (wufoo.css). Do not add project styles there.
 - Put per-template styles in a <style> block at the bottom of the template file
 
 NEVER:
@@ -157,6 +160,8 @@ NEVER:
 - Hardcode pixel values when a token exists
 - Use !important unless there is absolutely no alternative
 - Create a new standalone CSS file outside of the block folder structure
+  EXCEPTION: ~common_features/ and css/ are the only permitted locations for
+  standalone CSS files outside block folders. These are exempt by design.
 - Create page-specific variant names (e.g. about-feature, work-banner). Use body.page-{slug} CSS scoping instead — see Page-Scoped Block Styling section below.
 ```
 
@@ -178,6 +183,94 @@ WRONG order:
 This caused a major bug with CTA Banner full width
 not working — fixed by moving style rules after
 the base .cta_banner rule.
+
+---
+
+## CSS organization architecture
+
+### What belongs where
+
+`style.css` is the project design system. It contains:
+- Tokens (§2 `:root`)
+- Typography defaults — foundational only (§4)
+- Wrapper and layout utilities (§5)
+- Shared patterns: buttons, pill labels, eyebrows, title plates, gradient lines, card/glass panels (§10)
+- Header and footer brand styles (§10g–10h)
+- Contact drawer or global overlays if used (§10i)
+- Page-scoped overrides using body.page-{slug} (§10)
+- Small utilities (§10j)
+
+Block CSS files contain ONLY what is unique to that block:
+- Block grid and layout structure
+- Variant behavior
+- Block-specific responsive rules
+- One-off positioning
+- Block-specific exceptions — document with a comment
+
+THE SHARED PATTERN RULE:
+If the same visual treatment appears in more than one block,
+promote it to style.css Section 10. Do NOT duplicate it across
+multiple block CSS files.
+
+### Block wrapper pattern
+
+Every block must use an outer section and an inner .wrapper.
+Variant and style classes belong on the outer section:
+
+```html
+<section class="block_name block_name_variant_[variant] block_name_style_[style]">
+    <div class="wrapper block_name_wrapper">
+        ...
+    </div>
+</section>
+```
+
+Outer section:       background, full-width, vertical spacing.
+                     Variant and style classes live here.
+.wrapper:            max-width, margin auto, horizontal padding.
+                     Defined once in style.css §5a — reuse it.
+Block wrapper class: block-specific layout only.
+
+Rules:
+- Do not redefine max-width, margin auto, or horizontal padding in block CSS
+- Always use BOTH wrapper classes together: class="wrapper block_name_wrapper"
+- Variant and style classes go on the outer section, never on the inner wrapper
+- Variants change layout/styling/behavior — not wrapper geometry
+  (unless there is a documented exception)
+
+### Global element selector rule
+
+Global element rules (h1–h6, p, a) in style.css §4 must stay
+foundational: font-family, font-size, line-height, color, margin.
+Decorative treatments — heading underlines, display overrides on
+bare elements, complex pseudo-elements on bare selectors — belong
+as opt-in classes or shared patterns in §10, not bare global rules.
+If a project intentionally uses stronger global styling, document
+that choice with a comment.
+
+Full reference: Guides/STYLESHEET_GUIDE.md
+
+### main layout constraint — known legacy issue
+
+`main` in style.css §5b is currently constrained with max-width,
+margin auto, and horizontal padding. This forces full-width blocks
+to use breakout math:
+
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+
+RULES:
+- Do NOT add breakout math to new blocks — it is a workaround
+- Do NOT change the main rule in isolation — it must be changed
+  during a coordinated layout cleanup that removes breakout math
+  from all block CSS files at the same time
+- .wrapper already handles correct containment — once main is
+  unconstrained, blocks using .wrapper work without breakout math
+
+LONG-TERM DIRECTION:
+main becomes unconstrained. Each block owns its containment
+via .wrapper. Text-heavy pages use a dedicated content wrapper.
 
 ---
 

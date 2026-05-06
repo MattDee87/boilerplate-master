@@ -56,8 +56,17 @@ Text Domain: boilerplate
     9.  RESPONSIVE
         9a. Tablet  — 768px
         9b. Mobile  — 480px
-   10.  PROJECT BRANDING OVERRIDES
-        ↳ Layer brand / project-specific styles here
+   10.  [CLIENT NAME] SHARED PATTERNS
+        10a. Wrapper / Section Layout
+        10b. Shared Buttons
+        10c. Shared Eyebrow / Pill Labels
+        10d. Shared Title Plate Patterns
+        10e. Shared Gradient / Accent Lines
+        10f. Shared Glass / Card Panels
+        10g. Header
+        10h. Footer
+        10i. Contact Drawer / Global Overlays
+        10j. Small Utilities
    ──────────────────────────────────────────────────────────
 */
  
@@ -375,8 +384,38 @@ pre {
     padding: 0 var(--wrapper-padding);
 }
  
-/* ── 5b. Main ───────────────────────────────────────────────*/
- 
+/* ── 5b. Main ───────────────────────────────────────────────
+   ⚠️  LEGACY CONSTRAINT — read before changing.
+
+   This rule globally constrains all content inside <main>.
+   It is convenient for normal text-heavy page templates, but
+   block-driven full-width sections must break out using:
+
+       width: 100vw;
+       margin-left: calc(50% - 50vw);
+       margin-right: calc(50% - 50vw);
+
+   That breakout math currently lives in multiple block CSS
+   files (Hero, CTA Banner, and others).
+
+   DO NOT remove or change this rule in isolation. The live
+   Boilerplate Master demo and current block CSS both rely on
+   it. Removing it without also updating every block will
+   break centering across the entire site.
+
+   Long-term block-driven direction:
+   — main should become unconstrained by default
+   — outer <section> owns full-width behavior and vertical spacing
+   — inner .wrapper owns max-width, centering, horizontal padding
+   — normal text pages use a dedicated content wrapper instead
+     of relying on the global main constraint
+
+   This should only be changed during a coordinated layout
+   cleanup that also removes or centralizes the breakout math
+   from all block CSS files in the same pass.
+   See STYLESHEET_GUIDE.md — CSS Organization Architecture.
+   ────────────────────────────────────────────────────────── */
+
 main {
     max-width: var(--max-width);
     margin: var(--space-16) auto;
@@ -408,7 +447,13 @@ article:has(.cta_style_full-width) {
    6. COMPONENTS
    ============================================================ */
  
-/* ── 6a. Header & Navigation ────────────────────────────────*/
+/* ── 6a. Header & Navigation ────────────────────────────────
+   Boilerplate structural defaults only — layout, spacing,
+   and token-driven color. These ship with every project and
+   are not rewritten per client.
+   Project-specific header brand styles go in §10g.
+   Responsive nav system styles live in:
+   ~common_features/ada_responsive_nav/style.css            */
  
 header {
     background-color: var(--color-bg-dark);
@@ -535,7 +580,11 @@ tr:hover {
     background-color: var(--color-bg-alt);
 }
  
-/* ── 6e. Footer ─────────────────────────────────────────────*/
+/* ── 6e. Footer ─────────────────────────────────────────────
+   Boilerplate structural defaults only — layout, spacing,
+   and token-driven color. These ship with every project and
+   are not rewritten per client.
+   Project-specific footer brand styles go in §10h.          */
  
 footer {
     background-color: var(--color-bg-dark);
@@ -836,31 +885,126 @@ figcaption {
  
  
 /* ============================================================
-  10. PROJECT BRANDING OVERRIDES
+   10. [CLIENT NAME] SHARED PATTERNS
    ──────────────────────────────────────────────────────────
-   Add project-specific styles below this line.
+   Add project-specific styles below, organized by the
+   sub-sections that apply to your project. Delete or leave
+   empty any sub-sections you do not need.
+
    The right order when starting a new project:
      1. Update :root tokens in §2
      2. Swap font @imports in §1
-     3. Add any custom brand styles here
- 
+     3. Add shared patterns and brand styles here
+
+   WHAT BELONGS HERE:
+   Shared visual patterns used across multiple blocks —
+   buttons, pills, eyebrows, title plates, cards, gradient
+   underlines. Header and footer brand styles. Contact drawer
+   or global UI overlays. Page-scoped block overrides using
+   body.page-{slug}. Any project-specific style not covered
+   by tokens or block CSS files.
+
+   WHAT DOES NOT BELONG HERE:
+   Block-specific layout or structure → block's own .css file
+   New design tokens            → :root in §2
+   Site-wide resets or base typography → §3 and §4
+
+   SHARED PATTERN RULE:
+   If the same visual treatment appears in more than one block,
+   promote it here instead of duplicating it in block CSS.
+   Examples:
+     repeated pill buttons    → .btn-pill-primary / -secondary
+     repeated eyebrow labels  → shared eyebrow class
+     repeated title plates    → shared title pattern class
+     repeated gradient lines  → shared accent-line class
+     repeated glass panels    → shared panel/card class
+
+   GLOBAL ELEMENT RULE:
+   Global element rules (§4) should stay foundational:
+   font-family, font-size, line-height, color, margin.
+   Decorative global heading underlines, display overrides on
+   bare elements, or complex pseudo-elements on bare selectors
+   belong as opt-in classes here in §10 — not global rules.
+   If a project intentionally applies stronger global styling,
+   document that choice with a comment.
+
+   BLOCK WRAPPER RULE:
+   Every block uses an outer section and an inner .wrapper:
+     <section class="block_name block_name_variant_[v] block_name_style_[s]">
+         <div class="wrapper block_name_wrapper">...</div>
+     </section>
+   Outer section:       background, full-width, vertical spacing.
+                        Variant and style classes belong here.
+   .wrapper:            max-width, margin auto, horizontal padding.
+   Block wrapper class: block-specific layout only.
+   Do not redefine max-width or horizontal padding per block.
+   Variants change layout/styling/behavior — not wrapper geometry.
+   See STYLESHEET_GUIDE.md for the full wrapper pattern.
+
    This section replaces a separate branding.css file.
    Keep it organized with clear sub-section comments.
    ──────────────────────────────────────────────────────────
- 
-   EXAMPLE — ByDeNero project config:
- 
+
+   EXAMPLE — project token override (paste into §2 or here):
+
    :root {
-       --color-primary:        #0A0F2C;
-       --color-secondary:      #6CA4FF;
-       --color-accent:         #A259FF;
-       --color-accent-hover:   #D472FF;
-       --color-bg:             #F5F5F7;
-       --color-bg-dark:        #0A0F2C;
-       --font-body:            'Inter', sans-serif;
-       --font-heading:         'Sora', sans-serif;
+       --color-primary:        #YOUR_COLOR;
+       --color-secondary:      #YOUR_COLOR;
+       --color-accent:         #YOUR_COLOR;
+       --color-accent-hover:   #YOUR_COLOR;
+       --color-bg:             #YOUR_COLOR;
+       --color-bg-dark:        #YOUR_COLOR;
+       --font-body:            'Your Font', sans-serif;
+       --font-heading:         'Your Font', sans-serif;
    }
- 
+
    ──────────────────────────────────────────────────────────
    Add your project styles below:
+   ──────────────────────────────────────────────────────────
 */
+
+/* ── 10a. Wrapper / Section Layout ──────────────────────────
+   Block outer sections own background, full-width behavior,
+   and vertical spacing. Variant and style classes go on the
+   outer section element. .wrapper (§5a) owns max-width,
+   margin auto, and horizontal page padding. Block-specific
+   wrapper classes own only block-specific layout — not
+   max-width or padding redeclarations. Always use both
+   wrapper classes together: class="wrapper block_name_wrapper"
+   Variants change layout/styling/behavior — not wrapper
+   geometry — unless documented as an exception.              */
+
+/* ── 10b. Shared Buttons ────────────────────────────────────
+   If pill or styled buttons repeat across multiple blocks,
+   define them once here.
+   Example: .btn-pill-primary { }                            */
+
+/* ── 10c. Shared Eyebrow / Pill Labels ─────────────────────
+   Repeated eyebrow text or pill-style labels above headings.
+   Define once here and reference across blocks.             */
+
+/* ── 10d. Shared Title Plate Patterns ──────────────────────
+   Repeated headline treatment or title plate structure used
+   across multiple sections. Define once here.               */
+
+/* ── 10e. Shared Gradient / Accent Lines ───────────────────
+   Repeated gradient underlines, accent borders, or decorative
+   heading lines. Define once here as opt-in classes.        */
+
+/* ── 10f. Shared Glass / Card Panels ───────────────────────
+   Repeated card, glass morphism, or panel treatments.
+   Define once here and apply via shared class.              */
+
+/* ── 10g. Header ────────────────────────────────────────────
+   Project-specific header brand styles. Base nav styles live
+   in ~common_features/ada_responsive_nav/style.css.         */
+
+/* ── 10h. Footer ────────────────────────────────────────────
+   Project-specific footer brand styles.                     */
+
+/* ── 10i. Contact Drawer / Global Overlays ─────────────────
+   Contact drawer, modal overlays, or global UI elements that
+   appear across multiple pages. Only include if used.       */
+
+/* ── 10j. Small Utilities ───────────────────────────────────
+   Project-level utility classes not covered by §8.          */

@@ -83,7 +83,7 @@ Update the matching entries in `theme.json`:
 Go to **ACF → Tools → Import** and import all JSON files from `~acf_imports/`. All 16 field groups will be set up instantly.
 
 ### 7. Add brand overrides
-Scroll to **Section 10** at the bottom of `style.css` and add project-specific styles — nav branding, special button treatments, glow effects, custom header styling.
+Scroll to **Section 10** at the bottom of `style.css` and add project-specific shared patterns and brand styles. Section 10 is organized into sub-sections: wrapper layout, shared buttons, eyebrow labels, title plates, gradient lines, card panels, header, footer, overlays, and utilities. Only create the sub-sections your project needs. If the same visual treatment appears in more than one block, define it here once rather than duplicating it in block CSS files.
 
 ### 8. Remove test fonts when fonts are chosen
 Delete Section 1d imports and Section 8c font testing classes from `style.css`. Delete or unpublish the Font Test page.
@@ -195,7 +195,7 @@ theme-root/
 │   ├── dashboard_fixes.php       ← WP admin hardening + utilities
 │   └── campaign-success.php      ← Landing page thank you page with optional ?cid lookup
 │
-├── ~wp_blocks/                   ← 14 ACF-powered custom blocks
+├── ~wp_blocks/                   ← 15 ACF-powered custom blocks
 │   ├── Hero/
 │   ├── accordion/
 │   ├── callout/
@@ -366,14 +366,33 @@ The `partials/dashboard_fixes.php` file sets up a Theme Settings options page. A
 
 The block auto-registers immediately — no code changes to `functions.php` needed.
 
+**Block wrapper pattern:**
+
+Every block uses an outer `<section>` and an inner `.wrapper` div. Variant and style classes go on the outer section:
+
+```html
+<section class="my_block my_block_variant_[variant] my_block_style_[style]">
+    <div class="wrapper my_block_wrapper">
+        ...
+    </div>
+</section>
+```
+
+- Outer section — owns background, full-width behavior, and vertical spacing
+- `.wrapper` — owns max-width, `margin: auto`, and horizontal padding (do not redefine these in block CSS)
+- Block wrapper class — owns only block-specific layout
+- Variants change layout/styling/behavior — not wrapper geometry (document exceptions)
+
 **Golden rules for block CSS:**
 - Always use `var(--token-name)` — never hardcode hex values
 - Never use `!important` unless there is absolutely no alternative
-- Block CSS lives inside the block folder only
+- Block CSS contains only what is unique to that block — grid layout, variant behavior, block-specific responsive rules, one-off positioning
+- If the same visual treatment repeats across multiple blocks, promote it to `style.css` Section 10 instead of duplicating it
 - Never create page-specific variant names (e.g. `about-feature`, `work-banner`). Use `body.page-{slug}` selectors in `style.css` Section 10 to scope per-page overrides instead.
+- Do not add full-width breakout math (`width: 100vw; margin-left: calc(50% - 50vw)`) to new blocks. This is a legacy workaround for the constrained `main` rule and will be removed in a coordinated layout cleanup. New blocks should use the outer `<section>` + inner `.wrapper` pattern and rely on `main` eventually being unconstrained. See `style.css` §5b comment for full context.
 
 **Section variants:**
-Every block exposes a Section Variant ACF field (Style tab, field name: `section_variant`). The standard choices are: `default`, `homepage-feature`, `minimal`, `split-feature`, `cards-feature`, `inner-banner`. The variant class is output on the outer block wrapper only. Add new variants only for genuinely new design patterns — not for page-specific one-offs. See `Guides/Block_Creating_Guide.md` Section 07 for the full system.
+Every block exposes a Section Variant ACF field (Style tab, field name: `section_variant`). The standard choices are: `default`, `homepage-feature`, `minimal`, `split-feature`, `cards-feature`, `inner-banner`. The variant class is output on the outer section only — never on the inner wrapper. Add new variants only for genuinely new design patterns — not for page-specific one-offs. See `Guides/Block_Creating_Guide.md` Section 07 for the full system.
 
 **Golden rules for block PHP:**
 - Always escape output — `esc_html()`, `esc_url()`, `esc_attr()`, `wp_kses_post()`
