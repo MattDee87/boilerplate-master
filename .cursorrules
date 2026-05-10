@@ -1,6 +1,6 @@
 # Boilerplate Master — .cursorrules
 # AI Context File for ChatGPT / Codex in VS Code
-# Last updated: May 2026
+# Last updated: May 2026 (added offsets, JS corrections, guides index, end-of-session reminder)
 
 ## Project identity
 
@@ -38,6 +38,15 @@ The developer is Matt. His AI workflow uses:
 - Type: Classic PHP theme — NOT a block/FSE theme
 - PHP: 8.4+ compatible
 - Requires: ACF Pro
+
+---
+
+## Terminology — Matt's vocabulary
+
+Read this before any work begins. These definitions override common assumptions.
+
+**CUTOUT**
+When Matt says "the cutout" or "a cutout," he means a decorative element that uses CSS clip-path to create an angular or polygon shape. It is always a real HTML <div> — never a ::before or ::after pseudo-element, never a background image, never an overlay div. In the Hero block the cutout element is .hero_visual_cutout. If Matt says "I don't want the cutout" or "remove the cutout," he means hide or remove the clip-path div — not any pseudo-element, panel, or background layer.
 
 ---
 
@@ -100,11 +109,42 @@ theme-root/
 │   ├── lity/
 │   └── owl-carousel/             ← Required by gallery block
 │
-├── ~acf_imports/                 ← ACF field group JSON exports (17 files)
-├── js/                           ← jquery3.js + scripts.js
+├── ~acf_imports/                 ← ACF field group JSON exports
+├── js/
+│   ├── jquery3.js                ← Custom jQuery (replaces WP default)
+│   └── scripts.js                ← Main theme JS: scroll-to-top, gallery carousel, accordion toggle, video modal
 ├── css/                          ← wufoo.css
-└── Guides/                       ← Developer documentation
+└── Guides/                       ← 13 developer documentation files
+    ├── STYLESHEET_GUIDE.md       ← CSS architecture, §10 patterns, page-scoped overrides
+    ├── Block_Creating_Guide.md
+    ├── FINISHING_GUIDE.md
+    ├── SETUP_GUIDE.md
+    ├── Template_Guide.md
+    ├── JS_Plugins_Guide.md
+    ├── header_footer_guide.md
+    ├── landing_pages_guide.md
+    ├── ada_responsive_nav_guide.md
+    ├── dashboard_fixes.md
+    ├── seo_meta.md
+    ├── acf_imports_guide.md
+    └── theme_json_guide.md
 ```
+
+---
+
+## style.css quick-read offsets
+
+Never read style.css from line 1 unless doing a full audit. Jump directly to the relevant section:
+
+| Need to... | Start at line |
+|---|---|
+| Check or update token values | 112 (§2 :root) |
+| Edit base typography | 254 (§4) |
+| Edit wrapper / main layout | 372 (§5) |
+| Edit buttons or forms | 421 (§6) |
+| Edit utilities or helpers | 681 (§8) |
+| Edit responsive breakpoints | 787 (§9) |
+| Add or edit §10 shared patterns | 862 (§10) |
 
 ---
 
@@ -332,6 +372,12 @@ All blocks are auto-registered via a glob loop in functions.php.
 
 All 15 blocks use "category": "boilerplate-blocks" and appear under the "Boilerplate Blocks" group in the editor. Category registered via add_filter( 'block_categories_all' ) in functions.php.
 
+### Block JS — loading patterns
+
+Gallery, Accordion, and Video all load their JS from scripts.js — NOT via viewScript in block.json. A video.js file exists in the video block folder but is not wired up via block.json.
+
+Why: all three depend on jQuery being loaded first. scripts.js declares jquery and owl-core-js as dependencies in functions.php, guaranteeing correct load order.
+
 ### All 15 blocks — exact name values
 
 NOTE: Block naming is inconsistent (known issue). Use exact values below.
@@ -496,6 +542,18 @@ To set up on a new project: ACF → Tools → Import → select all files.
 - .gitignore added to theme root
 - ADA responsive nav activated by default
 - Theme Settings tracking import fixed to target theme-general-settings
+
+---
+
+## End of session
+
+If any of the following changed this session, update .cursorrules (and mirror in CLAUDE.md) before closing:
+
+- New block added or removed → update the block name table
+- style.css sections grew significantly → check if offsets shifted and update the offset table
+- Block JS loading pattern changed → update the Block JS section
+- New variant added → update the Section Variant System list
+- New ACF fields or field groups → update ACF section
 
 ---
 

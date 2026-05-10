@@ -1,6 +1,6 @@
 # CLAUDE.md — Boilerplate Master
 ### AI Context File for Claude Code
-### Last updated: May 2026
+### Last updated: May 2026 (added offsets, JS corrections, guides index, variant system, end-of-session reminder)
 
 ---
 
@@ -43,6 +43,15 @@ Read this before making any changes to the codebase.
 | WordPress | 6.x+ |
 | PHP | 8.4+ compatible |
 | ACF | ACF Pro required |
+
+---
+
+## Terminology — Matt's vocabulary
+
+Read this before any work begins. These definitions override common assumptions.
+
+**CUTOUT**
+When Matt says "the cutout" or "a cutout," he means a decorative element that uses CSS `clip-path` to create an angular or polygon shape. It is always a real HTML `<div>` — never a `::before` or `::after` pseudo-element, never a background image, never an overlay div. In the Hero block the cutout element is `.hero_visual_cutout`. If Matt says "I don't want the cutout" or "remove the cutout," he means hide or remove the clip-path div — not any pseudo-element, panel, or background layer.
 
 ---
 
@@ -112,13 +121,42 @@ theme-root/
 │
 ├── js/
 │   ├── jquery3.js                ← Custom jQuery (replaces WP default)
-│   └── scripts.js                ← Main theme JS (empty doc ready)
+│   └── scripts.js                ← Main theme JS: scroll-to-top, gallery carousel, accordion toggle, video modal
 │
 ├── css/
 │   └── wufoo.css                 ← Third party Wufoo form styles
 │
-└── Guides/                       ← Developer documentation
+└── Guides/                       ← 13 developer documentation files
+    ├── STYLESHEET_GUIDE.md       ← CSS architecture, §10 patterns, page-scoped overrides
+    ├── Block_Creating_Guide.md   ← How to create new blocks
+    ├── FINISHING_GUIDE.md        ← Pre-launch checklist
+    ├── SETUP_GUIDE.md            ← Initial project setup
+    ├── Template_Guide.md         ← Custom page templates
+    ├── JS_Plugins_Guide.md       ← JS plugin usage
+    ├── header_footer_guide.md    ← Header/footer structure
+    ├── landing_pages_guide.md    ← Campaign CPT system
+    ├── ada_responsive_nav_guide.md ← ADA nav system
+    ├── dashboard_fixes.md        ← Admin hardening
+    ├── seo_meta.md               ← SEO meta system
+    ├── acf_imports_guide.md      ← ACF field group imports
+    └── theme_json_guide.md       ← theme.json / two-file update workflow
 ```
+
+---
+
+## style.css quick-read offsets
+
+Never read style.css from line 1 unless doing a full audit. Jump directly to the relevant section using the `offset` parameter:
+
+| Need to... | Start at line |
+|---|---|
+| Check or update token values | 112 (§2 `:root`) |
+| Edit base typography | 254 (§4) |
+| Edit wrapper / main layout | 372 (§5) |
+| Edit buttons or forms | 421 (§6) |
+| Edit utilities or helpers | 681 (§8) |
+| Edit responsive breakpoints | 787 (§9) |
+| Add or edit §10 shared patterns | 862 (§10) |
 
 ---
 
@@ -332,15 +370,9 @@ Every block follows the same 4-file pattern:
 
 ### Block JS — two loading patterns
 
-Some blocks load their JS via scripts.js rather than viewScript:
+Gallery, Accordion, and Video all load their JS from `scripts.js` — NOT via viewScript in block.json. A `video.js` file exists in the video block folder but is not wired up via block.json.
 
-- **Gallery** — carousel init lives in scripts.js. No viewScript in block.json.
-- **Accordion** — click handler lives in scripts.js. No viewScript in block.json.
-- **Video** — lightbox JS lives in video.js, loaded via viewScript in block.json.
-
-Why: Gallery and Accordion depend on jQuery and Owl Carousel being loaded first.
-Moving their init code to scripts.js guarantees correct dependency order.
-scripts.js declares both jquery and owl-core-js as dependencies in functions.php.
+Why: all three depend on jQuery being loaded first. `scripts.js` declares `jquery` and `owl-core-js` as dependencies in `functions.php`, guaranteeing correct load order.
 
 **Block category:** All 15 blocks use `"category": "boilerplate-blocks"` and appear under the "Boilerplate Blocks" group in the editor. The category is registered via `add_filter( 'block_categories_all' )` in `functions.php`.
 
@@ -365,6 +397,30 @@ scripts.js declares both jquery and owl-core-js as dependencies in functions.php
 | `split_view/` | `custom_split_view` | Split View |
 | `testimonials/` | `custom_testimonials` | Testimonials |
 | `video/` | `custom_video` | Video |
+
+### Section variant system
+
+Every block exposes a Section Variant ACF field (`section_variant`). The selected value outputs as a scoped CSS class on the outer section only — never on inner wrappers.
+
+Standard variants (consistent across every block):
+- `default` — base block styles, no override
+- `homepage-feature` — elevated or hero-adjacent treatment
+- `minimal` — stripped-back, reduced padding or background
+- `split-feature` — two-column or asymmetric layout
+- `cards-feature` — card-heavy grid emphasis
+- `inner-banner` — compact banner for interior pages
+
+Rules:
+- Variants describe design patterns, not pages — never name a variant after a page
+- Only add a new variant for a genuinely new design pattern
+- When adding a new variant, update every block's ACF JSON export to keep dropdowns consistent
+
+```php
+$variant       = get_field('section_variant') ?: 'default';
+$variant_class = 'block_prefix_variant_' . str_replace('-', '_', $variant);
+// Outer section only
+<section class="block_outer_class <?= esc_attr($variant_class); ?>">
+```
 
 ### Block CSS standard header
 
@@ -541,6 +597,18 @@ This boilerplate ships with everything. Strip it down per project:
 - ✅ Shared CSS patterns consolidated into §10b (CTA buttons), §10c (eyebrow labels), §10f (corner triangle decoration)
 - ✅ page.php: `<article>` replaced with `<div class="page-inner">` — `<article>` is semantically incorrect for inner pages (About, Services, Contact, etc.)
 - ✅ page.php: fixed `esc_html(the_title())` → `echo esc_html( get_the_title() )` — the original was escaping nothing because `the_title()` echoes directly and returns null
+
+---
+
+## End of session
+
+If any of the following changed this session, update CLAUDE.md (and mirror in .cursorrules) before closing:
+
+- New block added or removed → update the block name table
+- style.css sections grew significantly → check if offsets shifted and update the offset table
+- Block JS loading pattern changed → update the Block JS section
+- New variant added → update the Section Variant System list
+- New ACF fields or field groups → update ACF section
 
 ---
 
